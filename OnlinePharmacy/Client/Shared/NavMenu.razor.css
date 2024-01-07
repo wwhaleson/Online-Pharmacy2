@@ -1,0 +1,122 @@
+
+/* Override Bootstrap styles for offcanvas dropdown items */
+.navbar-nav .dropdown-menu {
+    border: 1px solid #ddd; /* Add your default border style here */
+}
+
+/* Override styles for the dropdown menu when the viewport is less than 800pixels */
+@media (max-width: 1001px) {
+    .navbar-nav .dropdown-menu {
+        border: none; /* Remove the border in this specific case */
+    }
+}
+@media (min-width: 1000px) {
+    .offcanvas-body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+}
+
+.offcanvas {
+    max-width: 500px; /* Adjust the value based on your preference */
+
+}
+
+#navigationbarlogo {
+    font-weight: 800;
+    font-size: 35px;
+    font-family: "Rubik", serif;
+    margin-left:20px;
+}
+
+#navigaionbaritems {
+    font-family: "Rubik", serif;
+    font-size: 20px;
+    font-weight: 500;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#navigationicon {
+    font-size: 30px;
+    margin-right: 20px;
+}
+
+
+#Shoppingbag{
+    position: relative;
+    margin-right:20px;
+}
+
+#Searchscope {
+    margin-right: 20px;
+    height:30px;
+}
+
+#Profileicon {
+    margin-right: 20px;
+}
+
+#shoppingbagnumberofproducts {
+    position: absolute;
+    top: 5px;
+    left: 20px;
+    font-size: 10px;
+}
+
+#navtoggler {
+    border: none;
+}
+
+#navtoggler:hover {
+    background-color:grey;
+}
+
+
+
+#prescriptionmedicine:hover {
+    font-weight: 600;
+}
+
+#overthecountermedicine:hover {
+    font-weight: 600;
+}
+
+#vitamins:hover {
+    font-weight: 600;
+}
+
+#homecareandrecoveryaid:hover {
+    font-weight: 600;
+}
+#products:hover {
+    color: forestgreen;
+    font-weight: 600;
+}
+
+
+.sub-menu-wrap {
+    position: absolute;
+    top: 100%;
+    right: 0%;
+    width: 250px;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.3s;
+    font-size: 20px;
+    z-index: 1
+}
+
+.sub-menu-wrap.open-menu{
+    max-height:400px;
+    z-index:1
+}
+
+.sub-menu {
+    background-color: whitesmoke;
+    padding: 20px;
+    margin: 10px;
+    border: thick;
+    z-index: 1
+}

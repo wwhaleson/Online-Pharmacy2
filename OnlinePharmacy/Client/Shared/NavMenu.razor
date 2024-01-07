@@ -1,0 +1,88 @@
+﻿
+<nav class="navbar navbar-expand-lg bg-light " id="navigaionbaritems">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#" id="navigationbarlogo">Farmacy</a>
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNav">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title">Pharmacy</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-auto-close="outside" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="products">
+                            Products
+                        </a>
+                        
+                        <ul class="dropdown-menu">
+                            <!--    <li class="dropend">
+                                <a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" id="prescriptionmedicine" href="/PrescriptionMedicine">Prescription Medicine</a>
+                                <ul class ="dropdown-menu">
+                                    <li><a href="#" class="dropdown-item">Pain and Fever</a></li>
+                                    <li><a href="#" class="dropdown-item">Cough</a></li>
+                                    <li><a href="#" class="dropdown-item">Flu</a></li>
+                                    <li><a href="#" class="dropdown-item">Diarrhea</a></li>
+                                    <li><a href="#" class="dropdown-item">Vomiting</a></li>
+                                </ul>
+                            </li>
+                            
+                            <li class="dropend">
+                                <a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" id="overthecountermedicine" href="/OverTheCounterMedicines">Over-The-Counter Medicine</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" class="dropdown-item">Pain and Fever</a></li>
+                                    <li><a href="#" class="dropdown-item">Cough</a></li>
+                                    <li><a href="#" class="dropdown-item">Flu</a></li>
+                                    <li><a href="#" class="dropdown-item">Diarrhea</a></li>
+                                    <li><a href="#" class="dropdown-item">Vomiting</a></li>
+                                </ul>
+                            </li>-->
+                            <li><a class="dropdown-item" href="/PrescriptionMedicine" id="prescriptionmedicine">Prescription Medicine</a></li>
+                            <li><a class="dropdown-item" href="/OverTheCounterMedicines" id="overthecountermedicine">Over-The-Counter Medicine</a></li>
+                            <li><a class="dropdown-item" href="/Vitamins" id="vitamins">Vitamins </a></li>
+                            <li><a class="dropdown-item" href="/HomeCareAndRecoveryAids" id="homecareandrecoveryaid">Home Care and Recovery Aid </a></li>
+                        </ul>
+                    </li>
+                </ul>
+                    <div class="input-group" id="Searchscope">
+                        <div class="form-inline">
+                            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                        </div>
+                        <button class="btn btn-outline-success" type="submit">
+                            <span class="bi bi-search" ></span>
+                        </button>
+                    </div>
+
+            </div>
+        </div>
+            <div class="d-flex justify-content-end" id="navigationicon">
+            <a href="/cart" class="nav-link" id="Shoppingbag">
+                <span class="bi bi-bag-plus" font-size: 5rem;></span>
+                    <span class="badge bg-success" id="shoppingbagnumberofproducts">1</span>
+                </a>
+            <a class="nav-link" id="Profileicon" onclick="toggleMenu() ">
+                <span class="bi bi-person-circle"></span>
+                <div class="sub-menu-wrap" id="subMenu">
+                    <div class="sub-menu">
+                        <LoginDisplay />
+                    </div>
+                </div>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" id="navtoggler">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            </div>
+
+
+
+
+
+     </div>
+</nav>
+
+@code {
+    
+
+
+}
+

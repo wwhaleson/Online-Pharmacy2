@@ -1,0 +1,22 @@
+﻿#aboutusheader {
+    font-weight: 800;
+    font-family: "Rubik", serif;
+    font-size: 50px;
+}
+
+.text-hr {
+    width: 50%;
+    margin: auto;
+}
+
+.featurette-heading {
+    font-weight: 700;
+    font-family: "Rubik", serif;
+    text-align:center;
+}
+.lead {
+    font-weight: 500;
+    font-family: "Rubik", serif;
+    text-align:center;
+}
+

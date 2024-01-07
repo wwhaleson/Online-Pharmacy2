@@ -1,0 +1,85 @@
+﻿@attribute [Authorize]
+@inject HttpClient _client
+@inject IJSRuntime js
+@page "/DeliveryStatus"
+<PageTitle>Delivery Status</PageTitle>
+<div class="container">
+    <div class="d-flex flex-column" id="dflexdeliver">
+        <h1 class="mt-5" id="deliverstatusheader">Delivery Status</h1>
+        <a href="/Delivery/create" class="btn btn-secondary createdeliverybutton">
+            <span class="oi oi-plus"></span>
+            Create New Delivery
+        </a>
+    </div>
+
+    @if (Deliverys == null)
+    {
+        <div class="alert alert-info">Loading Deliveries</div>
+    }
+    else{
+    <div class="table-responsive mt-3">
+        <table class="table ">
+            <thead class="table-light">
+                <tr id="delivertablecolumnname">
+                    <th scope="col" class="dcol">#Deliver ID</th>
+                    <th scope="col" class="dcol">#Order ID</th>
+                    <th scope="col" class="dcol">Est Delivery Date</th>
+                    <th scope="col" class="dcol">Est Delivery Time</th>
+                    <th scope="col" class="dcol">Status</th>
+                    <th scope="col" class="dcol">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                    @foreach (var delivery in Deliverys)
+                    {
+                        <tr>
+                            <td class="dr">@delivery.DeliveryID</td>
+                            <td class="dr">@delivery.OrderID</td>
+                            <td class="dr">@delivery.EstimatedDeliveryDate</td>
+                            <td class="dr">@delivery.EstimatedDeliveryTime</td>
+                            <td class="dr">@delivery.DeliveryStatus</td>
+                            <td>
+                                <a href="/deliveries/view/@delivery.DeliveryID" class="btn btn-primary">
+                                    <span class=" oi oi-book"></span>
+                                </a>
+                                <a href="/deliveries/edit/@delivery.DeliveryID" class="btn btn-warning">
+                                    <span class=" oi oi-pencil"></span>
+                                </a>
+                                <button class="btn btn-danger" @onclick="@(()=>Delete(delivery.DeliveryID))">
+                                    <span class="oi oi-delete"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+            </tbody>
+        </table>
+    </div>
+    }
+</div>
+
+
+
+
+@code {
+    private List<Delivery>? Deliverys;
+    <!--When the page begins to load-->
+    protected async override Task OnInitializedAsync()
+    {
+        Deliverys = await _client.GetFromJsonAsync<List<Delivery>>($"{Endpoints.DeliverysEndpoint}");
+    }
+    async Task Delete(int deliveryId)
+    {
+        if (Deliverys != null)
+        {
+            var delivery = Deliverys.First(q => q.DeliveryID == deliveryId);
+            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to Delete {delivery.DeliveryID}?");
+            if (confirm)
+            {
+                await _client.DeleteAsync($"{Endpoints.DeliverysEndpoint}/{deliveryId}");
+                await OnInitializedAsync();
+            }
+        }
+    }
+
+}

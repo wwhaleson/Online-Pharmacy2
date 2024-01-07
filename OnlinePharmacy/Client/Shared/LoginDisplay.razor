@@ -1,0 +1,76 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inject NavigationManager Navigation
+
+<AuthorizeView>
+    <!-- User Logged in and able to see the different dropdown items under My account that are only accessible after logging in-->
+    <Authorized>
+        <!-- Have a Welcome greeting for the User when logged in-->
+        <!--<li><a class="dropdown-item disabled">Welcome,@context.User.Identity?.Name! </a></li>-->
+
+        <!-- User able to view/select their profile details like Phone Number,Email,Password,Deleting of personal data and 2 factor-->
+        <a href="authentication/profile" class="sub-menu-link">
+            <i class="bi bi-person"></i>
+            <p>Edit Profile </p>
+            <span>></span>
+        </a>
+
+        <!-- User able to view their order -->
+        <a href="/OrderStatus" class="sub-menu-link">
+            <i class="bi bi-box-seam"></i>
+            <p>Orders</p>
+            <span>></span>
+        </a>
+
+        <!-- User able to view their delivery status-->
+        <a href="/DeliveryStatus" class="sub-menu-link">
+            <i class="bi bi-truck"></i>
+            <p>Delivery Status </p>
+            <span>></span>
+        </a>
+
+        <!-- User able to view their consultation -->
+        <a href="/OnlineConsultation" class="sub-menu-link">
+            <i class="bi bi-telephone"></i>
+            <p>Consulatation</p>
+            <span>></span>
+        </a>
+
+        <!-- User able to view their prescription -->
+        <a href="/Prescription" class="sub-menu-link">
+            <i class="bi bi-prescription"></i>
+            <p>Prescription</p>
+            <span>></span>
+        </a>
+
+        <!-- User able to select to log out of the account-->
+        <a href="#" @onclick="BeginLogOut" class="sub-menu-link">
+            <i class="bi bi-box-arrow-right"></i>
+            <p>Log Out</p>
+            <span>></span>
+        </a>
+
+    </Authorized>
+    <!--User not logged in and able to see the different dropdown item for under My account-->
+    <NotAuthorized>
+        <!--User able to select the register option and register for a new account-->
+        <a href="authentication/register" class="sub-menu-link">
+            <i class="bi bi-r-circle"></i>
+            <p>Register</p>
+            <span>></span>
+        </a>
+        <!--User able to select the login option to login to their account-->
+        <a href="authentication/login" class="sub-menu-link">
+            <i class="bi bi-box-arrow-in-left"></i>
+            <p>Log In</p>
+            <span>></span>
+        </a>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code{
+    private void BeginLogOut()
+    {
+        Navigation.NavigateToLogout("authentication/logout");
+    }
+}
