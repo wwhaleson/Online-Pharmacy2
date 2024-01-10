@@ -1,0 +1,32 @@
+﻿@attribute [Authorize]
+@page "/Delivery/create/"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3 class="card-title">Create Delivery</h3>
+
+
+<FormComponent ButtonText="Create Delivery" delivery="delivery" OnValidSubmit="@CreateDeliverys" />
+
+
+@code {
+    Delivery delivery = new Delivery();
+
+    private IList<Staff>? Staffs;
+    private IList<Order>? Orders;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Staffs = await _client.GetFromJsonAsync<List<Staff>>($"{Endpoints.StaffsEndpoint}");
+        Orders = await _client.GetFromJsonAsync<List<Order>>($"{Endpoints.OrdersEndpoint}");
+
+    }
+
+    private async Task CreateDeliverys()
+    {
+        await _client.PostAsJsonAsync(Endpoints.DeliverysEndpoint, delivery);
+        _navManager.NavigateTo("/Delivery/");
+    }
+
+}
+

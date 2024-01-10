@@ -39,12 +39,12 @@
                         <td class="dr">@prescription.OnlineConsultationID</td>
                         <td class="dr">@prescription.IssueDate</td>
                         <td class="dr">@prescription.ExpiryDate</td>
-                        <td>
-                            <a href="/prescriptions/view/@prescription.PrescriptionID" class="btn btn-primary">
-                                <span class=" oi oi-book"></span>
+                        <td class="dr">
+                            <a href="/Prescription/view/@prescription.PrescriptionID" class="btn btn-primary">
+                            <span class=" oi oi-book"></span>
                             </a>
-                            <a href="/prescriptions/edit/@prescription.PrescriptionID" class="btn btn-warning">
-                                <span class=" oi oi-pencil"></span>
+                            <a href="/Prescription/edit//@prescription.PrescriptionID" class="btn btn-warning">
+                            <span class=" oi oi-pencil"></span>
                             </a>
                             <button class="btn btn-danger" @onclick="@(()=>Delete(prescription.PrescriptionID))">
                                 <span class="oi oi-delete"></span>

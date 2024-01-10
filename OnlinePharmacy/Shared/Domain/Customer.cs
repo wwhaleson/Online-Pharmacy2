@@ -31,5 +31,7 @@ namespace OnlinePharmacy.Shared.Domain
 
         public string? CustPass { get; set; }
 
+        public virtual List<OnlineConsultation>? OnlineConsultations { get; set; }   
+
     }
 }

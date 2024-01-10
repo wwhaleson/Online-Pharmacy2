@@ -1,7 +1,7 @@
 ﻿@attribute [Authorize]
 @inject HttpClient _client
 @inject IJSRuntime js
-@page "/DeliveryStatus"
+@page "/Delivery"
 <PageTitle>Delivery Status</PageTitle>
 <div class="container">
     <div class="d-flex flex-column" id="dflexdeliver">
@@ -39,11 +39,11 @@
                             <td class="dr">@delivery.EstimatedDeliveryDate</td>
                             <td class="dr">@delivery.EstimatedDeliveryTime</td>
                             <td class="dr">@delivery.DeliveryStatus</td>
-                            <td>
-                                <a href="/deliveries/view/@delivery.DeliveryID" class="btn btn-primary">
+                            <td class="dr">
+                                <a href="/Delivery/view/@delivery.DeliveryID" class="btn btn-primary">
                                     <span class=" oi oi-book"></span>
                                 </a>
-                                <a href="/deliveries/edit/@delivery.DeliveryID" class="btn btn-warning">
+                                <a href="/Delivery/edit/@delivery.DeliveryID" class="btn btn-warning">
                                     <span class=" oi oi-pencil"></span>
                                 </a>
                                 <button class="btn btn-danger" @onclick="@(()=>Delete(delivery.DeliveryID))">

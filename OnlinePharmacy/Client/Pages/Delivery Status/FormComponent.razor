@@ -1,0 +1,113 @@
+﻿@inject HttpClient _client
+
+<EditForm Model="@delivery" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <fieldset disabled="@Disabled">
+
+        <div class="form-group">
+            <label>Order ID: </label>
+            <div>
+                <InputSelect @bind-Value="delivery.OrderID" class="form-control">
+                    <option value="">-- Order ID --</option>
+                    @if (Orders != null)
+                    {
+                        foreach (var order in Orders)
+                        {
+                            <option value="@order.CustomerID">@order.OrderID @order.TotalCost</option>
+                        }
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => delivery.OrderID)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Estimated Delivery Date: </label>
+            <div>
+                <InputDate @bind-Value="@delivery.EstimatedDeliveryDate" class="form-control" />
+                <ValidationMessage For="@(() => delivery.EstimatedDeliveryDate)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Estimated Delivery Time: </label>
+            <div>
+                <input type="time" @bind="@delivery.EstimatedDeliveryTime" class="form-control" />
+                <ValidationMessage For="@(() => delivery.EstimatedDeliveryTime)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Delivery Method: </label>
+            <div>
+                <InputText @bind-Value="@delivery.DeliveryMethod" class="form-control" />
+                <ValidationMessage For="@(() => delivery.DeliveryMethod)" />
+            </div>
+        </div>
+
+
+        <div class="form-group mb-3">
+            <label>Delivery Price SGD$: </label>
+            <input type="number" @bind="@delivery.DeliveryCost" class="form-control" aria-label="Amount (to the nearest dollar)" />
+            <ValidationMessage For="@(() => delivery.DeliveryCost)" />
+        </div>
+
+
+        <div class="form-group">
+            <label>Delivery Status: </label>
+            <div>
+                <InputSelect @bind-Value="delivery.DeliveryStatus" class="form-control">
+                    <option value="">-- Select Delivery Status --</option>
+                    <option value="Scheduled">Packing</option>
+                    <option value="In Progress">On the way</option>
+                    <option value="Completed">Completed</option>
+                </InputSelect>
+                <ValidationMessage For="@(() => delivery.DeliveryStatus)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Handled by: </label>
+            <div>
+                <InputSelect @bind-Value="delivery.StaffID" class="form-control">
+                    <option value="">-- Staff --</option>
+                    @if (Staffs != null)
+                    {
+                        foreach (var staff in Staffs)
+                        {
+                            <option value="@staff.StaffID">@staff.StaffFname @staff.StaffLname</option>
+                        }
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => delivery.StaffID)" />
+            </div>
+        </div>
+    </fieldset>
+
+    @if (!Disabled)
+    {
+        <button type="submit" class="btn btn-success btn-block">
+            @ButtonText
+        </button>
+    }
+    <BackToList Target="Delivery" />
+</EditForm>
+
+@code {
+    [Parameter] public bool Disabled { get; set; } = false;
+    [Parameter] public Delivery? delivery { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+
+    private IList<Order>? Orders;
+    private IList<Staff>? Staffs;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Orders = await _client.GetFromJsonAsync<List<Order>>($"{Endpoints.OrdersEndpoint}");
+        Staffs = await _client.GetFromJsonAsync<List<Staff>>($"{Endpoints.StaffsEndpoint}");
+    }
+
+}

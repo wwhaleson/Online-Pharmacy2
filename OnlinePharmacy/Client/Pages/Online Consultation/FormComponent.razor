@@ -68,7 +68,7 @@
         <div class="form-group">
             <label>Platform: </label>
             <div>
-                <textarea @bind="@onlineconsultation.ConsultationSymptom" class="form-control"></textarea>
+                <InputText @bind-Value="@onlineconsultation.ConsultationSymptom" class="form-control"></InputText>
                 <ValidationMessage For="@(() => onlineconsultation.ConsultationSymptom)" />
             </div>
         </div>
@@ -77,7 +77,7 @@
         <div class="form-group">
             <label>Symptom: </label>
             <div>
-                <textarea @bind="@onlineconsultation.ConsultationSymptom" class="form-control"></textarea>
+                <InputText @bind-Value="@onlineconsultation.ConsultationSymptom" class="form-control" />
                 <ValidationMessage For="@(() => onlineconsultation.ConsultationSymptom)" />
             </div>
         </div>
@@ -85,16 +85,13 @@
         <div class="form-group">
             <label>Diagnosis: </label>
             <div>
-                <textarea @bind="@onlineconsultation.ConsultationDiagnosis" class="form-control"></textarea>
+                <InputText @bind-Value="@onlineconsultation.ConsultationDiagnosis" class="form-control" />
                 <ValidationMessage For="@(() => onlineconsultation.ConsultationDiagnosis)" />
             </div>
         </div>
 
         <div class="form-group mb-3">
-            <label>Consultation Price: </label>
-            <div class="input-group-prepend">
-                <span class="input-group-text">$</span>
-            </div>
+            <label>Consultation Price SGD$: </label>
             <input type="number" @bind="@onlineconsultation.ConsultationPrice" class="form-control" aria-label="Amount (to the nearest dollar)" />
             <ValidationMessage For="@(() => onlineconsultation.ConsultationPrice)" />
         </div>
@@ -104,8 +101,8 @@
             <label>Consultation Status: </label>
             <div>
                 <InputSelect @bind-Value="onlineconsultation.ConsultationStatus" class="form-control">
+                    <option value="">-- Select Consultation Status --</option>
                     <option value="Scheduled">Scheduled</option>
-                    <option value="In Progress">In Progress</option>
                     <option value="Completed">Completed</option>
                     <option value="Cancelled">Cancelled</option>
                 </InputSelect>
