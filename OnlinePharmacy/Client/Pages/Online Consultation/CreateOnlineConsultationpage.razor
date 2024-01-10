@@ -1,0 +1,166 @@
+﻿@attribute [Authorize]
+@page "/Prescription/create/"
+@inject HttpClient _client
+@inject IJSRuntime js
+@inject NavigationManager _navManager
+
+<h3 class="card-title">Create Online Consultations</h3>
+
+<EditForm Model="@onlineconsultation" OnValidSubmit="CreateOnlineConsultation">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+
+    <div class="form-group">
+        <label>Customer: </label>
+        <div>
+            <InputSelect @bind-Value="onlineconsultation.CustomerID" class="form-control">
+                <option value="">-- Select Customer --</option>
+                @if (Customers != null)
+                {
+                    foreach (var customer in Customers)
+                    {
+                        <option value="@customer.CustomerID">@customer.CustFname @customer.CustLname</option>
+                    }
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => onlineconsultation.CustomerID)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Start Date: </label>
+        <div>
+            <InputDate @bind-Value="@onlineconsultation.ConsultationDateStart" class="form-control" />
+            <ValidationMessage For="@(() => onlineconsultation.ConsultationDateStart)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>End Date: </label>
+        <div>
+            <InputDate @bind-Value="@onlineconsultation.ConsultationDateStart" class="form-control" />
+            <ValidationMessage For="@(() => onlineconsultation.ConsultationDateEnd)" />
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label>Start Time: </label>
+        <div>
+            <input type="time" @bind="@onlineconsultation.ConsultationTimeStart" class="form-control" />
+            <ValidationMessage For="@(() => onlineconsultation.ConsultationTimeStart)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>End Time: </label>
+        <div>
+            <input type="time" @bind="@onlineconsultation.ConsultationTimeEnd" class="form-control" />
+            <ValidationMessage For="@(() => onlineconsultation.ConsultationTimeEnd)" />
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label>Duration (Minutes): </label>
+        <div>
+            <input type="number" @bind="@onlineconsultation.ConsultationDuration" class="form-control" />
+            <ValidationMessage For="@(() => onlineconsultation.ConsultationDuration)" />
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label>Platform: </label>
+        <div>
+            <textarea @bind="@onlineconsultation.ConsultationSymptom" class="form-control"></textarea>
+            <ValidationMessage For="@(() => onlineconsultation.ConsultationSymptom)" />
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label>Symptom: </label>
+        <div>
+            <textarea @bind="@onlineconsultation.ConsultationSymptom" class="form-control"></textarea>
+            <ValidationMessage For="@(() => onlineconsultation.ConsultationSymptom)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Diagnosis: </label>
+        <div>
+            <textarea @bind="@onlineconsultation.ConsultationDiagnosis" class="form-control"></textarea>
+            <ValidationMessage For="@(() => onlineconsultation.ConsultationDiagnosis)" />
+        </div>
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Consultation Price: </label>
+        <div class="input-group-prepend">
+            <span class="input-group-text">$</span>
+        </div>
+        <input type="number" @bind="@onlineconsultation.ConsultationPrice" class="form-control" aria-label="Amount (to the nearest dollar)" />
+        <ValidationMessage For="@(() => onlineconsultation.ConsultationPrice)" />
+    </div>
+
+
+    <div class="form-group">
+        <label>Consultation Status: </label>
+        <div>
+            <InputSelect @bind-Value="onlineconsultation.ConsultationStatus" class="form-control">
+                <option value="Scheduled">Scheduled</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+                <option value="Cancelled">Cancelled</option>
+            </InputSelect>
+            <ValidationMessage For="@(() => onlineconsultation.ConsultationStatus)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Pharmacist: </label>
+        <div>
+            <InputSelect @bind-Value="onlineconsultation.PharmacistID" class="form-control">
+                <option value="">-- Pharmacist --</option>
+                @if (Pharmacists != null)
+                {
+                    foreach (var pharmacist in Pharmacists)
+                    {
+                        <option value="@pharmacist.StaffID">@pharmacist.StaffFname @pharmacist.StaffLname</option>
+                    }
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => onlineconsultation.CustomerID)" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success btn-block">
+        Create Online Consultation
+    </button>
+
+
+</EditForm>
+
+
+
+@code {
+    OnlineConsultation onlineconsultation = new OnlineConsultation();
+
+    private IList<Customer>? Customers;
+    private IList<Staff>? Pharmacists;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Customers = await _client.GetFromJsonAsync<List<Customer>>($"{Endpoints.CustomersEndpoint}");
+        Pharmacists = await _client.GetFromJsonAsync<List<Staff>>($"{Endpoints.StaffsEndpoint}");
+    }
+
+    private async Task CreateOnlineConsultation()
+    {
+        await _client.PostAsJsonAsync(Endpoints.OnlineConsultationsEndpoint, onlineconsultation);
+        _navManager.NavigateTo("/OnlineConsultation/");
+    }
+
+}

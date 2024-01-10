@@ -25,11 +25,10 @@ namespace OnlinePharmacy.Shared.Domain
 
         public virtual Order? Order { get; set; }
 
-        
-        /*
-        public int StaffID { get; set; }
+               
+        public int? StaffID { get; set; }
 
-        public virtual Staff? Staff { get; set; }*/
+        public virtual Staff? Staff { get; set; }
 
     }
 }

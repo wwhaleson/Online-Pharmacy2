@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace OnlinePharmacy.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class alluptounitofwork : Migration
+    public partial class nullorderidandstaffid : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -398,7 +398,8 @@ namespace OnlinePharmacy.Server.Migrations
                     DeliveryStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DeliveryMethod = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DeliveryCost = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    OrderID = table.Column<int>(type: "int", nullable: false)
+                    OrderID = table.Column<int>(type: "int", nullable: false),
+                    StaffID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -409,6 +410,11 @@ namespace OnlinePharmacy.Server.Migrations
                         principalTable: "Order",
                         principalColumn: "OrderID",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Delivery_Staff_StaffID",
+                        column: x => x.StaffID,
+                        principalTable: "Staff",
+                        principalColumn: "StaffID");
                 });
 
             migrationBuilder.CreateTable(
@@ -448,11 +454,17 @@ namespace OnlinePharmacy.Server.Migrations
                     PrescriptionItemQuantity = table.Column<int>(type: "int", nullable: true),
                     PrescriptionItemSubTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     PrescriptionID = table.Column<int>(type: "int", nullable: false),
-                    ProductID = table.Column<int>(type: "int", nullable: false)
+                    ProductID = table.Column<int>(type: "int", nullable: false),
+                    OrderID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PrescriptionItem", x => x.PrescriptionItemID);
+                    table.ForeignKey(
+                        name: "FK_PrescriptionItem_Order_OrderID",
+                        column: x => x.OrderID,
+                        principalTable: "Order",
+                        principalColumn: "OrderID");
                     table.ForeignKey(
                         name: "FK_PrescriptionItem_Prescription_PrescriptionID",
                         column: x => x.PrescriptionID,
@@ -479,7 +491,7 @@ namespace OnlinePharmacy.Server.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "8d9361c5-583a-4a84-bfb7-ded1d2bdf97e", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEGOlucbruP1tUgGtn39USbuTvQDEGtpIsKC0qPCL8QDH+ySqc6uuYQZE8769ZY2Vcg==", null, false, "39a8a1a4-c057-41a7-bc1e-8da116241db5", false, "admin@localhost.com" });
+                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "c480497f-8a3c-4e80-a289-eb9016fb412e", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEN6H0qHR0F1Q+FRHpRnlBy98FjXANG1CktAo5L/Ke8f2F7yy7IqDxlL4YB2WMhx0sg==", null, false, "63d0832f-a2cc-4dd0-ae4d-fac9dbe9e9e0", false, "admin@localhost.com" });
 
             migrationBuilder.InsertData(
                 table: "Category",
@@ -505,11 +517,11 @@ namespace OnlinePharmacy.Server.Migrations
                 columns: new[] { "ProductID", "CategoryID", "PrescriptionStatus", "ProductBrand", "ProductCategoryID", "ProductDescription", "ProductDosage", "ProductExpiryDate", "ProductIngredients", "ProductName", "ProductPrice", "ProductUsage", "StockQuantity" },
                 values: new object[,]
                 {
-                    { 1, null, false, "SCOTT'S", 2, "Scott's is the Number 1 Kids' Multivitamin Brand in Singapore*. Worry about your little ones being picky with food and not getting the necessary nutrients for proper growth/development? Do not worry, Scott’s Multivitamin Gummies is coming to your rescue! Available in three delicious fruity flavors Apple, Tropical Fruits, and the NEWEST addition - Mango; it contains Zinc and five essential vitamins - A, B6, C, D, E - to support your kid immunity, bone growth and healthy vision every day. Moreover, Scott's micro encapsulation technology locks in the goodness of Zinc and 5 Vitamins (Vitamin A, B6, C, D & E) whilst giving kids the taste they love.", "3x/Day", new DateTime(2024, 1, 5, 18, 4, 31, 226, DateTimeKind.Utc).AddTicks(7393), "Glucose, Syrup, Sugar, Gelatin, Acidity Regulator (Citric Acid, Sodium Citrate), Humectant (Sorbitol), Flavouring substance, Vitamins and Mineral (Vitamin C, Zinc, Vitamin E, Vitamin B6, Vitamin A and Vitamin D) and Colouring substance (Tartrazine)\r\n", "SCOTT'S Multivitamins Gummies Mango", 22m, "Strong bones and teeth, improve the immune system, growth and development", 100 },
-                    { 2, null, false, "Panadol", 3, "Panadol Children’s Suspension 1-6 Years (120mg/5ml) provides relief from fever and pain in children aged 1 to 6 years. Like all Children’s Panadol products, Panadol Children’s Suspension 1-6 Years is gentle on little stomachs. A strawberry-flavoured suspension, Panadol Children’s Suspension 1-6 Years contains no alcohol and is aspirin-free.", "5-10ml (based on child's weight 9.5-19.5kg)\nDo not take more frequently than once every 4 Hours and do not exceed more than four doses in 24 hours. Do not take for more than 3 days without asking your doctor.", new DateTime(2024, 1, 5, 18, 4, 31, 226, DateTimeKind.Utc).AddTicks(7404), "Active ingredient: 120 mg/5 ml Paracetamol\r\nExcipients: No Alcohol, no Aspirin.", "Panadol Children's Suspension", 9m, "Fever, Headaches, Symptoms of colds and flu, Teething pain, Toothaches, Earache, Pain associated with immunisation", 90 },
-                    { 3, null, true, "Amoxil", 1, "Amoxicillin is a penicillin antibiotic. It is used to treat bacterial infections, such as chest infections (including pneumonia) and dental abscesses. It can also be used together with other antibiotics and medicines to treat stomach ulcers.", "1.25-12.5ml (based on child's weight 3.6-36kg)\nGive this dose three (3) times a day—once in the morning, once at mid-day, and once in the evening—for as long as directed.", new DateTime(2024, 1, 5, 18, 4, 31, 226, DateTimeKind.Utc).AddTicks(7469), "Croscarmellose sodium, gelatin, magnesium stearate, titanium dioxide, and yellow iron oxide.", "Amoxicillin", 10m, "Bacterial infections, such as chest infections (including pneumonia) and dental abscesses. Can also be used together with other antibiotics and medicines to treat stomach ulcers.", 50 },
-                    { 4, null, true, "Ibuprofen", 1, "Ibuprofen is a nonsteroidal anti-inflammatory drug.", "Ibuprofen dose is 400mg(two tablets) to be taken initially. 200mg(one tablet) to 400mg(two tablets) may be taken every 4 hours when required.", new DateTime(2024, 1, 5, 18, 4, 31, 226, DateTimeKind.Utc).AddTicks(7475), "Lactose, Maize Starch, Hypromellose, Sodium Starch Glycollate, Colloidal Anhydrous Silica, Magnesium Stearate, Sucrose, Talc, Titanium Dioxide (E171) and Carnauba Wax", "Ibuprofen", 10m, "Treat fever, pain, and inflammation in children", 50 },
-                    { 5, null, false, "Zyrtec", 3, "Zyrtec pcs 10's is now Zyrtec-R pcs 10's.\r\nNew Name, New Pack, Same Formula.\r\nZyrtec-R is an antihistamine.", "Children aged from 2 to 6 years: 2.5 mL of oral solution (half of a spoon) twice daily. Children aged from 6 to 12 years: 5 mg [10 drops, or 5 ml oral solution (1 full spoon) or half of the tablet] twice daily.", new DateTime(2024, 1, 5, 18, 4, 31, 226, DateTimeKind.Utc).AddTicks(7481), "", "Zyrtec R", 12m, "Treats allergy symptoms like itchy eyes, sneezing, a stuffy nose or hives", 30 }
+                    { 1, null, false, "SCOTT'S", 2, "Scott's is the Number 1 Kids' Multivitamin Brand in Singapore*. Worry about your little ones being picky with food and not getting the necessary nutrients for proper growth/development? Do not worry, Scott’s Multivitamin Gummies is coming to your rescue! Available in three delicious fruity flavors Apple, Tropical Fruits, and the NEWEST addition - Mango; it contains Zinc and five essential vitamins - A, B6, C, D, E - to support your kid immunity, bone growth and healthy vision every day. Moreover, Scott's micro encapsulation technology locks in the goodness of Zinc and 5 Vitamins (Vitamin A, B6, C, D & E) whilst giving kids the taste they love.", "3x/Day", new DateTime(2024, 1, 10, 2, 45, 57, 675, DateTimeKind.Utc).AddTicks(4787), "Glucose, Syrup, Sugar, Gelatin, Acidity Regulator (Citric Acid, Sodium Citrate), Humectant (Sorbitol), Flavouring substance, Vitamins and Mineral (Vitamin C, Zinc, Vitamin E, Vitamin B6, Vitamin A and Vitamin D) and Colouring substance (Tartrazine)\r\n", "SCOTT'S Multivitamins Gummies Mango", 22m, "Strong bones and teeth, improve the immune system, growth and development", 100 },
+                    { 2, null, false, "Panadol", 3, "Panadol Children’s Suspension 1-6 Years (120mg/5ml) provides relief from fever and pain in children aged 1 to 6 years. Like all Children’s Panadol products, Panadol Children’s Suspension 1-6 Years is gentle on little stomachs. A strawberry-flavoured suspension, Panadol Children’s Suspension 1-6 Years contains no alcohol and is aspirin-free.", "5-10ml (based on child's weight 9.5-19.5kg)\nDo not take more frequently than once every 4 Hours and do not exceed more than four doses in 24 hours. Do not take for more than 3 days without asking your doctor.", new DateTime(2024, 1, 10, 2, 45, 57, 675, DateTimeKind.Utc).AddTicks(4792), "Active ingredient: 120 mg/5 ml Paracetamol\r\nExcipients: No Alcohol, no Aspirin.", "Panadol Children's Suspension", 9m, "Fever, Headaches, Symptoms of colds and flu, Teething pain, Toothaches, Earache, Pain associated with immunisation", 90 },
+                    { 3, null, true, "Amoxil", 1, "Amoxicillin is a penicillin antibiotic. It is used to treat bacterial infections, such as chest infections (including pneumonia) and dental abscesses. It can also be used together with other antibiotics and medicines to treat stomach ulcers.", "1.25-12.5ml (based on child's weight 3.6-36kg)\nGive this dose three (3) times a day—once in the morning, once at mid-day, and once in the evening—for as long as directed.", new DateTime(2024, 1, 10, 2, 45, 57, 675, DateTimeKind.Utc).AddTicks(4795), "Croscarmellose sodium, gelatin, magnesium stearate, titanium dioxide, and yellow iron oxide.", "Amoxicillin", 10m, "Bacterial infections, such as chest infections (including pneumonia) and dental abscesses. Can also be used together with other antibiotics and medicines to treat stomach ulcers.", 50 },
+                    { 4, null, true, "Ibuprofen", 1, "Ibuprofen is a nonsteroidal anti-inflammatory drug.", "Ibuprofen dose is 400mg(two tablets) to be taken initially. 200mg(one tablet) to 400mg(two tablets) may be taken every 4 hours when required.", new DateTime(2024, 1, 10, 2, 45, 57, 675, DateTimeKind.Utc).AddTicks(4798), "Lactose, Maize Starch, Hypromellose, Sodium Starch Glycollate, Colloidal Anhydrous Silica, Magnesium Stearate, Sucrose, Talc, Titanium Dioxide (E171) and Carnauba Wax", "Ibuprofen", 10m, "Treat fever, pain, and inflammation in children", 50 },
+                    { 5, null, false, "Zyrtec", 3, "Zyrtec pcs 10's is now Zyrtec-R pcs 10's.\r\nNew Name, New Pack, Same Formula.\r\nZyrtec-R is an antihistamine.", "Children aged from 2 to 6 years: 2.5 mL of oral solution (half of a spoon) twice daily. Children aged from 6 to 12 years: 5 mg [10 drops, or 5 ml oral solution (1 full spoon) or half of the tablet] twice daily.", new DateTime(2024, 1, 10, 2, 45, 57, 675, DateTimeKind.Utc).AddTicks(4801), "", "Zyrtec R", 12m, "Treats allergy symptoms like itchy eyes, sneezing, a stuffy nose or hives", 30 }
                 });
 
             migrationBuilder.InsertData(
@@ -531,8 +543,8 @@ namespace OnlinePharmacy.Server.Migrations
                 columns: new[] { "OnlineConsultationID", "ConsultationDateEnd", "ConsultationDateStart", "ConsultationDiagnosis", "ConsultationDuration", "ConsultationPlatform", "ConsultationPrice", "ConsultationStatus", "ConsultationSymptom", "ConsultationTimeEnd", "ConsultationTimeStart", "CustomerID", "PharmacistID", "StaffID" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 1, 5, 18, 4, 31, 226, DateTimeKind.Utc).AddTicks(5247), new DateTime(2024, 1, 5, 18, 4, 31, 226, DateTimeKind.Utc).AddTicks(5245), null, 1, null, 40m, null, null, new DateTime(2024, 1, 5, 18, 4, 31, 226, DateTimeKind.Utc).AddTicks(5244), new DateTime(2024, 1, 5, 18, 4, 31, 226, DateTimeKind.Utc).AddTicks(5242), 1, 1, null },
-                    { 2, new DateTime(2024, 1, 5, 18, 4, 31, 226, DateTimeKind.Utc).AddTicks(5260), new DateTime(2024, 1, 5, 18, 4, 31, 226, DateTimeKind.Utc).AddTicks(5258), null, 2, null, null, null, null, new DateTime(2024, 1, 5, 18, 4, 31, 226, DateTimeKind.Utc).AddTicks(5257), new DateTime(2024, 1, 5, 18, 4, 31, 226, DateTimeKind.Utc).AddTicks(5256), 2, 1, null }
+                    { 1, new DateTime(2024, 1, 10, 2, 45, 57, 675, DateTimeKind.Utc).AddTicks(3694), new DateTime(2024, 1, 10, 2, 45, 57, 675, DateTimeKind.Utc).AddTicks(3692), null, 1, null, 40m, null, null, new DateTime(2024, 1, 10, 2, 45, 57, 675, DateTimeKind.Utc).AddTicks(3691), new DateTime(2024, 1, 10, 2, 45, 57, 675, DateTimeKind.Utc).AddTicks(3689), 1, 1, null },
+                    { 2, new DateTime(2024, 1, 10, 2, 45, 57, 675, DateTimeKind.Utc).AddTicks(3703), new DateTime(2024, 1, 10, 2, 45, 57, 675, DateTimeKind.Utc).AddTicks(3703), null, 2, null, null, null, null, new DateTime(2024, 1, 10, 2, 45, 57, 675, DateTimeKind.Utc).AddTicks(3702), new DateTime(2024, 1, 10, 2, 45, 57, 675, DateTimeKind.Utc).AddTicks(3702), 2, 1, null }
                 });
 
             migrationBuilder.InsertData(
@@ -540,17 +552,17 @@ namespace OnlinePharmacy.Server.Migrations
                 columns: new[] { "OrderID", "CustomerID", "OrderDate", "OrderTime", "PaymentType", "StaffID", "TotalCost" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2024, 1, 6, 2, 4, 31, 226, DateTimeKind.Local).AddTicks(6012), new DateTime(2024, 1, 6, 2, 4, 31, 226, DateTimeKind.Local).AddTicks(6014), null, 2, null },
-                    { 2, 2, new DateTime(2024, 1, 6, 2, 4, 31, 226, DateTimeKind.Local).AddTicks(6019), new DateTime(2024, 1, 6, 2, 4, 31, 226, DateTimeKind.Local).AddTicks(6021), null, 2, null }
+                    { 1, 1, new DateTime(2024, 1, 10, 10, 45, 57, 675, DateTimeKind.Local).AddTicks(4091), new DateTime(2024, 1, 10, 10, 45, 57, 675, DateTimeKind.Local).AddTicks(4093), null, 2, null },
+                    { 2, 2, new DateTime(2024, 1, 10, 10, 45, 57, 675, DateTimeKind.Local).AddTicks(4098), new DateTime(2024, 1, 10, 10, 45, 57, 675, DateTimeKind.Local).AddTicks(4099), null, 2, null }
                 });
 
             migrationBuilder.InsertData(
                 table: "Delivery",
-                columns: new[] { "DeliveryID", "DeliveryCost", "DeliveryMethod", "DeliveryStatus", "EstimatedDeliveryDate", "EstimatedDeliveryTime", "OrderID" },
+                columns: new[] { "DeliveryID", "DeliveryCost", "DeliveryMethod", "DeliveryStatus", "EstimatedDeliveryDate", "EstimatedDeliveryTime", "OrderID", "StaffID" },
                 values: new object[,]
                 {
-                    { 1, 5m, "Standard", "Packing", new DateTime(2024, 1, 6, 2, 4, 31, 226, DateTimeKind.Local).AddTicks(4822), new DateTime(2024, 1, 6, 2, 4, 31, 226, DateTimeKind.Local).AddTicks(4847), 1 },
-                    { 2, 5m, "Standard", "Packing", new DateTime(2024, 1, 6, 2, 4, 31, 226, DateTimeKind.Local).AddTicks(4853), new DateTime(2024, 1, 6, 2, 4, 31, 226, DateTimeKind.Local).AddTicks(4855), 2 }
+                    { 1, 5m, "Standard", "Packing", new DateTime(2024, 1, 10, 10, 45, 57, 675, DateTimeKind.Local).AddTicks(3388), new DateTime(2024, 1, 10, 10, 45, 57, 675, DateTimeKind.Local).AddTicks(3405), 1, null },
+                    { 2, 5m, "Standard", "Packing", new DateTime(2024, 1, 10, 10, 45, 57, 675, DateTimeKind.Local).AddTicks(3408), new DateTime(2024, 1, 10, 10, 45, 57, 675, DateTimeKind.Local).AddTicks(3409), 2, null }
                 });
 
             migrationBuilder.InsertData(
@@ -558,17 +570,17 @@ namespace OnlinePharmacy.Server.Migrations
                 columns: new[] { "PrescriptionID", "ExpiryDate", "IssueDate", "OnlineConsultationID" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 6, 6, 0, 0, 0, 0, DateTimeKind.Local), new DateTime(2024, 1, 6, 0, 0, 0, 0, DateTimeKind.Local), 1 },
-                    { 2, new DateTime(2024, 7, 6, 0, 0, 0, 0, DateTimeKind.Local), new DateTime(2024, 1, 6, 2, 4, 31, 226, DateTimeKind.Local).AddTicks(6812), 2 }
+                    { 1, new DateTime(2024, 6, 10, 0, 0, 0, 0, DateTimeKind.Local), new DateTime(2024, 1, 10, 0, 0, 0, 0, DateTimeKind.Local), 1 },
+                    { 2, new DateTime(2024, 7, 10, 0, 0, 0, 0, DateTimeKind.Local), new DateTime(2024, 1, 10, 10, 45, 57, 675, DateTimeKind.Local).AddTicks(4502), 2 }
                 });
 
             migrationBuilder.InsertData(
                 table: "PrescriptionItem",
-                columns: new[] { "PrescriptionItemID", "PrescriptionID", "PrescriptionItemQuantity", "PrescriptionItemSubTotal", "ProductID" },
+                columns: new[] { "PrescriptionItemID", "OrderID", "PrescriptionID", "PrescriptionItemQuantity", "PrescriptionItemSubTotal", "ProductID" },
                 values: new object[,]
                 {
-                    { 1, 1, 1, 10m, 3 },
-                    { 2, 2, 2, 20m, 4 }
+                    { 1, null, 1, 1, 10m, 3 },
+                    { 2, null, 2, 2, 20m, 4 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -614,6 +626,11 @@ namespace OnlinePharmacy.Server.Migrations
                 name: "IX_Delivery_OrderID",
                 table: "Delivery",
                 column: "OrderID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Delivery_StaffID",
+                table: "Delivery",
+                column: "StaffID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DeviceCodes_DeviceCode",
@@ -685,6 +702,11 @@ namespace OnlinePharmacy.Server.Migrations
                 name: "IX_Prescription_OnlineConsultationID",
                 table: "Prescription",
                 column: "OnlineConsultationID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PrescriptionItem_OrderID",
+                table: "PrescriptionItem",
+                column: "OrderID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PrescriptionItem_PrescriptionID",

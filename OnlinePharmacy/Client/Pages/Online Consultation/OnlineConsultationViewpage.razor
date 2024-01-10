@@ -1,0 +1,14 @@
+﻿@page "/OnlineConsultation/view/{id:int}"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+<h3>View Online Consultation</h3>
+<FormComponent onlineconsultation="onlineconsultation" Disabled="true" />
+@code {
+    [Parameter] public int id { get; set; }
+    OnlineConsultation? onlineconsultation = new OnlineConsultation();
+    protected async override Task OnParametersSetAsync()
+    {
+        onlineconsultation = await
+        _client.GetFromJsonAsync<OnlineConsultation>($"{Endpoints.OnlineConsultationsEndpoint}/{id}");
+    }
+}
