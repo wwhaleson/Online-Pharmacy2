@@ -90,10 +90,12 @@
 #homecareandrecoveryaid:hover {
     font-weight: 600;
 }
+
 #products:hover {
     color: forestgreen;
     font-weight: 600;
 }
+
 
 
 .sub-menu-wrap {
@@ -105,12 +107,12 @@
     overflow: hidden;
     transition: max-height 0.3s;
     font-size: 20px;
-    z-index: 1
+    z-index: 2;
 }
 
 .sub-menu-wrap.open-menu{
-    max-height:400px;
-    z-index:1
+    max-height:500px;
+    z-index:2;
 }
 
 .sub-menu {
@@ -118,5 +120,5 @@
     padding: 20px;
     margin: 10px;
     border: thick;
-    z-index: 1
+    z-index: 2;
 }
