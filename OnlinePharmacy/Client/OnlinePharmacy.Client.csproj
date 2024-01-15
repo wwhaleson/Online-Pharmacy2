@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\ProductCategory\**" />
+    <Content Remove="Pages\ProductCategory\**" />
+    <EmbeddedResource Remove="Pages\ProductCategory\**" />
+    <None Remove="Pages\ProductCategory\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\2.ico" />
     <None Include="wwwroot\1.jpg" />
   </ItemGroup>
@@ -25,6 +32,10 @@
 
   <ItemGroup>
     <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\Customer\" />
   </ItemGroup>
 
 </Project>

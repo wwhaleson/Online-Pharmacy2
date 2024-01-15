@@ -1,5 +1,21 @@
-﻿<h3>CreateCategoryPage</h3>
+﻿@attribute [Authorize]
+@page "/Category/create/"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3 class="card-title">Create Category</h3>
+
+
+<FormComponent ButtonText="Create Category" category="category" OnValidSubmit="@CreateCategorys" />
+
 
 @code {
+    Category category = new Category();
+
+    private async Task CreateCategorys()
+    {
+        await _client.PostAsJsonAsync(Endpoints.CategorysEndpoint, category);
+        _navManager.NavigateTo("/Category/");
+    }
 
 }

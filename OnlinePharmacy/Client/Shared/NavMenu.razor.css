@@ -97,6 +97,16 @@
 }
 
 
+#prescriptionmeds:hover {
+    color: forestgreen;
+    font-weight: 600;
+    
+}
+
+#prescriptionmeds {
+    white-space: nowrap;
+}
+
 
 .sub-menu-wrap {
     position: absolute;
@@ -111,7 +121,7 @@
 }
 
 .sub-menu-wrap.open-menu{
-    max-height:500px;
+    max-height:700px;
     z-index:2;
 }
 
