@@ -1,11 +1,9 @@
-﻿@page "/Category/edit/{id:int}"
+﻿@page "/Category/view/{id:int}"
 @inject HttpClient _client
 @inject NavigationManager _navManager
-
-<h3>Edit Category</h3>
-<FormComponent ButtonText="Update" OnValidSubmit="EditCategory" category="category" />
+<h3>View Category</h3>
+<FormComponent category="category" Disabled="true" />
 @code {
-
     [Parameter] public int id { get; set; }
     Category? category = new Category();
     protected async override Task OnParametersSetAsync()
@@ -13,12 +11,4 @@
         category = await
         _client.GetFromJsonAsync<Category>($"{Endpoints.CategorysEndpoint}/{id}");
     }
-
-    async Task EditCategory()
-    {
-        await _client.PutAsJsonAsync($"{Endpoints.CategorysEndpoint}/{id}",
-        category);
-        _navManager.NavigateTo("/Category/");
-    }
-
 }
