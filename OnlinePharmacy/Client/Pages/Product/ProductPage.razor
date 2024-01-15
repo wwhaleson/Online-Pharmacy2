@@ -96,5 +96,25 @@
 
 
 @code {
+    private List<Product>? Products;
+    <!--When the page begins to load-->
+    protected async override Task OnInitializedAsync()
+    {
+        Products = await _client.GetFromJsonAsync<List<Product>>($"{Endpoints.ProductsEndpoint}");
+    }
+    async Task Delete(int productID)
+    {
+        if (Products != null)
+        {
+            var product = Products.First(q => q.ProductID == productID);
+            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to Delete {product.ProductID}?");
+            if (confirm)
+            {
+                await _client.DeleteAsync($"{Endpoints.ProductsEndpoint}/{productID}");
+                await OnInitializedAsync();
+            }
+        }
+    }
+
 
 }
