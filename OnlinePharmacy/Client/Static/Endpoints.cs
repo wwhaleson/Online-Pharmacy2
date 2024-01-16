@@ -9,7 +9,7 @@ namespace OnlinePharmacy.Client.Static
     public static class Endpoints
     {
         public static readonly string Prefix = "api";
-        public static readonly string CategorysEndpoint = $"{Prefix}/categories";
+        public static readonly string CategoriesEndpoint = $"{Prefix}/categories";
         public static readonly string CustomersEndpoint = $"{Prefix}/customers";
         public static readonly string DeliverysEndpoint = $"{Prefix}/deliveries";
         public static readonly string OnlineConsultationsEndpoint = $"{Prefix}/onlineconsultations";
