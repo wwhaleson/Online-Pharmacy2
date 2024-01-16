@@ -117,7 +117,7 @@
                     <option value="">-- Pharmacist --</option>
                     @if (Pharmacists != null)
                     {
-                        foreach (var pharmacist in Pharmacists)
+                        foreach (var pharmacist in Pharmacists.Where(pharmacist => pharmacist.Position == "Pharmacist"))
                         {
                             <option value="@pharmacist.StaffID">@pharmacist.StaffFname @pharmacist.StaffLname</option>
                         }

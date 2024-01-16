@@ -74,7 +74,7 @@
                     <option value="">-- Staff --</option>
                     @if (Staffs != null)
                     {
-                        foreach (var staff in Staffs)
+                        foreach (var staff in Staffs.Where(staff => staff.Position == "Order Clerk"))
                         {
                             <option value="@staff.StaffID">@staff.StaffFname @staff.StaffLname</option>
                         }

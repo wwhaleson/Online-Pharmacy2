@@ -51,19 +51,25 @@
                     {
                         <div class="col aproduct">
 
-                            <a href="/Product/view/@product.ProductID" class="card h-100 productcard" style="text-decoration: none;">
-                                <button class="btn btn-danger" @onclick="@(()=>Delete(product.ProductID))">
-                                    <i class="bi bi-x-lg"></i>
-                                </button>
-                                <img src="https://alcare.sg/wp-content/uploads/2019/08/PANC-1.jpg" class="catproductimage">
+
+                            <div class="card h-100 productcard" style="text-decoration: none;">
+                                <img src="https://alcare.sg/wp-content/uploads/2019/08/PANC-1.jpg" class="catproductimage img-fluid">
                                 <div class="card-body productcardbody">
                                     <h3 class="productname">@product.ProductName</h3>
                                     <h5 class="productprice">@product.ProductPrice</h5>
-                                    <a href="/Product/edit/@product.ProductID" class="btn btn-warning">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </a>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="/Product/view/@product.ProductID" class="btn btn-primary actionbutton">
+                                            <i class="bi bi-file-earmark"></i>
+                                        </a>
+                                        <a href="/Product/edit/@product.ProductID" class="btn btn-warning actionbutton">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
+                                        <button class="btn btn-danger actionbutton" @onclick="@(()=>Delete(@product.ProductID))">
+                                            <i class="bi bi-x-lg"></i>
+                                        </button>
+                                    </div>
                                 </div>
-                            </a>
+                            </div>
                         </div>
                     }
             }

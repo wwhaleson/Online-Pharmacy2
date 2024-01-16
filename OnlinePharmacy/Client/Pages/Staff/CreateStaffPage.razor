@@ -12,18 +12,10 @@
 @code {
     Staff staff = new Staff();
 
-    private IList<Staff>? Staffs;
-
-    protected async override Task OnInitializedAsync()
-    {
-        Staffs = await _client.GetFromJsonAsync<List<Staff>>($"{Endpoints.StaffsEndpoint}");
-
-    }
-
     private async Task CreateStaffs()
     {
-        await _client.PostAsJsonAsync(Endpoints.ProductsEndpoint, product);
-        _navManager.NavigateTo("/Product/");
+        await _client.PostAsJsonAsync(Endpoints.StaffsEndpoint, staff);
+        _navManager.NavigateTo("/Staff/");
     }
 
 }

@@ -25,6 +25,7 @@
     height: 200px;
     width: 200px;
     align-self: center;
+    
 }
 
 .Staffcardbody {
@@ -32,11 +33,19 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+}
+
+.actionbutton {
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 0.5em;
 }
 
 .Staffcard {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     transition: box-shadow 0.3s ease-in-out;
+    word-wrap: break-word;
 }
 
 .productcard:hover {

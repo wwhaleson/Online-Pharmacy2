@@ -53,3 +53,9 @@
     font-weight: 800;
     font-family: "Rubik", serif;
 }
+
+.actionbutton {
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 0.5em;
+}
