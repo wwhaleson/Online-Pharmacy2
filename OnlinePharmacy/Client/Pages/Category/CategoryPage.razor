@@ -1,0 +1,83 @@
+﻿@attribute [Authorize]
+@inject HttpClient _client
+@inject IJSRuntime js
+@page "/Category"
+<PageTitle>Category</PageTitle>
+
+<div class="container">
+    <div class="d-flex flex-column" id="dflexCategory">
+        <h1 class="mt-5" id="categoryheader">Category</h1>
+        <a href="/Category/create" class="btn btn-secondary createcategorybutton">
+            <span class="oi oi-plus"></span>
+            Create New Category
+        </a>
+    </div>
+
+    @if (Categories == null)
+    {
+        <div class="alert alert-info">Loading Categories</div>
+    }
+    else
+    {
+        <div class="table-responsive mt-3">
+            <table class="table ">
+                <thead class="table-light">
+                    <tr id="categorytablecolumnname">
+                        <th scope="col" class="dcol">#Category ID</th>
+                        <th scope="col" class="dcol">Category Name</th>
+                        <th scope="col" class="dcol">Category Description</th>
+                        <th scope="col" class="dcol">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var category in Categories)
+                    {
+                        <tr>
+                            <td class="dr">@category.CategoryID</td>
+                            <td class="dr">@category.CategoryName</td>
+                            <td class="dr">@category.CategoryDescription</td>
+                            <td class="dr">
+                                <a href="/Category/view/@category.CategoryID" class="btn btn-primary">
+                                    <i class="bi bi-file-earmark"></i>
+                                </a>
+                                <a href="/Category/edit/@category.CategoryID" class="btn btn-warning">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <button class="btn btn-danger" @onclick="@(()=>Delete(category.CategoryID))">
+                                    <i class="bi bi-x-lg"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+
+
+
+@code {
+    private List<Category>? Categories;
+    <!--When the page begins to load-->
+    protected async override Task OnInitializedAsync()
+    {
+        Categories = await _client.GetFromJsonAsync<List<Category>>($"{Endpoints.CategoriesEndpoint}");
+    }
+    async Task Delete(int categoryId)
+    {
+        if (Categories != null)
+        {
+            var category = Categories.First(q => q.CategoryID == categoryId);
+            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to Delete {category.CategoryID}?");
+            if (confirm)
+            {
+                await _client.DeleteAsync($"{Endpoints.CategoriesEndpoint}/{categoryId}");
+                await OnInitializedAsync();
+            }
+        }
+    }
+
+}

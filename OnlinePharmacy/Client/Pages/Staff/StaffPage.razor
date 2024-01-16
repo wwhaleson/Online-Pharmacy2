@@ -1,1 +1,46 @@
-﻿
+﻿@attribute [Authorize]
+@inject HttpClient _client
+@inject IJSRuntime js
+@page "/Staff"
+<PageTitle>Staff</PageTitle>
+
+
+
+
+<div class="container">
+
+    <div class="d-flex flex-column" id="dflexStaff">
+        <h1 class="mt-2" id="Staffheader">Staff</h1>
+        <a href="/Staff/create" class="btn btn-secondary createStaffbutton">
+            <span class="oi oi-plus"></span>
+            Create New Staff
+        </a>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-5 col-lg-4 order-md-first">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-7 col-lg-8 ">
+            <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@code {
+
+
+}
