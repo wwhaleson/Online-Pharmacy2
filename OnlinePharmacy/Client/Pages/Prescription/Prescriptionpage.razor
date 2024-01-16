@@ -37,17 +37,17 @@
                     <tr>
                         <td class="dr">@prescription.PrescriptionID</td>
                         <td class="dr">@prescription.OnlineConsultationID</td>
-                        <td class="dr">@prescription.IssueDate</td>
-                        <td class="dr">@prescription.ExpiryDate</td>
+                        <td class="dr">@prescription.IssueDate.Value.ToString("dddd, dd MMMM yyyy")</td>
+                        <td class="dr">@prescription.ExpiryDate.Value.ToString("dddd, dd MMMM yyyy")</td>
                         <td class="dr">
                             <a href="/Prescription/view/@prescription.PrescriptionID" class="btn btn-primary">
-                            <span class=" oi oi-book"></span>
+                                    <i class="bi bi-file-earmark"></i>
                             </a>
                             <a href="/Prescription/edit//@prescription.PrescriptionID" class="btn btn-warning">
-                            <span class=" oi oi-pencil"></span>
+                                    <i class="bi bi-pencil-square"></i>
                             </a>
                             <button class="btn btn-danger" @onclick="@(()=>Delete(prescription.PrescriptionID))">
-                                <span class="oi oi-delete"></span>
+                                    <i class="bi bi-x-lg"></i>
                             </button>
                         </td>
                     </tr>

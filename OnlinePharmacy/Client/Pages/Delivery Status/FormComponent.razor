@@ -59,8 +59,8 @@
             <div>
                 <InputSelect @bind-Value="delivery.DeliveryStatus" class="form-control">
                     <option value="">-- Select Delivery Status --</option>
-                    <option value="Scheduled">Packing</option>
-                    <option value="In Progress">On the way</option>
+                    <option value="Packing">Packing</option>
+                    <option value="Delivery">On the way</option>
                     <option value="Completed">Completed</option>
                 </InputSelect>
                 <ValidationMessage For="@(() => delivery.DeliveryStatus)" />

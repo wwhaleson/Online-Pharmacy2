@@ -37,8 +37,8 @@
                 {
                     <tr>
                         <td class="dr">@onlineconsultation.OnlineConsultationID</td>
-                        <td class="dr">@onlineconsultation.ConsultationDateStart</td>
-                        <td class="dr">@onlineconsultation.ConsultationTimeStart</td>
+                        <td class="dr">@onlineconsultation.ConsultationDateStart.Value.ToString("dddd, dd MMMM yyyy")</td>
+                        <td class="dr">@onlineconsultation.ConsultationTimeStart.Value.ToString("hh:mm tt")</td>
                         <td class="dr">@onlineconsultation.ConsultationStatus</td>
                         <td class="dr">
                                 <a href="/OnlineConsultation/view/@onlineconsultation.OnlineConsultationID" class="btn btn-primary">

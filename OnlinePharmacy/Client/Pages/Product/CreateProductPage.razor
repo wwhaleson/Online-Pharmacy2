@@ -1,5 +1,29 @@
-﻿<h3>CreateProductPage</h3>
+﻿@attribute [Authorize]
+@page "/Product/create/"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3 class="card-title">Create Product</h3>
+
+
+<FormComponent ButtonText="Create Product" delivery="delivery" OnValidSubmit="@CreateProducts" />
+
 
 @code {
+    Product product = new Product();
+
+    private IList<Staff>? Staffs;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Staffs = await _client.GetFromJsonAsync<List<Staff>>($"{Endpoints.StaffsEndpoint}");
+
+    }
+
+    private async Task CreateProducts()
+    {
+        await _client.PostAsJsonAsync(Endpoints.ProductsEndpoint, product);
+        _navManager.NavigateTo("/Product/");
+    }
 
 }

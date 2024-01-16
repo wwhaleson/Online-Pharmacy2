@@ -36,18 +36,18 @@
                         <tr>
                             <td class="dr">@delivery.DeliveryID</td>
                             <td class="dr">@delivery.OrderID</td>
-                            <td class="dr">@delivery.EstimatedDeliveryDate</td>
-                            <td class="dr">@delivery.EstimatedDeliveryTime</td>
+                            <td class="dr">@delivery.EstimatedDeliveryDate.Value.ToString("dddd, dd MMMM yyyy")</td>
+                            <td class="dr">@delivery.EstimatedDeliveryTime.Value.ToString("hh:mm tt")</td>
                             <td class="dr">@delivery.DeliveryStatus</td>
                             <td class="dr">
                                 <a href="/Delivery/view/@delivery.DeliveryID" class="btn btn-primary">
-                                    <span class=" oi oi-book"></span>
+                                    <i class="bi bi-file-earmark"></i>
                                 </a>
                                 <a href="/Delivery/edit/@delivery.DeliveryID" class="btn btn-warning">
-                                    <span class=" oi oi-pencil"></span>
+                                    <i class="bi bi-pencil-square"></i>
                                 </a>
                                 <button class="btn btn-danger" @onclick="@(()=>Delete(delivery.DeliveryID))">
-                                    <span class="oi oi-delete"></span>
+                                    <i class="bi bi-x-lg"></i>
                                 </button>
                             </td>
                         </tr>
