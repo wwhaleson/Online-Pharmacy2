@@ -1,0 +1,32 @@
+﻿﻿﻿#dflexCategory {
+    justify-content: center;
+}
+
+#categoryheader {
+    text-align: center;
+    font-weight: 800;
+    font-size: 35px;
+    font-family: "Rubik", serif;
+}
+
+#Categorytablecolumnname {
+    border: 2px solid;
+}
+
+.text-hr {
+    width: 50%;
+    margin: auto;
+}
+
+.dcol {
+    text-align: center;
+}
+
+.dr {
+    text-align: center;
+}
+
+.createcategorybutton {
+    width: 25%;
+    align-self: end;
+}

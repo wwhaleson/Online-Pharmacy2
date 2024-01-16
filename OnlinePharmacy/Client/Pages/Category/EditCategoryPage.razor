@@ -18,7 +18,7 @@
     {
         await _client.PutAsJsonAsync($"{Endpoints.CategoriesEndpoint}/{id}",
         category);
-        _navManager.NavigateTo("/categories/");
+        _navManager.NavigateTo("/Category/");
     }
 
 }
