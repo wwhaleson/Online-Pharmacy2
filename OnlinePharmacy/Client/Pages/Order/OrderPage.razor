@@ -35,19 +35,19 @@
                     {
                         <tr>
                             <td class="dr">@order.OrderID</td>
-                            <td class="dr">@order.OrderDate</td>
-                            <td class="dr">@order.OrderTime</td>
+                            <td class="dr">@order.OrderDate.Value.ToString("dddd, dd MMMM yyyy")</td>
+                            <td class="dr">@order.OrderTime.Value.ToString("hh:mm tt")</td>
                             <td class="dr">@order.TotalCost</td>
                             <td class="dr">@order.PaymentType</td>
                             <td>
                                 <a href="/orders/view/@order.OrderID" class="btn btn-primary">
-                                    <span class=" oi oi-book"></span>
+                                    <i class="bi bi-file-earmark"></i>
                                 </a>
                                 <a href="/orders/edit/@order.OrderID" class="btn btn-warning">
-                                    <span class=" oi oi-pencil"></span>
+                                    <i class="bi bi-pencil-square"></i>
                                 </a>
                                 <button class="btn btn-danger" @onclick="@(()=>Delete(order.OrderID))">
-                                    <span class="oi oi-delete"></span>
+                                    <i class="bi bi-x-lg"></i>
                                 </button>
                             </td>
                         </tr>

@@ -2,12 +2,18 @@
     font-weight: 300;
     font-family: "Rubik", serif;
     font-size: 20px;
+
 }
 
-#productheader {
+#dflexProduct {
+    justify-content: center;
+}
+
+#Productheader {
+    text-align: center;
     font-weight: 800;
+    font-size: 35px;
     font-family: "Rubik", serif;
-    font-size: 30px;
 }
 
 .text-hr {
@@ -35,4 +41,20 @@
 
 .productcard:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 1);
+}
+.createproductbutton {
+    width: 25%;
+    align-self: end;
+}
+
+.productname {
+    font-size: 20px;
+    text-align: center;
+    font-family: "Rubik", serif;
+}
+.productprice {
+    font-size: 30px;
+    text-align: center;
+    font-weight: 800;
+    font-family: "Rubik", serif;
 }

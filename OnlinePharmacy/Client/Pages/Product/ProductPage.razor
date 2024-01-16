@@ -16,10 +16,15 @@
 
 
 <div class="container">
-    <div class="row my-3">
-        <h2 class="text-center" id="productheader">Product</h2>
-        <hr class="text-hr" />
+
+    <div class="d-flex flex-column" id="dflexProduct">
+        <h1 class="mt-2" id="Productheader">Product</h1>
+        <a href="/Product/create" class="btn btn-secondary createproductbutton">
+            <span class="oi oi-plus"></span>
+            Create New Product
+        </a>
     </div>
+
 
     <div class="row">
         <div class="col-md-5 col-lg-4 order-md-first">
@@ -34,63 +39,31 @@
             </div>
         </div>
 
-        <div class="col-md-7 col-lg-8">
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-                <div class="col aproduct">
-                    <div class="card h-100 productcard">
-                        <img src="https://alcare.sg/wp-content/uploads/2019/08/PANC-1.jpg" class="catproductimage">
-                        <div class="card-body productcardbody">
-                            <h3 class="productname">Ibuprofen</h3>
-                            <h5 class="productprice">$40</h5>
-                            <a href="#" class="btn btn-primary h-50 w-75 ">ADD TO CART</a>
+        <div class="col-md-7 col-lg-8 ">
+            <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+            @if (Products == null)
+            {
+                <div class="alert alert-info">Loading Orders</div>
+            }
+            else
+            {
+                    @foreach (var product in Products)
+                    {
+                        <div class="col aproduct">
+                            <a href="/Product/edit/@product.ProductID" class="card h-100 productcard" style="text-decoration: none;">
+                                <button type="button" class="btn-close" @onclick="@(()=>Delete(product.ProductID))"></button>
+                                <img src="https://alcare.sg/wp-content/uploads/2019/08/PANC-1.jpg" class="catproductimage">
+                                <div class="card-body productcardbody">
+                                    <h3 class="productname">@product.ProductName</h3>
+                                    <h5 class="productprice">@product.ProductPrice</h5>
+                                    <a href="#" class="btn btn-primary h-50 w-75">ADD TO CART</a>
+                                </div>
+                            </a>
                         </div>
-                    </div>
-                </div>
-                <div class="col aproduct">
-                    <div class="card h-100 productcard">
-                        <img src="https://alcare.sg/wp-content/uploads/2019/08/PANC-1.jpg" class="catproductimage">
-                        <div class="card-body productcardbody">
-                            <h3 class="productname">Ibuprofen</h3>
-                            <h5 class="productprice">$40</h5>
-                            <a href="#" class="btn btn-primary h-50 w-75 ">ADD TO CART</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col aproduct">
-                    <div class="card h-100 productcard">
-                        <img src="https://alcare.sg/wp-content/uploads/2019/08/PANC-1.jpg" class="catproductimage">
-                        <div class="card-body productcardbody">
-                            <h3 class="productname">Ibuprofen</h3>
-                            <h5 class="productprice">$40</h5>
-                            <a href="#" class="btn btn-primary h-50 w-75 ">ADD TO CART</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col aproduct">
-                    <div class="card h-100 productcard">
-                        <img src="https://alcare.sg/wp-content/uploads/2019/08/PANC-1.jpg" class="catproductimage">
-                        <div class="card-body productcardbody">
-                            <h3 class="productname">Ibuprofen</h3>
-                            <h5 class="productprice">$40</h5>
-                            <a href="#" class="btn btn-primary h-50 w-75 ">ADD TO CART</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col aproduct">
-                    <div class="card h-100 productcard">
-                        <img src="https://alcare.sg/wp-content/uploads/2019/08/PANC-1.jpg" class="catproductimage">
-                        <div class="card-body productcardbody">
-                            <h3 class="productname">Ibuprofen</h3>
-                            <h5 class="productprice">$40</h5>
-                            <a href="#" class="btn btn-primary h-50 w-75 ">ADD TO CART</a>
-                        </div>
-                    </div>
-                </div>
-
+                    }
+            }
             </div>
-
         </div>
-
     </div>
 </div>
 
@@ -102,19 +75,18 @@
     {
         Products = await _client.GetFromJsonAsync<List<Product>>($"{Endpoints.ProductsEndpoint}");
     }
-    async Task Delete(int productID)
+    async Task Delete(int productId)
     {
         if (Products != null)
         {
-            var product = Products.First(q => q.ProductID == productID);
+            var product = Products.First(q => q.ProductID ==productId);
             var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to Delete {product.ProductID}?");
             if (confirm)
             {
-                await _client.DeleteAsync($"{Endpoints.ProductsEndpoint}/{productID}");
+                await _client.DeleteAsync($"{Endpoints.ProductsEndpoint}/{productId}");
                 await OnInitializedAsync();
             }
         }
     }
-
 
 }
