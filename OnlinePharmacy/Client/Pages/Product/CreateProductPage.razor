@@ -12,11 +12,11 @@
 @code {
     Product product = new Product();
 
-    private IList<Staff>? Staffs;
+    private IList<Category>? Categorys;
 
     protected async override Task OnInitializedAsync()
     {
-        Staffs = await _client.GetFromJsonAsync<List<Staff>>($"{Endpoints.StaffsEndpoint}");
+        Categorys = await _client.GetFromJsonAsync<List<Category>>($"{Endpoints.CategoriesEndpoint}");
 
     }
 

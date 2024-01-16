@@ -1,2 +1,62 @@
-﻿body {
+﻿﻿﻿#dflexStaff {
+    justify-content: center;
+}
+
+#Staffheader {
+    text-align: center;
+    font-weight: 800;
+    font-size: 35px;
+    font-family: "Rubik", serif;
+}
+
+#Stafftablecolumnname {
+    border: 2px solid;
+}
+
+.dcol {
+    text-align: center;
+}
+
+.dr {
+    text-align: center;
+}
+
+.Staffimage {
+    height: 200px;
+    width: 200px;
+    align-self: center;
+}
+
+.Staffcardbody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.Staffcard {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.productcard:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 1);
+}
+
+.createstaffbutton {
+    width: 25%;
+    align-self: end;
+}
+
+.staffname {
+    font-size: 30px;
+    font-weight: 800;
+    text-align: center;
+    font-family: "Rubik", serif;
+}
+
+.staffposition {
+    font-size: 20px;
+    text-align: center;
+    font-family: "Rubik", serif;
 }
