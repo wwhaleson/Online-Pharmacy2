@@ -9,6 +9,6 @@
     protected async override Task OnParametersSetAsync()
     {
         category = await
-        _client.GetFromJsonAsync<Category>($"{Endpoints.CategorysEndpoint}/{id}");
+        _client.GetFromJsonAsync<Category>($"{Endpoints.CategoriesEndpoint}/{id}");
     }
 }

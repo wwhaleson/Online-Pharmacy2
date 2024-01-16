@@ -1,0 +1,86 @@
+﻿@attribute [Authorize]
+@inject HttpClient _client
+@inject IJSRuntime js
+@page "/Customer"
+<PageTitle>Customer Status</PageTitle>
+<div class="container">
+    <div class="d-flex flex-column" id="dflexcustomer">
+        <h1 class="mt-5" id="customerheader">Customer Status</h1>
+        <a href="/Customer/create" class="btn btn-secondary createcustomerbutton">
+            <span class="oi oi-plus"></span>
+            Create New Customer
+        </a>
+    </div>
+
+    @if (Customers == null)
+    {
+        <div class="alert alert-info">Loading Customers</div>
+    }
+    else
+    {
+        <div class="table-responsive mt-3">
+            <table class="table ">
+                <thead class="table-light">
+                    <tr id="delivertablecolumnname">
+                        <th scope="col" class="dcol">#Deliver ID</th>
+                        <th scope="col" class="dcol">#Order ID</th>
+                        <th scope="col" class="dcol">Est Customer Date</th>
+                        <th scope="col" class="dcol">Est Customer Time</th>
+                        <th scope="col" class="dcol">Status</th>
+                        <th scope="col" class="dcol">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var customer in Customers)
+                    {
+                        <tr>
+                            <td class="dr">@customer.CustomerID</td>
+                            <td class="dr">@customer.OrderID</td>
+                            <td class="dr">@customer.EstimatedCustomerDate</td>
+                            <td class="dr">@customer.EstimatedCustomerTime</td>
+                            <td class="dr">@customer.CustomerStatus</td>
+                            <td class="dr">
+                                <a href="/Customer/view/@customer.CustomerID" class="btn btn-primary">
+                                    <span class=" oi oi-book"></span>
+                                </a>
+                                <a href="/Customer/edit/@customer.CustomerID" class="btn btn-warning">
+                                    <span class=" oi oi-pencil"></span>
+                                </a>
+                                <button class="btn btn-danger" @onclick="@(()=>Delete(customer.CustomerID))">
+                                    <span class="oi oi-delete"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+
+
+
+@code {
+    private List<Customer>? Customers;
+    <!--When the page begins to load-->
+    protected async override Task OnInitializedAsync()
+    {
+        Customers = await _client.GetFromJsonAsync<List<Customer>>($"{Endpoints.CustomersEndpoint}");
+    }
+    async Task Delete(int customerId)
+    {
+        if (Customers != null)
+        {
+            var customer = Customers.First(q => q.CustomerID == customerId);
+            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to Delete {customer.CustomerID}?");
+            if (confirm)
+            {
+                await _client.DeleteAsync($"{Endpoints.CustomersEndpoint}/{customerId}");
+                await OnInitializedAsync();
+            }
+        }
+    }
+
+}

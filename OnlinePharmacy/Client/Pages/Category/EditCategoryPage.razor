@@ -11,14 +11,14 @@
     protected async override Task OnParametersSetAsync()
     {
         category = await
-        _client.GetFromJsonAsync<Category>($"{Endpoints.CategorysEndpoint}/{id}");
+        _client.GetFromJsonAsync<Category>($"{Endpoints.CategoriesEndpoint}/{id}");
     }
 
     async Task EditCategory()
     {
-        await _client.PutAsJsonAsync($"{Endpoints.CategorysEndpoint}/{id}",
+        await _client.PutAsJsonAsync($"{Endpoints.CategoriesEndpoint}/{id}",
         category);
-        _navManager.NavigateTo("/Category/");
+        _navManager.NavigateTo("/categories/");
     }
 
 }
