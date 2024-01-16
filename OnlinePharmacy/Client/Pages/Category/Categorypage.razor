@@ -4,10 +4,9 @@
 @page "/Category"
 <PageTitle>Category</PageTitle>
 
-<PageTitle>Category Status</PageTitle>
 <div class="container">
-    <div class="d-flex flex-column" id="dflexdeliver">
-        <h1 class="mt-5" id="categorystatusheader">Category Status</h1>
+    <div class="d-flex flex-column" id="dflexCategory">
+        <h1 class="mt-5" id="categoryheader">Category</h1>
         <a href="/Category/create" class="btn btn-secondary createcategorybutton">
             <span class="oi oi-plus"></span>
             Create New Category
@@ -27,7 +26,7 @@
                         <th scope="col" class="dcol">#Category ID</th>
                         <th scope="col" class="dcol">Category Name</th>
                         <th scope="col" class="dcol">Category Description</th>
-
+                        <th scope="col" class="dcol">Actions</th>
                     </tr>
                 </thead>
 
@@ -40,13 +39,13 @@
                             <td class="dr">@category.CategoryDescription</td>
                             <td class="dr">
                                 <a href="/Category/view/@category.CategoryID" class="btn btn-primary">
-                                    <span class=" oi oi-book"></span>
+                                    <i class="bi bi-file-earmark"></i>
                                 </a>
                                 <a href="/Category/edit/@category.CategoryID" class="btn btn-warning">
-                                    <span class=" oi oi-pencil"></span>
+                                    <i class="bi bi-pencil-square"></i>
                                 </a>
                                 <button class="btn btn-danger" @onclick="@(()=>Delete(category.CategoryID))">
-                                    <span class="oi oi-delete"></span>
+                                    <i class="bi bi-x-lg"></i>
                                 </button>
                             </td>
                         </tr>
