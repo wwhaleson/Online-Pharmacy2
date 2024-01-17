@@ -1,0 +1,85 @@
+﻿@inject HttpClient _client
+
+<EditForm Model="@staff" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <fieldset disabled="@Disabled">
+
+        <div class="form-group">
+            <label>First Name: </label>
+            <div>
+                <InputText @bind-Value="@staff.StaffFname" class="form-control" />
+                <ValidationMessage For="@(() => staff.StaffFname)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Last Name: </label>
+            <div>
+                <InputText @bind-Value="@staff.StaffLname" class="form-control" />
+                <ValidationMessage For="@(() => staff.StaffLname)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Gender: </label>
+            <div>
+                <InputSelect @bind-Value="staff.StaffGender" class="form-control">
+                    <option value="">-- Gender --</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </InputSelect>
+                <ValidationMessage For="@(() => staff.StaffGender)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Position: </label>
+            <div>
+                <InputSelect @bind-Value="staff.Position" class="form-control">
+                    <option value="">-- Position --</option>
+                    <option value="Order Clerk">Order Clerk</option>
+                    <option value="Pharmacist">Pharmacist</option>
+                </InputSelect>
+                <ValidationMessage For="@(() => staff.Position)" />
+            </div>
+        </div>
+
+        <label>Email Address: </label>
+        <div>
+            <InputText @bind-Value="@staff.Staff_email" class="form-control" />
+            <ValidationMessage For="@(() => staff.Staff_email)" />
+        </div>
+
+        <label>Password: </label>
+        <div>
+            <InputText @bind-Value="@staff.Staff_pass" class="form-control" />
+            <ValidationMessage For="@(() => staff.Staff_pass)" />
+        </div>
+
+    </fieldset>
+
+    @if (!Disabled)
+    {
+        <button type="submit" class="btn btn-success btn-block">
+            @ButtonText
+        </button>
+    }
+    <BackToList Target="Staff" />
+</EditForm>
+
+@code {
+    [Parameter] public bool Disabled { get; set; } = false;
+    [Parameter] public Staff? staff { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+
+    private IList<Staff>? staffs;
+
+    protected async override Task OnInitializedAsync()
+    {
+        staffs = await _client.GetFromJsonAsync<List<Staff>>($"{Endpoints.StaffsEndpoint}");
+    }
+
+}

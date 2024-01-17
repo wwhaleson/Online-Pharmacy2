@@ -1,5 +1,22 @@
-﻿<h3>CreateStaffPage</h3>
+﻿@attribute [Authorize]
+@page "/Staff/create/"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3 class="card-title">Create Staff</h3>
+
+
+<FormComponent ButtonText="Create Staff" staff="staff" OnValidSubmit="@CreateStaffs" />
+
 
 @code {
+    Staff staff = new Staff();
+
+    private async Task CreateStaffs()
+    {
+        await _client.PostAsJsonAsync(Endpoints.StaffsEndpoint, staff);
+        _navManager.NavigateTo("/Staff/");
+    }
 
 }
+

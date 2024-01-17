@@ -1,1 +1,77 @@
-﻿
+﻿@attribute [Authorize]
+@inject HttpClient _client
+@inject IJSRuntime js
+@page "/Staff"
+<PageTitle>Staff</PageTitle>
+
+<div class="container">
+
+    <div class="d-flex flex-column" id="dflexStaff">
+        <h1 class="mt-5" id="Staffheader">Staff</h1>
+        <a href="/Staff/create" class="btn btn-secondary createstaffbutton">
+            <span class="oi oi-plus"></span>
+            Create New Staff
+        </a>
+    </div>
+
+
+    <div class="row  mt-3">
+            <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+                @if (Staffs == null)
+                {
+                    <div class="alert alert-info">Loading Orders</div>
+                }
+                else
+                {
+                    @foreach (var staff in Staffs)
+                    {
+                        <div class="col aStaff">
+                            <div class="card h-100 Staffcard text-decoration-none" style="word-wrap: break-word; cursor: pointer;">
+                                <img src="https://cdn-icons-png.flaticon.com/512/2815/2815428.png" class="Staffimage img-fluid">
+                                <div class="card-body Staffcardbody">
+                                    <h3 class="staffname">@staff.StaffFname @staff.StaffLname</h3>
+                                    <h5 class="staffposition">@staff.Position</h5>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <a href="/Staff/view/@staff.StaffID" class="btn btn-primary actionbutton">
+                                        <i class="bi bi-file-earmark"></i>
+                                    </a>
+                                    <a href="/Staff/edit/@staff.StaffID" class="btn btn-warning actionbutton">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <button class="btn btn-danger actionbutton" @onclick="@(()=>Delete(@staff.StaffID))">
+                                        <i class="bi bi-x-lg"></i>
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    }
+                }
+            </div>
+        </div>
+</div>
+
+
+@code {
+    private List<Staff>? Staffs;
+    protected async override Task OnInitializedAsync()
+    {
+        Staffs = await _client.GetFromJsonAsync<List<Staff>>($"{Endpoints.StaffsEndpoint}");
+    }
+    async Task Delete(int staffId)
+    {
+        if (Staffs != null)
+        {
+            var staff = Staffs.First(q => q.StaffID == staffId);
+            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to Delete {staff.StaffFname}?");
+            if (confirm)
+            {
+                await _client.DeleteAsync($"{Endpoints.StaffsEndpoint}/{staffId}");
+                await OnInitializedAsync();
+            }
+        }
+    }
+
+}

@@ -60,7 +60,7 @@
                 <InputSelect @bind-Value="delivery.DeliveryStatus" class="form-control">
                     <option value="">-- Select Delivery Status --</option>
                     <option value="Packing">Packing</option>
-                    <option value="Delivery">On the way</option>
+                    <option value="Delivering">Delivering</option>
                     <option value="Completed">Completed</option>
                 </InputSelect>
                 <ValidationMessage For="@(() => delivery.DeliveryStatus)" />
@@ -74,7 +74,7 @@
                     <option value="">-- Staff --</option>
                     @if (Staffs != null)
                     {
-                        foreach (var staff in Staffs)
+                        foreach (var staff in Staffs.Where(staff => staff.Position == "Order Clerk"))
                         {
                             <option value="@staff.StaffID">@staff.StaffFname @staff.StaffLname</option>
                         }
