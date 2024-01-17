@@ -12,15 +12,6 @@
 @code {
     Customer customer = new Customer();
 
-    private IList<Staff>? Staffs;
-    private IList<Order>? Orders;
-
-    protected async override Task OnInitializedAsync()
-    {
-        Staffs = await _client.GetFromJsonAsync<List<Staff>>($"{Endpoints.StaffsEndpoint}");
-        Orders = await _client.GetFromJsonAsync<List<Order>>($"{Endpoints.OrdersEndpoint}");
-
-    }
 
     private async Task CreateCustomers()
     {

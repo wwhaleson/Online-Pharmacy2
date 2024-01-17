@@ -24,9 +24,9 @@ namespace OnlinePharmacy.Shared.Domain
 
         public string? ProductDescription { get; set; }
 
-        public string? ProductMinimumAge { get; set; }
+        public int? ProductMinimumAge { get; set; }
 
-        public string? ProductMaximumAge { get; set; }
+        public int? ProductMaximumAge { get; set; }
 
         public string? ProductImage { get; set; }
 
