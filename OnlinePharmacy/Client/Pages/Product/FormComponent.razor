@@ -45,6 +45,29 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <label>Expiry Date: </label>
+            <div>
+                <InputDate @bind-Value="@product.ProductExpiryDate" class="form-control" />
+                <ValidationMessage For="@(() => product.ProductExpiryDate)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Product Ingredients: </label>
+            <div>
+                <InputTextArea @bind-Value="@product.ProductIngredients" class="form-control" />
+                <ValidationMessage For="@(() => product.ProductIngredients)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Product Ingredients: </label>
+            <div>
+                <InputTextArea @bind-Value="@product.ProductImage" class="form-control" />
+                <ValidationMessage For="@(() => product.ProductImage)" />
+            </div>
+        </div>
     </fieldset>
 
     @if (!Disabled)
