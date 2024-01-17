@@ -21,18 +21,13 @@
         <div class="table-responsive mt-3">
             <table class="table ">
                 <thead class="table-light">
-                    <tr id="Customertablecolumnname">
-                        <th scope="col" class="dcol">#Id</th>
-                        <th scope="col" class="dcol">Name</th>
-                        <th scope="col" class="dcol">Gender</th>
-                        <th scope="col" class="dcol">Postal Code</th>
-                        <th scope="col" class="dcol">Block No.</th>
-                        <th scope="col" class="dcol">Floor No.</th>
-                        <th scope="col" class="dcol">Street Address</th>
-                        <th scope="col" class="dcol">Phone Number</th>
-                        <th scope="col" class="dcol">Email</th>
-                        <th scope="col" class="dcol">Password</th>
-                        <th scope="col" class="dcol">Action</th>
+                    <tr id="delivertablecolumnname">
+                        <th scope="col" class="dcol">#Deliver ID</th>
+                        <th scope="col" class="dcol">#Order ID</th>
+                        <th scope="col" class="dcol">Est Customer Date</th>
+                        <th scope="col" class="dcol">Est Customer Time</th>
+                        <th scope="col" class="dcol">Status</th>
+                        <th scope="col" class="dcol">Actions</th>
                     </tr>
                 </thead>
 
@@ -40,16 +35,11 @@
                     @foreach (var customer in Customers)
                     {
                         <tr>
-                            <td class="dr">@customer.CustomerID</td>
-                            <td class="dr">@customer.CustFname @customer.CustLname</td>
-                            <td class="dr">@customer.CustGender</td>
-                            <td class="dr">@customer.CustPostalCode</td>
-                            <td class="dr">@customer.CustBlockNo</td>
-                            <td class="dr">@customer.CustFloorNo</td>
-                            <td class="dr">@customer.CustAddress</td>
-                            <td class="dr">@customer.CustPhoneNo</td>
-                            <td class="dr">@customer.CustEmail</td>
-                            <td class="dr">@customer.CustPass</td>
+                            <td class="dr"></td>
+                            <td class="dr"></td>
+                            <td class="dr"></td>
+                            <td class="dr"></td>
+                            <td class="dr"></td>
                             <td class="dr">
                                 <a href="/Customer/view/@customer.CustomerID" class="btn btn-primary">
                                     <span class=" oi oi-book"></span>

@@ -118,12 +118,6 @@
             <ValidationMessage For="@(() => product.ProductMaximumAge)" />
         </div>
 
-        <div class="form-group mb-3">
-            <label>Stock Quantity: </label>
-            <input type="number" @bind="@product.StockQuantity" class="form-control" />
-            <ValidationMessage For="@(() => product.StockQuantity)" />
-        </div>
-
     </fieldset>
 
     @if (!Disabled)

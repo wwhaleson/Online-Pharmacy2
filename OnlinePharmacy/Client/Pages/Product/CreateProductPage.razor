@@ -12,13 +12,6 @@
 @code {
     Product product = new Product();
 
-    private IList<Category>? Categorys;
-
-    protected async override Task OnInitializedAsync()
-    {
-        Categorys = await _client.GetFromJsonAsync<List<Category>>($"{Endpoints.CategoriesEndpoint}");
-
-    }
 
     private async Task CreateProducts()
     {
