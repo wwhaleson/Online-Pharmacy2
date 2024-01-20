@@ -6,13 +6,14 @@
 <h3 class="card-title">Create Prescription</h3>
 
 
-<FormComponent ButtonText="Create Prescription" prescription="prescription" OnValidSubmit="@CreatePrescriptions" />
+<PrescriptionFormComponent ButtonText="Create Prescription" prescription="prescription" OnValidSubmit="@CreatePrescriptions" />
 
 
 @code {
     Prescription prescription = new Prescription();
 
     private IList<OnlineConsultation>? OnlineConsultations;
+
 
     protected async override Task OnInitializedAsync()
     {

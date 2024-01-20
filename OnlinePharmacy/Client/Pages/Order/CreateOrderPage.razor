@@ -6,9 +6,7 @@
 <h3 class="card-title">Create Order</h3>
 
 
-<FormComponent ButtonText="Create Order" order="order" OnValidSubmit="@CreateOrders" />
-<FormComponent ButtonText="Create Order Item" orderitem="orderitem" OnValidSubmit="@CreateOrderItems" />
-<FormComponent ButtonText="Create Prescription Item" prescription="prescription" OnValidSubmit="@CreatePrescriptions" />
+<OrderFormComponent ButtonText="Create Order" order="order" OnValidSubmit="@CreateOrders" />
 
 @code {
     Order order = new Order();
@@ -21,11 +19,6 @@
         Staffs = await _client.GetFromJsonAsync<List<Staff>>($"{Endpoints.StaffsEndpoint}");
         Customers = await _client.GetFromJsonAsync<List<Customer>>($"{Endpoints.CustomersEndpoint}");
 
-        Orders = await _client.GetFromJsonAsync<List<Order>>($"{Endpoints.OrdersEndpoint}");
-        Products = await _client.GetFromJsonAsync<List<Product>>($"{Endpoints.ProductsEndpoint}");
-
-        OnlineConsultations = await _client.GetFromJsonAsync<List<OnlineConsultation>>($"{Endpoints.OnlineConsultationsEndpoint}");
-
     }
 
     private async Task CreateOrders()
@@ -34,29 +27,6 @@
         _navManager.NavigateTo("/Order/");
     }
 
-    <!--Order Item part-->
-    OrderItem orderitem = new OrderItem();
-
-    private IList<Order>? Orders;
-    private IList<Product>? Products;
-
-
-    private async Task CreateOrderItems()
-    {
-        await _client.PostAsJsonAsync(Endpoints.OrderItemsEndpoint, orderitem);
-        _navManager.NavigateTo("/OrderItem/");
-    }
-
-    <!--Prescription part-->
-    Prescription prescription = new Prescription();
-
-    private IList<OnlineConsultation>? OnlineConsultations;
-
-    private async Task CreatePrescriptions()
-    {
-        await _client.PostAsJsonAsync(Endpoints.PrescriptionsEndpoint, prescription);
-        _navManager.NavigateTo("/Prescription/");
-    }
 
 
 }
