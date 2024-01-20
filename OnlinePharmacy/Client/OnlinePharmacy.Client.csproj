@@ -36,6 +36,8 @@
 
   <ItemGroup>
     <Folder Include="Pages\Customer\" />
+    <Folder Include="Pages\OrderItem\" />
+    <Folder Include="Pages\Prescription\" />
   </ItemGroup>
 
 </Project>

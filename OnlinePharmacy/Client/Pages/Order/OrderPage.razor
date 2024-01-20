@@ -10,6 +10,14 @@
             <span class="oi oi-plus"></span>
             Create New Order
         </a>
+        <a href="/OrderItem/create" class="btn btn-secondary createorderitembutton">
+            <span class="oi oi-plus"></span>
+            Create New Order Item
+        </a>
+        <a href="/Prescription/create" class="btn btn-secondary createprescriptionbutton">
+            <span class="oi oi-plus"></span>
+            Create New Prescription
+        </a>
     </div>
 
     @if (Orders == null)
@@ -56,6 +64,10 @@
         </table>
     </div>
     }
+    <a href="/OrderItem" class="btn btn-secondary orderitembutton">
+        <span class="oi oi-arrow-right"></span>
+        Next
+    </a>
 </div>
 
 
