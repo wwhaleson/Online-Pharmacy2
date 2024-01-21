@@ -1,0 +1,106 @@
+﻿@inject HttpClient _client
+
+<EditForm Model="@prescriptionitem" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <fieldset disabled="@Disabled">
+
+        <div class="form-group">
+            <label>Product: </label>
+            <div>
+                <InputSelect @bind-Value="prescriptionitem.ProductID" class="form-control">
+                    <option value="">-- Select Product ID --</option>
+                    @if (Products != null)
+                    {
+                        foreach (var product in Products)
+                        {
+                            <option value="@product.ProductID">@product.ProductID</option>
+                        }
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => prescriptionitem.ProductID)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Prescription Item Qty: </label>
+            <div>
+                <input type="int" @bind="@prescriptionitem.PrescriptionItemQuantity" class="form-control" />
+                <ValidationMessage For="@(() => prescriptionitem.PrescriptionItemQuantity)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Subtotal: </label>
+            <div>
+                <input type="int" @bind="@prescriptionitem.PrescriptionItemSubTotal" class="form-control" />
+                <ValidationMessage For="@(() => prescriptionitem.PrescriptionItemSubTotal)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Prescription: </label>
+            <div>
+                <InputSelect @bind-Value="prescriptionitem.PrescriptionID" class="form-control">
+                    <option value="">-- Select Prescription ID --</option>
+                    @if (Prescriptions != null)
+                    {
+                        foreach (var prescription in Prescriptions)
+                        {
+                            <option value="@prescription.PrescriptionID">@prescription.PrescriptionID</option>
+                        }
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => prescriptionitem.PrescriptionID)" />
+            </div>
+        </div>
+    </fieldset>
+
+
+
+        <div class="form-group">
+            <label>Order: </label>
+            <div>
+                <InputSelect @bind-Value="prescriptionitem.OrderID" class="form-control">
+                    <option value="">-- Select Order ID --</option>
+                    @if (Orders != null)
+                    {
+                        foreach (var order in Orders)
+                        {
+                            <option value="@order.OrderID">@order.OrderID</option>
+                        }
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => prescriptionitem.OrderID)" />
+            </div>
+        </div>
+    </fieldset>
+
+    @if (!Disabled)
+    {
+        <button type="submit" class="btn btn-success btn-block">
+            @ButtonText
+        </button>
+    }
+    <BackToList Target="PrescriptionItem" />
+</EditForm>
+
+@code {
+    [Parameter] public bool Disabled { get; set; } = false;
+    [Parameter] public PrescriptionItem? prescriptionitem { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+
+    private IList<Prescription>? Prescriptions;
+    private IList<Order>? Orders;
+    private IList<Product>? Products;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Prescriptions = await _client.GetFromJsonAsync<List<Prescription>>($"{Endpoints.PrescriptionsEndpoint}");
+        Orders = await _client.GetFromJsonAsync<List<Order>>($"{Endpoints.OrdersEndpoint}");
+        Products = await _client.GetFromJsonAsync<List<Product>>($"{Endpoints.ProductsEndpoint}");
+    }
+
+}

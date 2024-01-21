@@ -8,9 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\OrderItem\**" />
     <Compile Remove="Pages\ProductCategory\**" />
+    <Content Remove="Pages\OrderItem\**" />
     <Content Remove="Pages\ProductCategory\**" />
+    <EmbeddedResource Remove="Pages\OrderItem\**" />
     <EmbeddedResource Remove="Pages\ProductCategory\**" />
+    <None Remove="Pages\OrderItem\**" />
     <None Remove="Pages\ProductCategory\**" />
   </ItemGroup>
 
@@ -36,8 +40,6 @@
 
   <ItemGroup>
     <Folder Include="Pages\Customer\" />
-    <Folder Include="Pages\OrderItem\" />
-    <Folder Include="Pages\Prescription\" />
   </ItemGroup>
 
 </Project>

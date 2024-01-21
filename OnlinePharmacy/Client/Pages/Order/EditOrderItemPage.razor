@@ -3,7 +3,7 @@
 @inject NavigationManager _navManager
 
 <h3>Edit Order Item</h3>
-<FormComponent ButtonText="Update" OnValidSubmit="EditOrderItem" orderitem="orderitem" />
+<OrderItemFormComponent ButtonText="Update" OnValidSubmit="EditOrderItem" orderitem="orderitem" />
 @code {
 
     [Parameter] public int id { get; set; }
