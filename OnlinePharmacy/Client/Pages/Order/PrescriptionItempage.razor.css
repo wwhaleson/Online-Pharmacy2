@@ -1,15 +1,15 @@
-﻿#dflexPrescription {
+﻿#dflexPrescriptionItem {
     justify-content: center;
 }
 
-#Prescriptionheader {
+#PrescriptionItemheader {
     text-align: center;
     font-weight: 800;
     font-size: 35px;
     font-family: "Rubik", serif;
 }
 
-#Prescriptiontablecolumnname {
+#PrescriptionItemtablecolumnname {
     border: 2px solid;
 }
 
@@ -26,7 +26,7 @@
     text-align: center;
 }
 
-.createprescriptionbutton {
+.createprescriptionitembutton {
     width: 25%;
     align-self: end;
 }
