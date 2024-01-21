@@ -2,7 +2,9 @@
 @inject HttpClient _client
 @inject NavigationManager _navManager
 <h3>View Order</h3>
-<FormComponent order="order" Disabled="true" />
+
+<OrderFormComponent order="order" Disabled="true" />
+
 @code {
     [Parameter] public int id { get; set; }
     Order? order = new Order();
@@ -11,4 +13,4 @@
         order = await
         _client.GetFromJsonAsync<Order>($"{Endpoints.OrdersEndpoint}/{id}");
     }
-}
+}               

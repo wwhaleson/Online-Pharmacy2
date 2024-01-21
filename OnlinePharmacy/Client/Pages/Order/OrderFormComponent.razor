@@ -15,7 +15,7 @@
         <div class="form-group">
             <label>Time ordered: </label>
             <div>
-                <InputDate @bind-Value="@order.OrderTime" class="form-control" />
+                <input type="time" @bind="@order.OrderTime" class="form-control" />
                 <ValidationMessage For="@(() => order.OrderTime)" />
             </div>
         </div>
@@ -23,7 +23,7 @@
         <div class="form-group">
             <label>Payment Type: </label>
             <div>
-                <InputDate @bind-Value="@order.PaymentType" class="form-control" />
+                <InputText @bind-Value="@order.PaymentType" class="form-control" />
                 <ValidationMessage For="@(() => order.PaymentType)" />
             </div>
         </div>
@@ -38,7 +38,7 @@
             @ButtonText
         </button>
     }
-    <BackToList Target="Order" />
+    <BackToList Target="OrderStatus" />
 </EditForm>
 
 @code {
