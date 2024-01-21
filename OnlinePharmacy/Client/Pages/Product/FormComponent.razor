@@ -6,10 +6,35 @@
     <fieldset disabled="@Disabled">
 
         <div class="form-group">
-            <label>Product ID: </label>
+            <label>Category: </label>
             <div>
-                <input type="number" @bind="@product.ProductID" class="form-control" />
-                <ValidationMessage For="@(() => product.ProductID)" />
+                <InputSelect @bind-Value="product.ProductCategoryID" class="form-control">
+                    <option value="">-- Category --</option>
+                    @if (Categorys != null)
+                    {
+                        foreach (var category in Categorys)
+                        {
+                            <option value="@category.CategoryID">@category.CategoryName</option>
+                        }
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => product.ProductCategoryID)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Product Image Directory: </label>
+            <div>
+                <InputText @bind-Value="@product.ProductImage" class="form-control" />
+                <ValidationMessage For="@(() => product.ProductImage)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Product Name: </label>
+            <div>
+                <InputText @bind-Value="@product.ProductName" class="form-control" />
+                <ValidationMessage For="@(() => product.ProductBrand)" />
             </div>
         </div>
 
@@ -30,6 +55,42 @@
         </div>
 
         <div class="form-group">
+            <label>Product Description: </label>
+            <div>
+                <InputText @bind-Value="@product.ProductDescription" class="form-control" />
+                <ValidationMessage For="@(() => product.ProductDescription)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Prescription: </label>
+            <div>
+                <InputSelect @bind-Value="product.PrescriptionStatus" class="form-control">
+                    <option value="">-- Select Presceiption Status --</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </InputSelect>
+                <ValidationMessage For="@(() => product.PrescriptionStatus)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Expiry Date: </label>
+            <div>
+                <InputDate @bind-Value="@product.ProductExpiryDate" class="form-control" />
+                <ValidationMessage For="@(() => product.ProductExpiryDate)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Product Ingredients: </label>
+            <div>
+                <InputText @bind-Value="@product.ProductIngredients" class="form-control" />
+                <ValidationMessage For="@(() => product.ProductIngredients)" />
+            </div>
+        </div>
+
+        <div class="form-group">
             <label>Product Usage: </label>
             <div>
                 <InputTextArea @bind-Value="@product.ProductUsage" class="form-control" />
@@ -45,29 +106,25 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <label>Expiry Date: </label>
-            <div>
-                <InputDate @bind-Value="@product.ProductExpiryDate" class="form-control" />
-                <ValidationMessage For="@(() => product.ProductExpiryDate)" />
-            </div>
+        <div class="form-group mb-3">
+            <label>Minimum Age: </label>
+            <input type="number" @bind="@product.ProductMinimumAge" class="form-control" />
+            <ValidationMessage For="@(() => product.ProductMinimumAge)" />
         </div>
 
-        <div class="form-group">
-            <label>Product Ingredients: </label>
-            <div>
-                <InputTextArea @bind-Value="@product.ProductIngredients" class="form-control" />
-                <ValidationMessage For="@(() => product.ProductIngredients)" />
-            </div>
+        <div class="form-group mb-3">
+            <label>Maximum Age: </label>
+            <input type="number" @bind="@product.ProductMaximumAge" class="form-control" />
+            <ValidationMessage For="@(() => product.ProductMaximumAge)" />
         </div>
 
-        <div class="form-group">
-            <label>Product Ingredients: </label>
-            <div>
-                <InputTextArea @bind-Value="@product.ProductImage" class="form-control" />
-                <ValidationMessage For="@(() => product.ProductImage)" />
-            </div>
+
+        <div class="form-group mb-3">
+            <label>Stock Quantity: </label>
+            <input type="number" @bind="@product.StockQuantity" class="form-control" />
+            <ValidationMessage For="@(() => product.StockQuantity)" />
         </div>
+
     </fieldset>
 
     @if (!Disabled)
@@ -84,6 +141,14 @@
     [Parameter] public Product? product { get; set; }
     [Parameter] public string ButtonText { get; set; } = "Save";
     [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+    private IList<Category>? Categorys;
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        Categorys = await _client.GetFromJsonAsync<List<Category>>($"{Endpoints.CategoriesEndpoint}");
+    }
 
 
 }

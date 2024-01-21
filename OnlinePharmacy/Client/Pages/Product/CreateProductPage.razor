@@ -6,18 +6,24 @@
 <h3 class="card-title">Create Product</h3>
 
 
-<FormComponent ButtonText="Create Product" delivery="delivery" OnValidSubmit="@CreateProducts" />
+<FormComponent ButtonText="Create Product" product="product" OnValidSubmit="@CreateProducts" />
 
 
 @code {
     Product product = new Product();
 
+    private IList<Category>? Categorys;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Categorys = await _client.GetFromJsonAsync<List<Category>>($"{Endpoints.CategoriesEndpoint}");
+
+    }
 
     private async Task CreateProducts()
     {
         await _client.PostAsJsonAsync(Endpoints.ProductsEndpoint, product);
         _navManager.NavigateTo("/Product/");
     }
-
 }
 

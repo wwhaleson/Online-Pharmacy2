@@ -43,7 +43,7 @@
             <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
             @if (Products == null)
             {
-                <div class="alert alert-info">Loading Orders</div>
+                <div class="alert alert-info">Loading Products</div>
             }
             else
             {
@@ -53,7 +53,17 @@
 
 
                             <div class="card h-100 productcard" style="text-decoration: none;">
-                                <img src="https://alcare.sg/wp-content/uploads/2019/08/PANC-1.jpg" class="catproductimage img-fluid">
+                                @if (!string.IsNullOrEmpty(product.ProductImage) && Uri.IsWellFormedUriString(product.ProductImage, UriKind.RelativeOrAbsolute)
+                                )
+                                {
+                                    <img src="@product.ProductImage" class="catproductimage img-fluid">
+                                }
+                                else
+                                {
+                                    <!-- Display a default image or placeholder image -->
+                                    <img src="https://static-00.iconduck.com/assets.00/no-image-icon-512x512-lfoanl0w.png" class="catproductimage img-fluid">
+                                }
+
                                 <div class="card-body productcardbody">
                                     <h3 class="productname">@product.ProductName</h3>
                                     <h5 class="productprice">@product.ProductPrice</h5>
@@ -91,7 +101,7 @@
         if (Products != null)
         {
             var product = Products.First(q => q.ProductID ==productId);
-            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to Delete {product.ProductID}?");
+            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to Delete {product.ProductName}?");
             if (confirm)
             {
                 await _client.DeleteAsync($"{Endpoints.ProductsEndpoint}/{productId}");

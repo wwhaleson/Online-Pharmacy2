@@ -5,13 +5,12 @@
 <PageTitle>Customer Status</PageTitle>
 <div class="container">
     <div class="d-flex flex-column" id="dflexcustomer">
-        <h1 class="mt-5" id="customerheader">Customer Status</h1>
+        <h1 class="mt-5" id="Customerheader">Customer</h1>
         <a href="/Customer/create" class="btn btn-secondary createcustomerbutton">
             <span class="oi oi-plus"></span>
             Create New Customer
         </a>
     </div>
-
     @if (Customers == null)
     {
         <div class="alert alert-info">Loading Customers</div>
@@ -21,26 +20,27 @@
         <div class="table-responsive mt-3">
             <table class="table ">
                 <thead class="table-light">
-                    <tr id="customertablecolumnname">
-                        <th scope="col" class="dcol">Cust Firstname</th>
-                        <th scope="col" class="dcol">Cust Lname</th>
-                        <th scope="col" class="dcol">Cust Gender</th>
-                        <th scope="col" class="dcol">Cust Postal Code</th>
-                        <th scope="col" class="dcol">Cust Block No.</th>
-                        <th scope="col" class="dcol">Cust Floor No.</th>
-                        <th scope="col" class="dcol">Cust Street Address</th>
-                        <th scope="col" class="dcol">Cust Phone Number</th>
-                        <th scope="col" class="dcol">Cust Email</th>
-                        <th scope="col" class="dcol">Cust Pass</th>
-                    </tr>
+                    <tr id="Customertablecolumnname">
+                        <th scope="col" class="dcol">#Id</th>
+                        <th scope="col" class="dcol">Name</th>
+                        <th scope="col" class="dcol">Gender</th>
+                        <th scope="col" class="dcol">Postal Code</th>
+                        <th scope="col" class="dcol">Block No.</th>
+                        <th scope="col" class="dcol">Floor No.</th>
+                        <th scope="col" class="dcol">Street Address</th>
+                        <th scope="col" class="dcol">Phone Number</th>
+                        <th scope="col" class="dcol">Email</th>
+                        <th scope="col" class="dcol">Password</th>
+                        <th scope="col" class="dcol">Action</th>
+                        </tr>
                 </thead>
 
                 <tbody>
                     @foreach (var customer in Customers)
                     {
                         <tr>
-                            <td class="dr">@customer.CustFname</td>
-                            <td class="dr">@customer.CustLname</td>
+                            <td class="dr">@customer.CustomerID</td>
+                            <td class="dr">@customer.CustFname @customer.CustLname</td>
                             <td class="dr">@customer.CustGender</td>
                             <td class="dr">@customer.CustPostalCode</td>
                             <td class="dr">@customer.CustBlockNo</td>
@@ -67,10 +67,6 @@
         </div>
     }
 </div>
-
-
-
-
 @code {
     private List<Customer>? Customers;
     <!--When the page begins to load-->
@@ -83,7 +79,7 @@
         if (Customers != null)
         {
             var customer = Customers.First(q => q.CustomerID == customerId);
-            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to Delete {customer.CustomerID}?");
+            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to Delete {customer.CustFname}?");
             if (confirm)
             {
                 await _client.DeleteAsync($"{Endpoints.CustomersEndpoint}/{customerId}");
@@ -91,5 +87,4 @@
             }
         }
     }
-
 }
