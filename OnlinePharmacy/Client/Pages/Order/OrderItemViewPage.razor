@@ -1,0 +1,14 @@
+﻿@page "/OrderItem/view/{id:int}"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+<h3>View Order Item</h3>
+<OrderItemFormComponent orderitem="orderitem" Disabled="true" />
+@code {
+    [Parameter] public int id { get; set; }
+    OrderItem? orderitem = new OrderItem();
+    protected async override Task OnParametersSetAsync()
+    {
+        orderitem = await
+        _client.GetFromJsonAsync<OrderItem>($"{Endpoints.OrderItemsEndpoint}/{id}");
+    }
+}
