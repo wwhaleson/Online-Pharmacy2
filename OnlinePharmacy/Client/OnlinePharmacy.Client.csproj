@@ -19,6 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Pages\Error\404.razor" />
+    <None Include="Pages\Error\500.razor" />
+    <None Include="Pages\Error\Unauthorized.razor" />
     <None Include="wwwroot\scripts\datatable.js" />
   </ItemGroup>
 

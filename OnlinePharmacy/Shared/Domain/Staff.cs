@@ -14,6 +14,10 @@ namespace OnlinePharmacy.Shared.Domain
         [Display(Name = "Staff ID")]
         public int StaffID { get; set; }
 
+        [Display(Name = "Staff Image")]
+        public string? StaffImage { get; set; }
+
+
         [Required(ErrorMessage = "First Name is required")]
         [StringLength(100, MinimumLength = 2, ErrorMessage = "First Name does not meet length requirements")]
         public string StaffFname { get; set; }
@@ -28,9 +32,10 @@ namespace OnlinePharmacy.Shared.Domain
         public string StaffGender { get; set; }
 
         [Required(ErrorMessage = "Email is required")]
-        [DataType(DataType.EmailAddress, ErrorMessage = "Email Address is not a valid email")]
-        [EmailAddress]
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress(ErrorMessage = "The Staff Email field is not a valid email address")]
         public string Staff_email { get; set; }
+
 
         [Required(ErrorMessage = "Password is required")]
         [DataType(DataType.Password)]
@@ -38,10 +43,11 @@ namespace OnlinePharmacy.Shared.Domain
         public string Staff_pass { get; set; }
 
         [Required(ErrorMessage = "Position is required")]
-        [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "Position should only contain alphabetic characters")]
+        [RegularExpression("^[a-zA-Z ]+$", ErrorMessage = "Position should only contain alphabetic characters")]
         [StringLength(100, MinimumLength = 2, ErrorMessage = "Choose the appropriate Position")]
         [Display(Name = "Position")]
         public string Position { get; set; }
+
 
         public virtual List<OnlineConsultation>? OnlineConsultations { get; set; }
     }

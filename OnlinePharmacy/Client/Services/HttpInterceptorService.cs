@@ -2,7 +2,7 @@
 using System.Net;
 using Toolbelt.Blazor;
 
-namespace CarRentalManagement_home.Client.Services
+namespace OnlinePharmacy.Client.Services
 {
     public class HttpInterceptorService
     {

@@ -4,68 +4,120 @@
     <DataAnnotationsValidator />
     <ValidationSummary />
     <fieldset disabled="@Disabled">
-
-        <div class="form-group">
-            <label>First Name: </label>
-            <div>
-                <InputText @bind-Value="@staff.StaffFname" class="form-control" />
-                <ValidationMessage For="@(() => staff.StaffFname)" />
+        <div class="container-xl px-4 mt-4" id="staffdetails">
+            <div class="row">
+                <div class="col-xl-4">
+                    <!-- Profile picture card-->
+                    <div class="card mb-4 mb-xl-0">
+                        <div class="card-header">Profile Picture</div>
+                        <div class="card-body text-center">
+                            <div class="form-group">
+                                <label>Staff Image Directory: </label>
+                                <div>
+                                    <InputText @bind-Value="@staff.StaffImage" class="form-control" />
+                                    <ValidationMessage For="@(() => staff.StaffImage)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-8">
+                    <!-- Account details card-->
+                    <div class="card mb-4">
+                        <div class="card-header">Account Details</div>
+                        <div class="card-body">
+                            <form>
+                                <!-- Form Row-->
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (first name)-->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>First Name: </label>
+                                            <div>
+                                                <InputText @bind-Value="@staff.StaffFname" class="form-control" />
+                                                <ValidationMessage For="@(() => staff.StaffFname)" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Form Group (last name)-->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Last Name: </label>
+                                            <div>
+                                                <InputText @bind-Value="@staff.StaffLname" class="form-control" />
+                                                <ValidationMessage For="@(() => staff.StaffLname)" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Form Row        -->
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (gender)-->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Gender: </label>
+                                            <div>
+                                                <InputSelect @bind-Value="staff.StaffGender" class="form-control">
+                                                    <option value="">-- Gender --</option>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                </InputSelect>
+                                                <ValidationMessage For="@(() => staff.StaffGender)" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Form Group (position)-->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Position: </label>
+                                            <div>
+                                                <InputSelect @bind-Value="staff.Position" class="form-control">
+                                                    <option value="">-- Position --</option>
+                                                    <option value="Order Clerk">Order Clerk</option>
+                                                    <option value="Pharmacist">Pharmacist</option>
+                                                </InputSelect>
+                                                <ValidationMessage For="@(() => staff.Position)" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Form Row-->
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (email address)-->
+                                    <div class="col-md-6">
+                                        <label>Email Address: </label>
+                                        <div>
+                                            <InputText @bind-Value="@staff.Staff_email" class="form-control" />
+                                            <ValidationMessage For="@(() => staff.Staff_email)" />
+                                        </div>
+                                    </div>
+                                    <!-- Form Group (password)-->
+                                    <div class="col-md-6">
+                                        <label>Password: </label>
+                                        <div>
+                                            <InputText @bind-Value="@staff.Staff_pass" class="form-control" />
+                                            <ValidationMessage For="@(() => staff.Staff_pass)" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="form-group">
-            <label>Last Name: </label>
-            <div>
-                <InputText @bind-Value="@staff.StaffLname" class="form-control" />
-                <ValidationMessage For="@(() => staff.StaffLname)" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>Gender: </label>
-            <div>
-                <InputSelect @bind-Value="staff.StaffGender" class="form-control">
-                    <option value="">-- Gender --</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                </InputSelect>
-                <ValidationMessage For="@(() => staff.StaffGender)" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>Position: </label>
-            <div>
-                <InputSelect @bind-Value="staff.Position" class="form-control">
-                    <option value="">-- Position --</option>
-                    <option value="Order Clerk">Order Clerk</option>
-                    <option value="Pharmacist">Pharmacist</option>
-                </InputSelect>
-                <ValidationMessage For="@(() => staff.Position)" />
-            </div>
-        </div>
-
-        <label>Email Address: </label>
-        <div>
-            <InputText @bind-Value="@staff.Staff_email" class="form-control" />
-            <ValidationMessage For="@(() => staff.Staff_email)" />
-        </div>
-
-        <label>Password: </label>
-        <div>
-            <InputText @bind-Value="@staff.Staff_pass" class="form-control" />
-            <ValidationMessage For="@(() => staff.Staff_pass)" />
-        </div>
-
     </fieldset>
+    <div class="d-flex flex-column-md-6 mt-2 justify-content-center">
+        @if (!Disabled)
+        {
+            <button type="submit" class="btn btn-success me-2">
+                @ButtonText
+            </button>
+        }
+        <BackToList Target="Staff" />
+    </div>
+   
 
-    @if (!Disabled)
-    {
-        <button type="submit" class="btn btn-success btn-block">
-            @ButtonText
-        </button>
-    }
-    <BackToList Target="Staff" />
 </EditForm>
 
 @code {

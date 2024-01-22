@@ -1,6 +1,8 @@
 ﻿@attribute [Authorize]
 @inject HttpClient _client
 @inject IJSRuntime js
+@inject HttpInterceptorService _interceptor
+@implements IDisposable
 @page "/Staff"
 <PageTitle>Staff</PageTitle>
 
@@ -19,7 +21,7 @@
             <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
                 @if (Staffs == null)
                 {
-                    <div class="alert alert-info">Loading Orders</div>
+                    <div class="alert alert-info">Loading Staffs</div>
                 }
                 else
                 {
@@ -27,7 +29,15 @@
                     {
                         <div class="col aStaff">
                             <div class="card h-100 Staffcard text-decoration-none" style="word-wrap: break-word; cursor: pointer;">
-                                <img src="https://cdn-icons-png.flaticon.com/512/2815/2815428.png" class="Staffimage img-fluid">
+                            @if (!string.IsNullOrEmpty(staff.StaffImage) && Uri.TryCreate(staff.StaffImage, UriKind.RelativeOrAbsolute, out _))
+                            {
+                                <img src="@staff.StaffImage" class="staffimage img-fluid">
+                            }
+                            else
+                            {
+                                <!-- Display a default image or placeholder image -->
+                                <img src="https://cdn-icons-png.flaticon.com/512/2815/2815428.png" class="staffimage img-fluid">
+                            }
                                 <div class="card-body Staffcardbody">
                                     <h3 class="staffname">@staff.StaffFname @staff.StaffLname</h3>
                                     <h5 class="staffposition">@staff.Position</h5>
@@ -58,6 +68,7 @@
     private List<Staff>? Staffs;
     protected async override Task OnInitializedAsync()
     {
+        _interceptor.MonitorEvent();
         Staffs = await _client.GetFromJsonAsync<List<Staff>>($"{Endpoints.StaffsEndpoint}");
     }
     async Task Delete(int staffId)
@@ -72,6 +83,10 @@
                 await OnInitializedAsync();
             }
         }
+    }
+    public void Dispose()
+    {
+        _interceptor.DisposeEvent();
     }
 
 }
