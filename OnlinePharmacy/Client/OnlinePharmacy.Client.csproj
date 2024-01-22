@@ -17,6 +17,7 @@
   <ItemGroup>
     <None Include="wwwroot\2.ico" />
     <None Include="wwwroot\1.jpg" />
+    <None Include="wwwroot\scripts\datatable.js" />
   </ItemGroup>
 
   <ItemGroup>

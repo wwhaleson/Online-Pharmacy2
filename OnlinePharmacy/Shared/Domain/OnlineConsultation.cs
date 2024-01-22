@@ -5,44 +5,93 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace OnlinePharmacy.Shared.Domain
 {
-    public class OnlineConsultation
+    public class OnlineConsultation : IValidatableObject
     {
-
+        [Required(ErrorMessage = "Online Consultation ID is required")]
+        [Display(Name = "Online Consultation ID")]
         public int OnlineConsultationID { get; set; }
 
+        [Required(ErrorMessage = "Consultation Time Start is required")]
+        [DataType(DataType.Time)]
         public DateTime? ConsultationTimeStart { get; set; }
 
+        [Required(ErrorMessage = "Consultation Time End is required")]
+        [DataType(DataType.Time)]
         public DateTime? ConsultationTimeEnd { get; set; }
 
-
+        [Required(ErrorMessage = "Consultation Date Start is required")]
         [DataType(DataType.Date)]
         public DateTime? ConsultationDateStart { get; set; }
 
+        [Required(ErrorMessage = "Consultation Date End is required")]
         [DataType(DataType.Date)]
         public DateTime? ConsultationDateEnd { get; set; }
 
+        [Required(ErrorMessage = "Consultation Price is required")]
+        [Range(0.01, double.MaxValue, ErrorMessage = "Consultation Price must be greater than 0")]
+        [DataType(DataType.Currency)]
         public decimal? ConsultationPrice { get; set; }
 
+        [Required(ErrorMessage = "Consultation Symptom is required")]
+        [StringLength(255, MinimumLength = 5, ErrorMessage = "Consultation Symptom length should be between 5 and 255")]
         public string? ConsultationSymptom { get; set; }
 
+        [Required(ErrorMessage = "Consultation Diagnosis is required")]
+        [StringLength(255, MinimumLength = 5, ErrorMessage = "Consultation Diagnosis length should be between 5 and 255")]
         public string? ConsultationDiagnosis { get; set; }
 
+        [Required(ErrorMessage = "Consultation Duration is required")]
+        [Range(20, int.MaxValue, ErrorMessage = "Consultation Duration must be greater than 20 minutes")]
         public int? ConsultationDuration { get; set; }
 
+        [Required(ErrorMessage = "Consultation Status is required")]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Consultation Status length should be between 2 and 50")]
+        [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "Consultation Status should only contain alphabetic characters")]
         public string? ConsultationStatus { get; set; }
 
+        [Required(ErrorMessage = "Consultation Platform is required")]
+        [StringLength(50, MinimumLength = 4, ErrorMessage = "Consultation Platform length should be between 2 and 50")]
+        [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "Consultation Platform should only contain alphabetic characters")]
         public string? ConsultationPlatform { get; set; }
 
+        [Required(ErrorMessage = "Customer ID is required")]
+        [Display(Name = "Customer ID")]
         public int CustomerID { get; set; }
 
         public virtual Customer? Customer { get; set; }
 
+        [Required(ErrorMessage = "Pharmacist ID is required")]
+        [Display(Name = "Pharmacist ID")]
         public int PharmacistID { get; set; }
 
-        public virtual Staff? Staff { get; set; }
+        public virtual Staff? Staff { get; set; } 
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+
+            // Check if ConsultationDateStart is greater than ConsultationDateEnd
+            if (ConsultationDateStart != null && ConsultationDateEnd != null)
+            {
+                if (ConsultationDateStart > ConsultationDateEnd)
+                {
+                    yield return new ValidationResult("Consultation Date Start must be earlier than or equal to Consultation Date End", new[] { "ConsultationDateStart" });
+                }
+            }
+
+            // Check if ConsultationTimeStart is greater than ConsultationTimeEnd
+            if (ConsultationTimeStart != null && ConsultationTimeEnd != null)
+            {
+                if (ConsultationTimeStart > ConsultationTimeEnd)
+                {
+                    yield return new ValidationResult("Consultation Time Start must be earlier than or equal to Consultation Time End", new[] { "ConsultationTimeStart" });
+                }
+            }
+
+        }
 
     }
 }

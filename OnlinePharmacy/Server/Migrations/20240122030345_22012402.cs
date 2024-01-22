@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace OnlinePharmacy.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class _170124 : Migration
+    public partial class _22012402 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -60,8 +60,8 @@ namespace OnlinePharmacy.Server.Migrations
                 {
                     CategoryID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CategoryDescription = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    CategoryName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    CategoryDescription = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -74,16 +74,17 @@ namespace OnlinePharmacy.Server.Migrations
                 {
                     CustomerID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CustFname = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CustLname = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CustGender = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CustPostalCode = table.Column<int>(type: "int", nullable: true),
-                    CustBlockNo = table.Column<int>(type: "int", nullable: true),
-                    CustFloorNo = table.Column<int>(type: "int", nullable: true),
-                    CustAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CustPhoneNo = table.Column<int>(type: "int", nullable: true),
-                    CustEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CustPass = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    CustFname = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    CustLname = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    CustGender = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    CustPostalCode = table.Column<int>(type: "int", nullable: false),
+                    CustBlockNo = table.Column<int>(type: "int", nullable: false),
+                    CustFloorNo = table.Column<int>(type: "int", nullable: false),
+                    CustUnitNo = table.Column<int>(type: "int", nullable: false),
+                    CustAddress = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    CustPhoneNo = table.Column<int>(type: "int", nullable: false),
+                    CustEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CustPass = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -153,12 +154,12 @@ namespace OnlinePharmacy.Server.Migrations
                 {
                     StaffID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StaffFname = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StaffLname = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StaffGender = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Staff_email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Staff_pass = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Position = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    StaffFname = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    StaffLname = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    StaffGender = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Staff_email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Staff_pass = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Position = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -277,19 +278,19 @@ namespace OnlinePharmacy.Server.Migrations
                 {
                     ProductID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProductBrand = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProductIngredients = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProductExpiryDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ProductDosage = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProductUsage = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProductDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProductMinimumAge = table.Column<int>(type: "int", nullable: true),
-                    ProductMaximumAge = table.Column<int>(type: "int", nullable: true),
-                    ProductImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PrescriptionStatus = table.Column<bool>(type: "bit", nullable: true),
-                    ProductPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    StockQuantity = table.Column<int>(type: "int", nullable: true),
+                    ProductName = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    ProductBrand = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    ProductIngredients = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    ProductExpiryDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ProductDosage = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    ProductUsage = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    ProductDescription = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    ProductMinimumAge = table.Column<int>(type: "int", nullable: false),
+                    ProductMaximumAge = table.Column<int>(type: "int", nullable: false),
+                    ProductImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PrescriptionStatus = table.Column<bool>(type: "bit", nullable: false),
+                    ProductPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    StockQuantity = table.Column<int>(type: "int", nullable: false),
                     ProductCategoryID = table.Column<int>(type: "int", nullable: false),
                     CategoryID = table.Column<int>(type: "int", nullable: true)
                 },
@@ -309,16 +310,16 @@ namespace OnlinePharmacy.Server.Migrations
                 {
                     OnlineConsultationID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ConsultationTimeStart = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ConsultationTimeEnd = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ConsultationDateStart = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ConsultationDateEnd = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ConsultationPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    ConsultationSymptom = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ConsultationDiagnosis = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ConsultationDuration = table.Column<int>(type: "int", nullable: true),
-                    ConsultationStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ConsultationPlatform = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ConsultationTimeStart = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ConsultationTimeEnd = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ConsultationDateStart = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ConsultationDateEnd = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ConsultationPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ConsultationSymptom = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    ConsultationDiagnosis = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    ConsultationDuration = table.Column<int>(type: "int", nullable: false),
+                    ConsultationStatus = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ConsultationPlatform = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CustomerID = table.Column<int>(type: "int", nullable: false),
                     PharmacistID = table.Column<int>(type: "int", nullable: false),
                     StaffID = table.Column<int>(type: "int", nullable: true)
@@ -345,10 +346,10 @@ namespace OnlinePharmacy.Server.Migrations
                 {
                     OrderID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    OrderTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    TotalCost = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    PaymentType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    OrderTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TotalCost = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PaymentType = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CustomerID = table.Column<int>(type: "int", nullable: false),
                     StaffID = table.Column<int>(type: "int", nullable: false)
                 },
@@ -375,8 +376,8 @@ namespace OnlinePharmacy.Server.Migrations
                 {
                     PrescriptionID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IssueDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ExpiryDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IssueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ExpiryDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     OnlineConsultationID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -396,11 +397,11 @@ namespace OnlinePharmacy.Server.Migrations
                 {
                     DeliveryID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    EstimatedDeliveryDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    EstimatedDeliveryTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeliveryStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DeliveryMethod = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DeliveryCost = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    EstimatedDeliveryDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EstimatedDeliveryTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeliveryStatus = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    DeliveryMethod = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    DeliveryCost = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     OrderID = table.Column<int>(type: "int", nullable: false),
                     StaffID = table.Column<int>(type: "int", nullable: true)
                 },
@@ -427,7 +428,7 @@ namespace OnlinePharmacy.Server.Migrations
                     OrderItemID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OrderItemQty = table.Column<int>(type: "int", nullable: false),
-                    OrderItemSubTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    OrderItemSubTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     OrderID = table.Column<int>(type: "int", nullable: false),
                     ProductID = table.Column<int>(type: "int", nullable: false)
                 },
@@ -454,11 +455,11 @@ namespace OnlinePharmacy.Server.Migrations
                 {
                     PrescriptionItemID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PrescriptionItemQuantity = table.Column<int>(type: "int", nullable: true),
-                    PrescriptionItemSubTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    PrescriptionID = table.Column<int>(type: "int", nullable: false),
+                    PrescriptionItemQuantity = table.Column<int>(type: "int", nullable: false),
+                    PrescriptionItemSubTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PrescriptionID = table.Column<int>(type: "int", nullable: true),
                     ProductID = table.Column<int>(type: "int", nullable: false),
-                    OrderID = table.Column<int>(type: "int", nullable: true)
+                    OrderID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -467,13 +468,13 @@ namespace OnlinePharmacy.Server.Migrations
                         name: "FK_PrescriptionItem_Order_OrderID",
                         column: x => x.OrderID,
                         principalTable: "Order",
-                        principalColumn: "OrderID");
+                        principalColumn: "OrderID",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_PrescriptionItem_Prescription_PrescriptionID",
                         column: x => x.PrescriptionID,
                         principalTable: "Prescription",
-                        principalColumn: "PrescriptionID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "PrescriptionID");
                     table.ForeignKey(
                         name: "FK_PrescriptionItem_Product_ProductID",
                         column: x => x.ProductID,
@@ -494,7 +495,7 @@ namespace OnlinePharmacy.Server.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "31c24d33-e7fd-475d-829c-07f1f07a5dbb", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEC7LiBZTj7Th38W972+b5Azir77AEhk0W5Gp68gkPSowMqSRD3O1Zy/auyB2ITmu2g==", null, false, "317cb3cb-d45c-4944-b495-7a8db4295756", false, "admin@localhost.com" });
+                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "520204d3-d906-4852-86c7-f241ea199fc2", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEBIiJUwV2sXQSWuqhmAITA11ukm1mQ1KbTgkvJeUOAgs7qUPiYceel75tWQw7HS1cA==", null, false, "7d189eba-ea59-4dbf-93aa-bbb79bbc2633", false, "admin@localhost.com" });
 
             migrationBuilder.InsertData(
                 table: "Category",
@@ -508,11 +509,11 @@ namespace OnlinePharmacy.Server.Migrations
 
             migrationBuilder.InsertData(
                 table: "Customer",
-                columns: new[] { "CustomerID", "CustAddress", "CustBlockNo", "CustEmail", "CustFloorNo", "CustFname", "CustGender", "CustLname", "CustPass", "CustPhoneNo", "CustPostalCode" },
+                columns: new[] { "CustomerID", "CustAddress", "CustBlockNo", "CustEmail", "CustFloorNo", "CustFname", "CustGender", "CustLname", "CustPass", "CustPhoneNo", "CustPostalCode", "CustUnitNo" },
                 values: new object[,]
                 {
-                    { 1, "Ubi Avenue 1", 55, "chaewon55@gmail.com", 5, "Chae", "Female", "Won", "helloworld1", 83719378, 123983 },
-                    { 2, "Tampines Street 61", 62, "johnwick66@gmail.com", 6, "John", "Male", "Wick", "helloworld2", 93682946, 103933 }
+                    { 1, "Ubi Avenue 1", 55, "chaewon55@gmail.com", 5, "Chae", "Female", "Won", "helloworld#1", 83719378, 123983, 210 },
+                    { 2, "Tampines Street 61", 62, "johnwick66@gmail.com", 6, "John", "Male", "Wick", "helloworld#2", 93682946, 103933, 208 }
                 });
 
             migrationBuilder.InsertData(
@@ -520,11 +521,11 @@ namespace OnlinePharmacy.Server.Migrations
                 columns: new[] { "ProductID", "CategoryID", "PrescriptionStatus", "ProductBrand", "ProductCategoryID", "ProductDescription", "ProductDosage", "ProductExpiryDate", "ProductImage", "ProductIngredients", "ProductMaximumAge", "ProductMinimumAge", "ProductName", "ProductPrice", "ProductUsage", "StockQuantity" },
                 values: new object[,]
                 {
-                    { 1, null, false, "SCOTT'S", 2, "Scott's is the Number 1 Kids' Multivitamin Brand in Singapore*. Worry about your little ones being picky with food and not getting the necessary nutrients for proper growth/development? Do not worry, Scott’s Multivitamin Gummies is coming to your rescue! Available in three delicious fruity flavors Apple, Tropical Fruits, and the NEWEST addition - Mango; it contains Zinc and five essential vitamins - A, B6, C, D, E - to support your kid immunity, bone growth and healthy vision every day. Moreover, Scott's micro encapsulation technology locks in the goodness of Zinc and 5 Vitamins (Vitamin A, B6, C, D & E) whilst giving kids the taste they love.", "3x/Day", new DateTime(2024, 1, 17, 1, 13, 2, 187, DateTimeKind.Utc).AddTicks(3968), null, "Glucose, Syrup, Sugar, Gelatin, Acidity Regulator (Citric Acid, Sodium Citrate), Humectant (Sorbitol), Flavouring substance, Vitamins and Mineral (Vitamin C, Zinc, Vitamin E, Vitamin B6, Vitamin A and Vitamin D) and Colouring substance (Tartrazine)\r\n", null, null, "SCOTT'S Multivitamins Gummies Mango", 22m, "Strong bones and teeth, improve the immune system, growth and development", 100 },
-                    { 2, null, false, "Panadol", 3, "Panadol Children’s Suspension 1-6 Years (120mg/5ml) provides relief from fever and pain in children aged 1 to 6 years. Like all Children’s Panadol products, Panadol Children’s Suspension 1-6 Years is gentle on little stomachs. A strawberry-flavoured suspension, Panadol Children’s Suspension 1-6 Years contains no alcohol and is aspirin-free.", "5-10ml (based on child's weight 9.5-19.5kg)\nDo not take more frequently than once every 4 Hours and do not exceed more than four doses in 24 hours. Do not take for more than 3 days without asking your doctor.", new DateTime(2024, 1, 17, 1, 13, 2, 187, DateTimeKind.Utc).AddTicks(3972), null, "Active ingredient: 120 mg/5 ml Paracetamol\r\nExcipients: No Alcohol, no Aspirin.", null, null, "Panadol Children's Suspension", 9m, "Fever, Headaches, Symptoms of colds and flu, Teething pain, Toothaches, Earache, Pain associated with immunisation", 90 },
-                    { 3, null, true, "Amoxil", 1, "Amoxicillin is a penicillin antibiotic. It is used to treat bacterial infections, such as chest infections (including pneumonia) and dental abscesses. It can also be used together with other antibiotics and medicines to treat stomach ulcers.", "1.25-12.5ml (based on child's weight 3.6-36kg)\nGive this dose three (3) times a day—once in the morning, once at mid-day, and once in the evening—for as long as directed.", new DateTime(2024, 1, 17, 1, 13, 2, 187, DateTimeKind.Utc).AddTicks(3975), null, "Croscarmellose sodium, gelatin, magnesium stearate, titanium dioxide, and yellow iron oxide.", null, null, "Amoxicillin", 10m, "Bacterial infections, such as chest infections (including pneumonia) and dental abscesses. Can also be used together with other antibiotics and medicines to treat stomach ulcers.", 50 },
-                    { 4, null, true, "Ibuprofen", 1, "Ibuprofen is a nonsteroidal anti-inflammatory drug.", "Ibuprofen dose is 400mg(two tablets) to be taken initially. 200mg(one tablet) to 400mg(two tablets) may be taken every 4 hours when required.", new DateTime(2024, 1, 17, 1, 13, 2, 187, DateTimeKind.Utc).AddTicks(3978), null, "Lactose, Maize Starch, Hypromellose, Sodium Starch Glycollate, Colloidal Anhydrous Silica, Magnesium Stearate, Sucrose, Talc, Titanium Dioxide (E171) and Carnauba Wax", null, null, "Ibuprofen", 10m, "Treat fever, pain, and inflammation in children", 50 },
-                    { 5, null, false, "Zyrtec", 3, "Zyrtec pcs 10's is now Zyrtec-R pcs 10's.\r\nNew Name, New Pack, Same Formula.\r\nZyrtec-R is an antihistamine.", "Children aged from 2 to 6 years: 2.5 mL of oral solution (half of a spoon) twice daily. Children aged from 6 to 12 years: 5 mg [10 drops, or 5 ml oral solution (1 full spoon) or half of the tablet] twice daily.", new DateTime(2024, 1, 17, 1, 13, 2, 187, DateTimeKind.Utc).AddTicks(3981), null, "", null, null, "Zyrtec R", 12m, "Treats allergy symptoms like itchy eyes, sneezing, a stuffy nose or hives", 30 }
+                    { 1, null, false, "SCOTT'S", 2, "Scott's is the Number 1 Kids' Multivitamin Brand in Singapore*. Worry about your little ones being picky with food and not getting the necessary nutrients for proper growth/development? Do not worry, Scott’s Multivitamin Gummies is coming to your rescue! Available in three delicious fruity flavors Apple, Tropical Fruits, and the NEWEST addition - Mango; it contains Zinc and five essential vitamins - A, B6, C, D, E - to support your kid immunity, bone growth and healthy vision every day. Moreover, Scott's micro encapsulation technology locks in the goodness of Zinc and 5 Vitamins (Vitamin A, B6, C, D & E) whilst giving kids the taste they love.", "3x/Day", new DateTime(2024, 1, 23, 3, 3, 45, 253, DateTimeKind.Utc).AddTicks(4660), "https://m.media-amazon.com/images/I/51Wylj9xQJL._AC_UF1000,1000_QL80_.jpg", "Glucose, Syrup, Sugar, Gelatin, Acidity Regulator (Citric Acid, Sodium Citrate), Humectant (Sorbitol), Flavouring substance, Vitamins and Mineral (Vitamin C, Zinc, Vitamin E, Vitamin B6, Vitamin A and Vitamin D) and Colouring substance (Tartrazine)\r\n", 12, 2, "SCOTT'S Multivitamins Gummies Mango", 22m, "Strong bones and teeth, improve the immune system, growth and development", 100 },
+                    { 2, null, false, "Panadol", 3, "Panadol Children’s Suspension 1-6 Years (120mg/5ml) provides relief from fever and pain in children aged 1 to 6 years. Like all Children’s Panadol products, Panadol Children’s Suspension 1-6 Years is gentle on little stomachs. A strawberry-flavoured suspension, Panadol Children’s Suspension 1-6 Years contains no alcohol and is aspirin-free.", "5-10ml (based on child's weight 9.5-19.5kg)\nDo not take more frequently than once every 4 Hours and do not exceed more than four doses in 24 hours. Do not take for more than 3 days without asking your doctor.", new DateTime(2024, 1, 23, 3, 3, 45, 253, DateTimeKind.Utc).AddTicks(4671), "https://alcare.sg/wp-content/uploads/2019/08/PAN1-S.jpg", "Active ingredient: 120 mg/5 ml Paracetamol\r\nExcipients: No Alcohol, no Aspirin.", 6, 1, "Panadol Children's Suspension", 9m, "Fever, Headaches, Symptoms of colds and flu, Teething pain, Toothaches, Earache, Pain associated with immunisation", 90 },
+                    { 3, null, true, "Amoxil", 1, "Amoxicillin is a penicillin antibiotic. It is used to treat bacterial infections, such as chest infections (including pneumonia) and dental abscesses. It can also be used together with other antibiotics and medicines to treat stomach ulcers.", "1.25-12.5ml (based on child's weight 3.6-36kg)\nGive this dose three (3) times a day—once in the morning, once at mid-day, and once in the evening—for as long as directed.", new DateTime(2024, 1, 23, 3, 3, 45, 253, DateTimeKind.Utc).AddTicks(4674), "https://d3pq5rjvq8yvv1.cloudfront.net/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/a/m/amox500tab.jpg", "Croscarmellose sodium, gelatin, magnesium stearate, titanium dioxide, and yellow iron oxide.", 12, 5, "Amoxicillin", 10m, "Bacterial infections, such as chest infections (including pneumonia) and dental abscesses. Can also be used together with other antibiotics and medicines to treat stomach ulcers.", 50 },
+                    { 4, null, true, "Ibuprofen", 1, "Ibuprofen is a nonsteroidal anti-inflammatory drug.", "Ibuprofen dose is 400mg(two tablets) to be taken initially. 200mg(one tablet) to 400mg(two tablets) may be taken every 4 hours when required.", new DateTime(2024, 1, 23, 3, 3, 45, 253, DateTimeKind.Utc).AddTicks(4676), "https://www.biovea.com/sg/images/products/xlrg/7188_z.jpg", "Lactose, Maize Starch, Hypromellose, Sodium Starch Glycollate, Colloidal Anhydrous Silica, Magnesium Stearate, Sucrose, Talc, Titanium Dioxide (E171) and Carnauba Wax", 12, 5, "Ibuprofen", 10m, "Treat fever, pain, and inflammation in children", 50 },
+                    { 5, null, false, "Zyrtec", 3, "Zyrtec pcs 10's is now Zyrtec-R pcs 10's.\r\nNew Name, New Pack, Same Formula.\r\nZyrtec-R is an antihistamine.", "Children aged from 2 to 12 years: 2.5 mL of oral solution (half of a spoon) twice daily. Children aged from 6 to 12 years: 5 mg [10 drops, or 5 ml oral solution (1 full spoon) or half of the tablet] twice daily.", new DateTime(2024, 1, 23, 3, 3, 45, 253, DateTimeKind.Utc).AddTicks(4679), "https://m.media-amazon.com/images/I/717EcbxEZ2L._AC_UF1000,1000_QL80_.jpg", "", 12, 2, "Zyrtec 24 Allergic Syrup", 12m, "Treats allergy symptoms like itchy eyes, sneezing, a stuffy nose or hives", 30 }
                 });
 
             migrationBuilder.InsertData(
@@ -546,8 +547,8 @@ namespace OnlinePharmacy.Server.Migrations
                 columns: new[] { "OnlineConsultationID", "ConsultationDateEnd", "ConsultationDateStart", "ConsultationDiagnosis", "ConsultationDuration", "ConsultationPlatform", "ConsultationPrice", "ConsultationStatus", "ConsultationSymptom", "ConsultationTimeEnd", "ConsultationTimeStart", "CustomerID", "PharmacistID", "StaffID" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 1, 17, 1, 13, 2, 187, DateTimeKind.Utc).AddTicks(2950), new DateTime(2024, 1, 17, 1, 13, 2, 187, DateTimeKind.Utc).AddTicks(2949), null, 1, null, 40m, null, null, new DateTime(2024, 1, 17, 1, 13, 2, 187, DateTimeKind.Utc).AddTicks(2948), new DateTime(2024, 1, 17, 1, 13, 2, 187, DateTimeKind.Utc).AddTicks(2946), 1, 1, null },
-                    { 2, new DateTime(2024, 1, 17, 1, 13, 2, 187, DateTimeKind.Utc).AddTicks(2961), new DateTime(2024, 1, 17, 1, 13, 2, 187, DateTimeKind.Utc).AddTicks(2960), null, 2, null, null, null, null, new DateTime(2024, 1, 17, 1, 13, 2, 187, DateTimeKind.Utc).AddTicks(2960), new DateTime(2024, 1, 17, 1, 13, 2, 187, DateTimeKind.Utc).AddTicks(2959), 2, 1, null }
+                    { 1, new DateTime(2024, 1, 22, 3, 3, 45, 253, DateTimeKind.Utc).AddTicks(3716), new DateTime(2024, 1, 22, 3, 3, 45, 253, DateTimeKind.Utc).AddTicks(3716), "Common cold", 1, "Online Call", 40m, "Completed", "Fever, Headache", new DateTime(2024, 1, 22, 3, 3, 45, 253, DateTimeKind.Utc).AddTicks(3715), new DateTime(2024, 1, 22, 3, 3, 45, 253, DateTimeKind.Utc).AddTicks(3714), 1, 1, null },
+                    { 2, new DateTime(2024, 1, 22, 3, 3, 45, 253, DateTimeKind.Utc).AddTicks(3726), new DateTime(2024, 1, 22, 3, 3, 45, 253, DateTimeKind.Utc).AddTicks(3725), "Common cold", 2, "Online Call", 45.75m, "Completed", "Headache", new DateTime(2024, 1, 22, 3, 3, 45, 253, DateTimeKind.Utc).AddTicks(3725), new DateTime(2024, 1, 22, 3, 3, 45, 253, DateTimeKind.Utc).AddTicks(3724), 2, 1, null }
                 });
 
             migrationBuilder.InsertData(
@@ -555,8 +556,8 @@ namespace OnlinePharmacy.Server.Migrations
                 columns: new[] { "OrderID", "CustomerID", "OrderDate", "OrderTime", "PaymentType", "StaffID", "TotalCost" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2024, 1, 17, 9, 13, 2, 187, DateTimeKind.Local).AddTicks(3326), new DateTime(2024, 1, 17, 9, 13, 2, 187, DateTimeKind.Local).AddTicks(3328), null, 2, null },
-                    { 2, 2, new DateTime(2024, 1, 17, 9, 13, 2, 187, DateTimeKind.Local).AddTicks(3332), new DateTime(2024, 1, 17, 9, 13, 2, 187, DateTimeKind.Local).AddTicks(3333), null, 2, null }
+                    { 1, 1, new DateTime(2024, 1, 22, 11, 3, 45, 253, DateTimeKind.Local).AddTicks(4088), new DateTime(2024, 1, 22, 11, 3, 45, 253, DateTimeKind.Local).AddTicks(4090), "Credit Card", 2, 15m },
+                    { 2, 2, new DateTime(2024, 1, 22, 11, 3, 45, 253, DateTimeKind.Local).AddTicks(4094), new DateTime(2024, 1, 22, 11, 3, 45, 253, DateTimeKind.Local).AddTicks(4095), "Credit Card", 2, 25m }
                 });
 
             migrationBuilder.InsertData(
@@ -564,8 +565,8 @@ namespace OnlinePharmacy.Server.Migrations
                 columns: new[] { "DeliveryID", "DeliveryCost", "DeliveryMethod", "DeliveryStatus", "EstimatedDeliveryDate", "EstimatedDeliveryTime", "OrderID", "StaffID" },
                 values: new object[,]
                 {
-                    { 1, 5m, "Standard", "Packing", new DateTime(2024, 1, 17, 9, 13, 2, 187, DateTimeKind.Local).AddTicks(2721), new DateTime(2024, 1, 17, 9, 13, 2, 187, DateTimeKind.Local).AddTicks(2736), 1, null },
-                    { 2, 5m, "Standard", "Packing", new DateTime(2024, 1, 17, 9, 13, 2, 187, DateTimeKind.Local).AddTicks(2738), new DateTime(2024, 1, 17, 9, 13, 2, 187, DateTimeKind.Local).AddTicks(2739), 2, null }
+                    { 1, 5m, "Standard", "Packing", new DateTime(2024, 1, 22, 11, 3, 45, 253, DateTimeKind.Local).AddTicks(3481), new DateTime(2024, 1, 22, 11, 3, 45, 253, DateTimeKind.Local).AddTicks(3495), 1, 1 },
+                    { 2, 5m, "Standard", "Packing", new DateTime(2024, 1, 22, 11, 3, 45, 253, DateTimeKind.Local).AddTicks(3497), new DateTime(2024, 1, 22, 11, 3, 45, 253, DateTimeKind.Local).AddTicks(3498), 2, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -573,8 +574,8 @@ namespace OnlinePharmacy.Server.Migrations
                 columns: new[] { "PrescriptionID", "ExpiryDate", "IssueDate", "OnlineConsultationID" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 6, 17, 0, 0, 0, 0, DateTimeKind.Local), new DateTime(2024, 1, 17, 0, 0, 0, 0, DateTimeKind.Local), 1 },
-                    { 2, new DateTime(2024, 7, 17, 0, 0, 0, 0, DateTimeKind.Local), new DateTime(2024, 1, 17, 9, 13, 2, 187, DateTimeKind.Local).AddTicks(3721), 2 }
+                    { 1, new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Local), new DateTime(2024, 1, 22, 0, 0, 0, 0, DateTimeKind.Local), 1 },
+                    { 2, new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Local), new DateTime(2024, 1, 22, 11, 3, 45, 253, DateTimeKind.Local).AddTicks(4480), 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -582,8 +583,8 @@ namespace OnlinePharmacy.Server.Migrations
                 columns: new[] { "PrescriptionItemID", "OrderID", "PrescriptionID", "PrescriptionItemQuantity", "PrescriptionItemSubTotal", "ProductID" },
                 values: new object[,]
                 {
-                    { 1, null, 1, 1, 10m, 3 },
-                    { 2, null, 2, 2, 20m, 4 }
+                    { 1, 1, 1, 1, 10m, 3 },
+                    { 2, 2, 2, 2, 20m, 4 }
                 });
 
             migrationBuilder.CreateIndex(

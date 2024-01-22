@@ -1,5 +1,5 @@
 ﻿@inject HttpClient _client
-"@*
+
 <EditForm Model="@order" OnValidSubmit="@OnValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
@@ -15,27 +15,21 @@
         <div class="form-group">
             <label>Time ordered: </label>
             <div>
-                <InputDate @bind-Value="@order.OrderTime" class="form-control" />
+                <input type="time" @bind="@order.OrderTime" class="form-control" />
                 <ValidationMessage For="@(() => order.OrderTime)" />
             </div>
         </div>
 
         <div class="form-group">
-            <label>Order Items: </label>
+            <label>Payment Type: </label>
             <div>
-                <InputSelect @bind-Value="order.o" class="form-control">
-                    <option value="">-- Select Online Consultation ID --</option>
-                    @if (OrderItems != null)
-                    {
-                        foreach (var orderitem in OrderItems)
-                        {
-                            <option value="@orderitem.OrderItemID">@orderitem.OrderItemID</option>
-                        }
-                    }
-                </InputSelect>
-                <ValidationMessage For="@(() => order.OrderItemID)" />
+                <InputText @bind-Value="@order.PaymentType" class="form-control" />
+                <ValidationMessage For="@(() => order.PaymentType)" />
             </div>
         </div>
+
+
+
     </fieldset>
 
     @if (!Disabled)
@@ -44,7 +38,7 @@
             @ButtonText
         </button>
     }
-    <BackToList Target="Order" />
+    <BackToList Target="OrderStatus" />
 </EditForm>
 
 @code {
@@ -62,4 +56,3 @@
     }
 
 }
-*@"

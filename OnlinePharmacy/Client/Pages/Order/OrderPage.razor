@@ -5,10 +5,14 @@
 <PageTitle>Order</PageTitle>
 <div class="container">
     <div class="d-flex flex-column" id="dflexorder">
-        <h1 class="mt-5" id="orderheader">Order</h1>
-        <a href="/Order/create" class="btn btn-secondary createorderbutton">
+        <h1 class="mt-5" id="orderheader">Create Order</h1>
+        <a href="/OrderItem/create" class="btn btn-secondary createorderitembutton">
             <span class="oi oi-plus"></span>
-            Create New Order
+            Create New Order Item
+        </a>
+        <a href="/PrescriptionItem/create" class="btn btn-secondary createprescriptionitembutton">
+            <span class="oi oi-plus"></span>
+            Create New Prescription Item
         </a>
     </div>
 
@@ -56,6 +60,15 @@
         </table>
     </div>
     }
+
+    <a href="/Order/create" class="btn btn-secondary createorderbutton">
+        <span class="oi oi-plus"></span>
+        Create New Order
+    </a>
+    <a href="/OrderItem" class="btn btn-secondary orderitembutton">
+        <span class="oi oi-arrow-right"></span>
+        Next
+    </a>
 </div>
 
 

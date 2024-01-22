@@ -6,8 +6,7 @@
 <h3 class="card-title">Create Order</h3>
 
 
-<FormComponent ButtonText="Create Order" order="order" OnValidSubmit="@CreateOrders" />
-
+<OrderFormComponent ButtonText="Create Order" order="order" OnValidSubmit="@CreateOrders" />
 
 @code {
     Order order = new Order();
@@ -28,5 +27,6 @@
         _navManager.NavigateTo("/Order/");
     }
 
-}
 
+
+}

@@ -12,8 +12,8 @@ using OnlinePharmacy.Server.Data;
 namespace OnlinePharmacy.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240117011302_170124")]
-    partial class _170124
+    [Migration("20240122031250_22012403")]
+    partial class _22012403
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -399,7 +399,7 @@ namespace OnlinePharmacy.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "31c24d33-e7fd-475d-829c-07f1f07a5dbb",
+                            ConcurrencyStamp = "6ea140d2-c569-4f21-8829-3f9b8315837d",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -407,9 +407,9 @@ namespace OnlinePharmacy.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEC7LiBZTj7Th38W972+b5Azir77AEhk0W5Gp68gkPSowMqSRD3O1Zy/auyB2ITmu2g==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJqjozeYnQd6DeHhfzAxFSlodqEwzlc92lMPBzcRCoIAEHC/+KMTvdyxkermo/s3aA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "317cb3cb-d45c-4944-b495-7a8db4295756",
+                            SecurityStamp = "213b51d5-9ed5-4b42-9792-8254ca025059",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
@@ -424,10 +424,14 @@ namespace OnlinePharmacy.Server.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryID"));
 
                     b.Property<string>("CategoryDescription")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("CategoryName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("CategoryID");
 
@@ -463,33 +467,50 @@ namespace OnlinePharmacy.Server.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerID"));
 
                     b.Property<string>("CustAddress")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int?>("CustBlockNo")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("CustEmail")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("CustFloorNo")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("CustFname")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("CustGender")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("CustLname")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("CustPass")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CustPhoneNo")
+                    b.Property<int>("CustPhoneNo")
                         .HasColumnType("int");
 
                     b.Property<int?>("CustPostalCode")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CustUnitNo")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("CustomerID");
@@ -507,9 +528,10 @@ namespace OnlinePharmacy.Server.Migrations
                             CustFname = "Chae",
                             CustGender = "Female",
                             CustLname = "Won",
-                            CustPass = "helloworld1",
+                            CustPass = "helloworld#1",
                             CustPhoneNo = 83719378,
-                            CustPostalCode = 123983
+                            CustPostalCode = 123983,
+                            CustUnitNo = 210
                         },
                         new
                         {
@@ -521,9 +543,10 @@ namespace OnlinePharmacy.Server.Migrations
                             CustFname = "John",
                             CustGender = "Male",
                             CustLname = "Wick",
-                            CustPass = "helloworld2",
+                            CustPass = "helloworld#2",
                             CustPhoneNo = 93682946,
-                            CustPostalCode = 103933
+                            CustPostalCode = 103933,
+                            CustUnitNo = 208
                         });
                 });
 
@@ -535,19 +558,25 @@ namespace OnlinePharmacy.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DeliveryID"));
 
-                    b.Property<decimal?>("DeliveryCost")
+                    b.Property<decimal>("DeliveryCost")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("DeliveryMethod")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("DeliveryStatus")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime?>("EstimatedDeliveryDate")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("EstimatedDeliveryTime")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<int>("OrderID")
@@ -571,9 +600,10 @@ namespace OnlinePharmacy.Server.Migrations
                             DeliveryCost = 5m,
                             DeliveryMethod = "Standard",
                             DeliveryStatus = "Packing",
-                            EstimatedDeliveryDate = new DateTime(2024, 1, 17, 9, 13, 2, 187, DateTimeKind.Local).AddTicks(2721),
-                            EstimatedDeliveryTime = new DateTime(2024, 1, 17, 9, 13, 2, 187, DateTimeKind.Local).AddTicks(2736),
-                            OrderID = 1
+                            EstimatedDeliveryDate = new DateTime(2024, 1, 22, 11, 12, 49, 883, DateTimeKind.Local).AddTicks(342),
+                            EstimatedDeliveryTime = new DateTime(2024, 1, 22, 11, 12, 49, 883, DateTimeKind.Local).AddTicks(357),
+                            OrderID = 1,
+                            StaffID = 1
                         },
                         new
                         {
@@ -581,9 +611,10 @@ namespace OnlinePharmacy.Server.Migrations
                             DeliveryCost = 5m,
                             DeliveryMethod = "Standard",
                             DeliveryStatus = "Packing",
-                            EstimatedDeliveryDate = new DateTime(2024, 1, 17, 9, 13, 2, 187, DateTimeKind.Local).AddTicks(2738),
-                            EstimatedDeliveryTime = new DateTime(2024, 1, 17, 9, 13, 2, 187, DateTimeKind.Local).AddTicks(2739),
-                            OrderID = 2
+                            EstimatedDeliveryDate = new DateTime(2024, 1, 22, 11, 12, 49, 883, DateTimeKind.Local).AddTicks(360),
+                            EstimatedDeliveryTime = new DateTime(2024, 1, 22, 11, 12, 49, 883, DateTimeKind.Local).AddTicks(360),
+                            OrderID = 2,
+                            StaffID = 1
                         });
                 });
 
@@ -596,33 +627,47 @@ namespace OnlinePharmacy.Server.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OnlineConsultationID"));
 
                     b.Property<DateTime?>("ConsultationDateEnd")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("ConsultationDateStart")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ConsultationDiagnosis")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<int?>("ConsultationDuration")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("ConsultationPlatform")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal?>("ConsultationPrice")
+                        .IsRequired()
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ConsultationStatus")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("ConsultationSymptom")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<DateTime?>("ConsultationTimeEnd")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("ConsultationTimeStart")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<int>("CustomerID")
@@ -646,23 +691,32 @@ namespace OnlinePharmacy.Server.Migrations
                         new
                         {
                             OnlineConsultationID = 1,
-                            ConsultationDateEnd = new DateTime(2024, 1, 17, 1, 13, 2, 187, DateTimeKind.Utc).AddTicks(2950),
-                            ConsultationDateStart = new DateTime(2024, 1, 17, 1, 13, 2, 187, DateTimeKind.Utc).AddTicks(2949),
+                            ConsultationDateEnd = new DateTime(2024, 1, 22, 3, 12, 49, 883, DateTimeKind.Utc).AddTicks(545),
+                            ConsultationDateStart = new DateTime(2024, 1, 22, 3, 12, 49, 883, DateTimeKind.Utc).AddTicks(545),
+                            ConsultationDiagnosis = "Common cold",
                             ConsultationDuration = 1,
+                            ConsultationPlatform = "Online Call",
                             ConsultationPrice = 40m,
-                            ConsultationTimeEnd = new DateTime(2024, 1, 17, 1, 13, 2, 187, DateTimeKind.Utc).AddTicks(2948),
-                            ConsultationTimeStart = new DateTime(2024, 1, 17, 1, 13, 2, 187, DateTimeKind.Utc).AddTicks(2946),
+                            ConsultationStatus = "Completed",
+                            ConsultationSymptom = "Fever, Headache",
+                            ConsultationTimeEnd = new DateTime(2024, 1, 22, 3, 12, 49, 883, DateTimeKind.Utc).AddTicks(544),
+                            ConsultationTimeStart = new DateTime(2024, 1, 22, 3, 12, 49, 883, DateTimeKind.Utc).AddTicks(543),
                             CustomerID = 1,
                             PharmacistID = 1
                         },
                         new
                         {
                             OnlineConsultationID = 2,
-                            ConsultationDateEnd = new DateTime(2024, 1, 17, 1, 13, 2, 187, DateTimeKind.Utc).AddTicks(2961),
-                            ConsultationDateStart = new DateTime(2024, 1, 17, 1, 13, 2, 187, DateTimeKind.Utc).AddTicks(2960),
+                            ConsultationDateEnd = new DateTime(2024, 1, 22, 3, 12, 49, 883, DateTimeKind.Utc).AddTicks(553),
+                            ConsultationDateStart = new DateTime(2024, 1, 22, 3, 12, 49, 883, DateTimeKind.Utc).AddTicks(552),
+                            ConsultationDiagnosis = "Common cold",
                             ConsultationDuration = 2,
-                            ConsultationTimeEnd = new DateTime(2024, 1, 17, 1, 13, 2, 187, DateTimeKind.Utc).AddTicks(2960),
-                            ConsultationTimeStart = new DateTime(2024, 1, 17, 1, 13, 2, 187, DateTimeKind.Utc).AddTicks(2959),
+                            ConsultationPlatform = "Online Call",
+                            ConsultationPrice = 45.75m,
+                            ConsultationStatus = "Completed",
+                            ConsultationSymptom = "Headache",
+                            ConsultationTimeEnd = new DateTime(2024, 1, 22, 3, 12, 49, 883, DateTimeKind.Utc).AddTicks(552),
+                            ConsultationTimeStart = new DateTime(2024, 1, 22, 3, 12, 49, 883, DateTimeKind.Utc).AddTicks(551),
                             CustomerID = 2,
                             PharmacistID = 1
                         });
@@ -680,18 +734,23 @@ namespace OnlinePharmacy.Server.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("OrderDate")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("OrderTime")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<string>("PaymentType")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("StaffID")
                         .HasColumnType("int");
 
                     b.Property<decimal?>("TotalCost")
+                        .IsRequired()
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("OrderID");
@@ -707,17 +766,21 @@ namespace OnlinePharmacy.Server.Migrations
                         {
                             OrderID = 1,
                             CustomerID = 1,
-                            OrderDate = new DateTime(2024, 1, 17, 9, 13, 2, 187, DateTimeKind.Local).AddTicks(3326),
-                            OrderTime = new DateTime(2024, 1, 17, 9, 13, 2, 187, DateTimeKind.Local).AddTicks(3328),
-                            StaffID = 2
+                            OrderDate = new DateTime(2024, 1, 22, 11, 12, 49, 883, DateTimeKind.Local).AddTicks(938),
+                            OrderTime = new DateTime(2024, 1, 22, 11, 12, 49, 883, DateTimeKind.Local).AddTicks(940),
+                            PaymentType = "Credit Card",
+                            StaffID = 2,
+                            TotalCost = 15m
                         },
                         new
                         {
                             OrderID = 2,
                             CustomerID = 2,
-                            OrderDate = new DateTime(2024, 1, 17, 9, 13, 2, 187, DateTimeKind.Local).AddTicks(3332),
-                            OrderTime = new DateTime(2024, 1, 17, 9, 13, 2, 187, DateTimeKind.Local).AddTicks(3333),
-                            StaffID = 2
+                            OrderDate = new DateTime(2024, 1, 22, 11, 12, 49, 883, DateTimeKind.Local).AddTicks(943),
+                            OrderTime = new DateTime(2024, 1, 22, 11, 12, 49, 883, DateTimeKind.Local).AddTicks(944),
+                            PaymentType = "Credit Card",
+                            StaffID = 2,
+                            TotalCost = 25m
                         });
                 });
 
@@ -736,6 +799,7 @@ namespace OnlinePharmacy.Server.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal?>("OrderItemSubTotal")
+                        .IsRequired()
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("ProductID")
@@ -759,9 +823,11 @@ namespace OnlinePharmacy.Server.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PrescriptionID"));
 
                     b.Property<DateTime?>("ExpiryDate")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("IssueDate")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<int>("OnlineConsultationID")
@@ -777,15 +843,15 @@ namespace OnlinePharmacy.Server.Migrations
                         new
                         {
                             PrescriptionID = 1,
-                            ExpiryDate = new DateTime(2024, 6, 17, 0, 0, 0, 0, DateTimeKind.Local),
-                            IssueDate = new DateTime(2024, 1, 17, 0, 0, 0, 0, DateTimeKind.Local),
+                            ExpiryDate = new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            IssueDate = new DateTime(2024, 1, 22, 0, 0, 0, 0, DateTimeKind.Local),
                             OnlineConsultationID = 1
                         },
                         new
                         {
                             PrescriptionID = 2,
-                            ExpiryDate = new DateTime(2024, 7, 17, 0, 0, 0, 0, DateTimeKind.Local),
-                            IssueDate = new DateTime(2024, 1, 17, 9, 13, 2, 187, DateTimeKind.Local).AddTicks(3721),
+                            ExpiryDate = new DateTime(2024, 7, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            IssueDate = new DateTime(2024, 1, 22, 11, 12, 49, 883, DateTimeKind.Local).AddTicks(1324),
                             OnlineConsultationID = 2
                         });
                 });
@@ -799,15 +865,18 @@ namespace OnlinePharmacy.Server.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PrescriptionItemID"));
 
                     b.Property<int?>("OrderID")
+                        .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int>("PrescriptionID")
+                    b.Property<int?>("PrescriptionID")
                         .HasColumnType("int");
 
                     b.Property<int?>("PrescriptionItemQuantity")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<decimal?>("PrescriptionItemSubTotal")
+                        .IsRequired()
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("ProductID")
@@ -827,6 +896,7 @@ namespace OnlinePharmacy.Server.Migrations
                         new
                         {
                             PrescriptionItemID = 1,
+                            OrderID = 1,
                             PrescriptionID = 1,
                             PrescriptionItemQuantity = 1,
                             PrescriptionItemSubTotal = 10m,
@@ -835,6 +905,7 @@ namespace OnlinePharmacy.Server.Migrations
                         new
                         {
                             PrescriptionItemID = 2,
+                            OrderID = 2,
                             PrescriptionID = 2,
                             PrescriptionItemQuantity = 2,
                             PrescriptionItemSubTotal = 20m,
@@ -854,45 +925,64 @@ namespace OnlinePharmacy.Server.Migrations
                         .HasColumnType("int");
 
                     b.Property<bool?>("PrescriptionStatus")
+                        .IsRequired()
                         .HasColumnType("bit");
 
                     b.Property<string>("ProductBrand")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<int>("ProductCategoryID")
                         .HasColumnType("int");
 
                     b.Property<string>("ProductDescription")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("ProductDosage")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<DateTime?>("ProductExpiryDate")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ProductImage")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProductIngredients")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<int?>("ProductMaximumAge")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int?>("ProductMinimumAge")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("ProductName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<decimal?>("ProductPrice")
+                        .IsRequired()
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ProductUsage")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<int?>("StockQuantity")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("ProductID");
@@ -910,8 +1000,11 @@ namespace OnlinePharmacy.Server.Migrations
                             ProductCategoryID = 2,
                             ProductDescription = "Scott's is the Number 1 Kids' Multivitamin Brand in Singapore*. Worry about your little ones being picky with food and not getting the necessary nutrients for proper growth/development? Do not worry, Scott’s Multivitamin Gummies is coming to your rescue! Available in three delicious fruity flavors Apple, Tropical Fruits, and the NEWEST addition - Mango; it contains Zinc and five essential vitamins - A, B6, C, D, E - to support your kid immunity, bone growth and healthy vision every day. Moreover, Scott's micro encapsulation technology locks in the goodness of Zinc and 5 Vitamins (Vitamin A, B6, C, D & E) whilst giving kids the taste they love.",
                             ProductDosage = "3x/Day",
-                            ProductExpiryDate = new DateTime(2024, 1, 17, 1, 13, 2, 187, DateTimeKind.Utc).AddTicks(3968),
+                            ProductExpiryDate = new DateTime(2024, 1, 23, 3, 12, 49, 883, DateTimeKind.Utc).AddTicks(1500),
+                            ProductImage = "https://m.media-amazon.com/images/I/51Wylj9xQJL._AC_UF1000,1000_QL80_.jpg",
                             ProductIngredients = "Glucose, Syrup, Sugar, Gelatin, Acidity Regulator (Citric Acid, Sodium Citrate), Humectant (Sorbitol), Flavouring substance, Vitamins and Mineral (Vitamin C, Zinc, Vitamin E, Vitamin B6, Vitamin A and Vitamin D) and Colouring substance (Tartrazine)\r\n",
+                            ProductMaximumAge = 12,
+                            ProductMinimumAge = 2,
                             ProductName = "SCOTT'S Multivitamins Gummies Mango",
                             ProductPrice = 22m,
                             ProductUsage = "Strong bones and teeth, improve the immune system, growth and development",
@@ -925,8 +1018,11 @@ namespace OnlinePharmacy.Server.Migrations
                             ProductCategoryID = 3,
                             ProductDescription = "Panadol Children’s Suspension 1-6 Years (120mg/5ml) provides relief from fever and pain in children aged 1 to 6 years. Like all Children’s Panadol products, Panadol Children’s Suspension 1-6 Years is gentle on little stomachs. A strawberry-flavoured suspension, Panadol Children’s Suspension 1-6 Years contains no alcohol and is aspirin-free.",
                             ProductDosage = "5-10ml (based on child's weight 9.5-19.5kg)\nDo not take more frequently than once every 4 Hours and do not exceed more than four doses in 24 hours. Do not take for more than 3 days without asking your doctor.",
-                            ProductExpiryDate = new DateTime(2024, 1, 17, 1, 13, 2, 187, DateTimeKind.Utc).AddTicks(3972),
+                            ProductExpiryDate = new DateTime(2024, 1, 23, 3, 12, 49, 883, DateTimeKind.Utc).AddTicks(1512),
+                            ProductImage = "https://alcare.sg/wp-content/uploads/2019/08/PAN1-S.jpg",
                             ProductIngredients = "Active ingredient: 120 mg/5 ml Paracetamol\r\nExcipients: No Alcohol, no Aspirin.",
+                            ProductMaximumAge = 6,
+                            ProductMinimumAge = 1,
                             ProductName = "Panadol Children's Suspension",
                             ProductPrice = 9m,
                             ProductUsage = "Fever, Headaches, Symptoms of colds and flu, Teething pain, Toothaches, Earache, Pain associated with immunisation",
@@ -940,8 +1036,11 @@ namespace OnlinePharmacy.Server.Migrations
                             ProductCategoryID = 1,
                             ProductDescription = "Amoxicillin is a penicillin antibiotic. It is used to treat bacterial infections, such as chest infections (including pneumonia) and dental abscesses. It can also be used together with other antibiotics and medicines to treat stomach ulcers.",
                             ProductDosage = "1.25-12.5ml (based on child's weight 3.6-36kg)\nGive this dose three (3) times a day—once in the morning, once at mid-day, and once in the evening—for as long as directed.",
-                            ProductExpiryDate = new DateTime(2024, 1, 17, 1, 13, 2, 187, DateTimeKind.Utc).AddTicks(3975),
+                            ProductExpiryDate = new DateTime(2024, 1, 23, 3, 12, 49, 883, DateTimeKind.Utc).AddTicks(1515),
+                            ProductImage = "https://d3pq5rjvq8yvv1.cloudfront.net/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/a/m/amox500tab.jpg",
                             ProductIngredients = "Croscarmellose sodium, gelatin, magnesium stearate, titanium dioxide, and yellow iron oxide.",
+                            ProductMaximumAge = 12,
+                            ProductMinimumAge = 5,
                             ProductName = "Amoxicillin",
                             ProductPrice = 10m,
                             ProductUsage = "Bacterial infections, such as chest infections (including pneumonia) and dental abscesses. Can also be used together with other antibiotics and medicines to treat stomach ulcers.",
@@ -955,8 +1054,11 @@ namespace OnlinePharmacy.Server.Migrations
                             ProductCategoryID = 1,
                             ProductDescription = "Ibuprofen is a nonsteroidal anti-inflammatory drug.",
                             ProductDosage = "Ibuprofen dose is 400mg(two tablets) to be taken initially. 200mg(one tablet) to 400mg(two tablets) may be taken every 4 hours when required.",
-                            ProductExpiryDate = new DateTime(2024, 1, 17, 1, 13, 2, 187, DateTimeKind.Utc).AddTicks(3978),
+                            ProductExpiryDate = new DateTime(2024, 1, 23, 3, 12, 49, 883, DateTimeKind.Utc).AddTicks(1542),
+                            ProductImage = "https://www.biovea.com/sg/images/products/xlrg/7188_z.jpg",
                             ProductIngredients = "Lactose, Maize Starch, Hypromellose, Sodium Starch Glycollate, Colloidal Anhydrous Silica, Magnesium Stearate, Sucrose, Talc, Titanium Dioxide (E171) and Carnauba Wax",
+                            ProductMaximumAge = 12,
+                            ProductMinimumAge = 5,
                             ProductName = "Ibuprofen",
                             ProductPrice = 10m,
                             ProductUsage = "Treat fever, pain, and inflammation in children",
@@ -969,10 +1071,13 @@ namespace OnlinePharmacy.Server.Migrations
                             ProductBrand = "Zyrtec",
                             ProductCategoryID = 3,
                             ProductDescription = "Zyrtec pcs 10's is now Zyrtec-R pcs 10's.\r\nNew Name, New Pack, Same Formula.\r\nZyrtec-R is an antihistamine.",
-                            ProductDosage = "Children aged from 2 to 6 years: 2.5 mL of oral solution (half of a spoon) twice daily. Children aged from 6 to 12 years: 5 mg [10 drops, or 5 ml oral solution (1 full spoon) or half of the tablet] twice daily.",
-                            ProductExpiryDate = new DateTime(2024, 1, 17, 1, 13, 2, 187, DateTimeKind.Utc).AddTicks(3981),
+                            ProductDosage = "Children aged from 2 to 12 years: 2.5 mL of oral solution (half of a spoon) twice daily. Children aged from 6 to 12 years: 5 mg [10 drops, or 5 ml oral solution (1 full spoon) or half of the tablet] twice daily.",
+                            ProductExpiryDate = new DateTime(2024, 1, 23, 3, 12, 49, 883, DateTimeKind.Utc).AddTicks(1546),
+                            ProductImage = "https://m.media-amazon.com/images/I/717EcbxEZ2L._AC_UF1000,1000_QL80_.jpg",
                             ProductIngredients = "",
-                            ProductName = "Zyrtec R",
+                            ProductMaximumAge = 12,
+                            ProductMinimumAge = 2,
+                            ProductName = "Zyrtec 24 Allergic Syrup",
                             ProductPrice = 12m,
                             ProductUsage = "Treats allergy symptoms like itchy eyes, sneezing, a stuffy nose or hives",
                             StockQuantity = 30
@@ -988,21 +1093,31 @@ namespace OnlinePharmacy.Server.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StaffID"));
 
                     b.Property<string>("Position")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("StaffFname")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("StaffGender")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("StaffLname")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Staff_email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Staff_pass")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("StaffID");
@@ -1109,7 +1224,7 @@ namespace OnlinePharmacy.Server.Migrations
                         .IsRequired();
 
                     b.HasOne("OnlinePharmacy.Shared.Domain.Staff", "Staff")
-                        .WithMany()
+                        .WithMany("OnlineConsultations")
                         .HasForeignKey("StaffID");
 
                     b.Navigation("Customer");
@@ -1170,13 +1285,13 @@ namespace OnlinePharmacy.Server.Migrations
                 {
                     b.HasOne("OnlinePharmacy.Shared.Domain.Order", "Order")
                         .WithMany()
-                        .HasForeignKey("OrderID");
+                        .HasForeignKey("OrderID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("OnlinePharmacy.Shared.Domain.Prescription", "Prescription")
                         .WithMany()
-                        .HasForeignKey("PrescriptionID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PrescriptionID");
 
                     b.HasOne("OnlinePharmacy.Shared.Domain.Product", "Product")
                         .WithMany()
@@ -1201,6 +1316,11 @@ namespace OnlinePharmacy.Server.Migrations
                 });
 
             modelBuilder.Entity("OnlinePharmacy.Shared.Domain.Customer", b =>
+                {
+                    b.Navigation("OnlineConsultations");
+                });
+
+            modelBuilder.Entity("OnlinePharmacy.Shared.Domain.Staff", b =>
                 {
                     b.Navigation("OnlineConsultations");
                 });

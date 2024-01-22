@@ -27,6 +27,8 @@ namespace OnlinePharmacy.Server.Configurations.Entities
                 EstimatedDeliveryDate = DateTime.Now,
                 EstimatedDeliveryTime  = DateTime.Now,
                 OrderID = 1,
+                StaffID = 1,
+
             },
              new Delivery
              {
@@ -37,6 +39,7 @@ namespace OnlinePharmacy.Server.Configurations.Entities
                  EstimatedDeliveryDate = DateTime.Now,
                  EstimatedDeliveryTime = DateTime.Now,
                  OrderID = 2,
+                 StaffID = 1,
              }
 
 
