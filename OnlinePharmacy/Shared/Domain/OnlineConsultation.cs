@@ -33,20 +33,21 @@ namespace OnlinePharmacy.Shared.Domain
 
         [Required(ErrorMessage = "Consultation Price is required")]
         [Range(0.01, double.MaxValue, ErrorMessage = "Consultation Price must be greater than 0")]
+        [RegularExpression(@"^\d+(\.\d{1,2})?$", ErrorMessage = "Consultation Price should have up to two decimal places")]
         [DataType(DataType.Currency)]
         public decimal? ConsultationPrice { get; set; }
 
         [Required(ErrorMessage = "Consultation Symptom is required")]
-        [StringLength(255, MinimumLength = 5, ErrorMessage = "Consultation Symptom length should be between 5 and 255")]
+        [StringLength(255, MinimumLength = 4, ErrorMessage = "Consultation Symptom length should be between 5 and 255")]
         public string? ConsultationSymptom { get; set; }
 
         [Required(ErrorMessage = "Consultation Diagnosis is required")]
-        [StringLength(255, MinimumLength = 5, ErrorMessage = "Consultation Diagnosis length should be between 5 and 255")]
+        [StringLength(255, MinimumLength = 4, ErrorMessage = "Consultation Diagnosis length should be between 5 and 255")]
         public string? ConsultationDiagnosis { get; set; }
 
-        [Required(ErrorMessage = "Consultation Duration is required")]
+        /*[Required(ErrorMessage = "Consultation Duration is required")]
         [Range(20, int.MaxValue, ErrorMessage = "Consultation Duration must be greater than 20 minutes")]
-        public int? ConsultationDuration { get; set; }
+        public int? ConsultationDuration { get; set; }*/
 
         [Required(ErrorMessage = "Consultation Status is required")]
         [StringLength(50, MinimumLength = 2, ErrorMessage = "Consultation Status length should be between 2 and 50")]
@@ -88,6 +89,18 @@ namespace OnlinePharmacy.Shared.Domain
                 if (ConsultationTimeStart > ConsultationTimeEnd)
                 {
                     yield return new ValidationResult("Consultation Time Start must be earlier than or equal to Consultation Time End", new[] { "ConsultationTimeStart" });
+                }
+
+                // Check if ConsultationTimeStart and ConsultationTimeEnd are within the allowed time range (9 am to 9 pm)
+                TimeSpan startTime = ConsultationTimeStart.Value.TimeOfDay;
+                TimeSpan endTime = ConsultationTimeEnd.Value.TimeOfDay;
+
+                TimeSpan allowedStartTime = new TimeSpan(9, 0, 0); // 9 am
+                TimeSpan allowedEndTime = new TimeSpan(21, 0, 0); // 9 pm
+
+                if (startTime < allowedStartTime || endTime > allowedEndTime)
+                {
+                    yield return new ValidationResult("Consultation times must be between 9 am and 9 pm", new[] { "ConsultationTimeStart", "ConsultationTimeEnd" });
                 }
             }
 
