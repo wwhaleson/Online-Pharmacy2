@@ -35,7 +35,7 @@ namespace OnlinePharmacy.Shared.Domain
             //throw new NotImplementedException();
             if (IssueDate != null)
             {
-                if (IssueDate <= ExpiryDate)
+                if (IssueDate >= ExpiryDate)
                 {
                     yield return new ValidationResult("Issue Date must be greater than Expiry Date", new[] { "Issue Date" });
                 }
@@ -48,6 +48,18 @@ namespace OnlinePharmacy.Shared.Domain
                 {
                     yield return new ValidationResult("DateTime.Now must be greater than Issue Date", new[] { "DateTime.Now" });
                 }
+            }
+
+            DateTime today = DateTime.Today;
+
+            if (IssueDate != null && IssueDate < today)
+            {
+                yield return new ValidationResult("Issue Date must be today or in the future", new[] { "IssueDate" });
+            }
+
+            if (ExpiryDate != null && ExpiryDate < today)
+            {
+                yield return new ValidationResult("Expiry Date must be today or in the future", new[] { "ExpiryDate" });
             }
 
 

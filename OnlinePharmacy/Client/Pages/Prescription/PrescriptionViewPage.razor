@@ -1,7 +1,7 @@
 ﻿@page "/Prescription/view/{id:int}"
 @inject HttpClient _client
 @inject NavigationManager _navManager
-<h3>View Prescription</h3>
+<h1 class="mt-3" id="ViewPrescriptionheader"> View Prescription</h1>
 <FormComponent prescription="prescription" Disabled="true" />
 @code {
     [Parameter] public int id { get; set; }

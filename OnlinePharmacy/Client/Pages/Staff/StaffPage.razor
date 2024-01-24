@@ -18,17 +18,17 @@
 
 
     <div class="row  mt-3">
-            <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
-                @if (Staffs == null)
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+            @if (Staffs == null)
+            {
+                <div class="alert alert-info">Loading Staffs</div>
+            }
+            else
+            {
+                @foreach (var staff in Staffs)
                 {
-                    <div class="alert alert-info">Loading Staffs</div>
-                }
-                else
-                {
-                    @foreach (var staff in Staffs)
-                    {
-                        <div class="col aStaff">
-                            <div class="card h-100 Staffcard text-decoration-none" style="word-wrap: break-word; cursor: pointer;">
+                    <div class="col aStaff">
+                        <div class="card h-100 Staffcard text-decoration-none" style="word-wrap: break-word; cursor: pointer;">
                             @if (!string.IsNullOrEmpty(staff.StaffImage) && Uri.TryCreate(staff.StaffImage, UriKind.RelativeOrAbsolute, out _))
                             {
                                 <img src="@staff.StaffImage" class="staffimage img-fluid">
@@ -38,29 +38,29 @@
                                 <!-- Display a default image or placeholder image -->
                                 <img src="https://cdn-icons-png.flaticon.com/512/2815/2815428.png" class="staffimage img-fluid">
                             }
-                                <div class="card-body Staffcardbody">
-                                    <h3 class="staffname">@staff.StaffFname @staff.StaffLname</h3>
-                                    <h5 class="staffposition">@staff.Position</h5>
-                                </div>
-                                <div class="d-flex justify-content-center">
-                                    <a href="/Staff/view/@staff.StaffID" class="btn btn-primary actionbutton">
-                                        <i class="bi bi-file-earmark"></i>
-                                    </a>
-                                    <a href="/Staff/edit/@staff.StaffID" class="btn btn-warning actionbutton">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </a>
-                                    <button class="btn btn-danger actionbutton" @onclick="@(()=>Delete(@staff.StaffID))">
-                                        <i class="bi bi-x-lg"></i>
-                                    </button>
-                                </div>
-
+                            <div class="card-body Staffcardbody">
+                                <h3 class="staffname">@staff.StaffFname @staff.StaffLname</h3>
+                                <h5 class="staffposition">@staff.Position</h5>
                             </div>
-                        </div>
+                            <div class="d-flex justify-content-center">
+                                <a href="/Staff/view/@staff.StaffID" class="btn btn-primary actionbutton">
+                                    <i class="bi bi-file-earmark"></i>
+                                </a>
+                                <a href="/Staff/edit/@staff.StaffID" class="btn btn-warning actionbutton">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <button class="btn btn-danger actionbutton" @onclick="@(()=>Delete(@staff.StaffID))">
+                                    <i class="bi bi-x-lg"></i>
+                                </button>
+                            </div>
 
-                    }
+                        </div>
+                    </div>
+
                 }
-            </div>
+            }
         </div>
+    </div>
 </div>
 
 

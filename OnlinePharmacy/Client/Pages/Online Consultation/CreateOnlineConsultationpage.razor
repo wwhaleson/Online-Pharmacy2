@@ -25,7 +25,7 @@
     private async Task CreateOnlineConsultations()
     {
         await _client.PostAsJsonAsync(Endpoints.OnlineConsultationsEndpoint, onlineconsultation);
-        _navManager.NavigateTo("/OnlineConsultation/");
+        _navManager.NavigateTo("/Prescription/create/");
     }
 
 }

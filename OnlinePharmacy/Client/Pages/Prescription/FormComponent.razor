@@ -4,47 +4,64 @@
     <DataAnnotationsValidator />
     <ValidationSummary />
     <fieldset disabled="@Disabled">
-        <div class="form-group">
-            <label>Issue Date: </label>
-            <div>
-                <InputDate @bind-Value="@prescription.IssueDate" class="form-control" />
-                <ValidationMessage For="@(() => prescription.IssueDate)" />
+        <div class="d-flex flex-column mt-4" id="flexcolumnprescription">
+            <div class="card bg-light mb-3 PrescriptionCard">
+                <div class="card-header">Prescription</div>
+                <div class="card-body">
+                    <div class="row gx-3 mb-3">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Online Consultation: </label>
+                                <div>
+                                    <InputSelect @bind-Value="prescription.OnlineConsultationID" class="form-control">
+                                        <option value="">-- Select Online Consultation ID --</option>
+                                        @if (OnlineConsultations != null)
+                                        {
+                                            foreach (var onlineconsultation in OnlineConsultations)
+                                            {
+                                                <option value="@onlineconsultation.OnlineConsultationID">@onlineconsultation.OnlineConsultationID</option>
+                                            }
+                                        }
+                                    </InputSelect>
+                                    <ValidationMessage For="@(() => prescription.OnlineConsultationID)" />
+                                </div>
+                            </div>
+                        </div>                   
+                    </div>
+                    <div class="row gx-3 mb-3">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Issue Date: </label>
+                                <div>
+                                    <InputDate @bind-Value="@prescription.IssueDate" class="form-control" />
+                                    <ValidationMessage For="@(() => prescription.IssueDate)" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Expiry Date: </label>
+                                <div>
+                                    <InputDate @bind-Value="@prescription.ExpiryDate" class="form-control" />
+                                    <ValidationMessage For="@(() => prescription.ExpiryDate)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>       
             </div>
         </div>
-
-        <div class="form-group">
-            <label>Expiry Date: </label>
-            <div>
-                <InputDate @bind-Value="@prescription.ExpiryDate" class="form-control" />
-                <ValidationMessage For="@(() => prescription.ExpiryDate)" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>Online Consultation: </label>
-            <div>
-                <InputSelect @bind-Value="prescription.OnlineConsultationID" class="form-control">
-                    <option value="">-- Select Online Consultation ID --</option>
-                    @if (OnlineConsultations != null)
-                    {
-                        foreach (var onlineconsultation in OnlineConsultations)
-                        {
-                            <option value="@onlineconsultation.OnlineConsultationID">@onlineconsultation.OnlineConsultationID</option>
-                        }
-                    }
-                </InputSelect>
-                <ValidationMessage For="@(() => prescription.OnlineConsultationID)" />
-            </div>
-        </div>
+        
     </fieldset>
-
+    <div class="d-flex flex-column-md-6 mt-2 justify-content-center">
     @if (!Disabled)
     {
-        <button type="submit" class="btn btn-success btn-block">
+        <button type="submit" class="btn btn-success me-2">
             @ButtonText
         </button>
     }
     <BackToList Target="Prescription" />
+    </div>
 </EditForm>
 
 @code {

@@ -91,7 +91,11 @@
     font-weight: 600;
 }
 
-#products:hover {
+#productslink:hover {
+    color: forestgreen;
+    font-weight: 600;
+}
+#onlineconsultationslink:hover {
     color: forestgreen;
     font-weight: 600;
 }
@@ -100,7 +104,6 @@
 #prescriptionmeds:hover {
     color: forestgreen;
     font-weight: 600;
-    
 }
 
 #prescriptionmeds {

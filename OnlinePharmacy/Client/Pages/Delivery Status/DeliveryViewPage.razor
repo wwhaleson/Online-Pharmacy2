@@ -1,7 +1,8 @@
 ﻿@page "/Delivery/view/{id:int}"
 @inject HttpClient _client
 @inject NavigationManager _navManager
-<h3>View Delivery</h3>
+
+<h1 class="mt-3" id="ViewDeliveryheader"> View Delivery</h1>
 <FormComponent delivery="delivery" Disabled="true" />
 @code {
     [Parameter] public int id { get; set; }

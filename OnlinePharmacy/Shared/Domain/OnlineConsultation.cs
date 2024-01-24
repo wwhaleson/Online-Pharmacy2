@@ -37,11 +37,11 @@ namespace OnlinePharmacy.Shared.Domain
         [DataType(DataType.Currency)]
         public decimal? ConsultationPrice { get; set; }
 
-        [Required(ErrorMessage = "Consultation Symptom is required")]
+        //[Required(ErrorMessage = "Consultation Symptom is required")]
         [StringLength(255, MinimumLength = 4, ErrorMessage = "Consultation Symptom length should be between 5 and 255")]
         public string? ConsultationSymptom { get; set; }
 
-        [Required(ErrorMessage = "Consultation Diagnosis is required")]
+        //[Required(ErrorMessage = "Consultation Diagnosis is required")]
         [StringLength(255, MinimumLength = 4, ErrorMessage = "Consultation Diagnosis length should be between 5 and 255")]
         public string? ConsultationDiagnosis { get; set; }
 
@@ -81,6 +81,17 @@ namespace OnlinePharmacy.Shared.Domain
                 {
                     yield return new ValidationResult("Consultation Date Start must be earlier than or equal to Consultation Date End", new[] { "ConsultationDateStart" });
                 }
+            }
+
+            // Check if both ConsultationDateStart and ConsultationDateEnd are greater than or equal to today
+            if (ConsultationDateStart != null && ConsultationDateStart < DateTime.Today)
+            {
+                yield return new ValidationResult("Consultation Date Start cannot be less than today", new[] { "ConsultationDateStart" });
+            }
+
+            if (ConsultationDateEnd != null && ConsultationDateEnd < DateTime.Today)
+            {
+                yield return new ValidationResult("Consultation Date End cannot be less than today", new[] { "ConsultationDateEnd" });
             }
 
             // Check if ConsultationTimeStart is greater than ConsultationTimeEnd

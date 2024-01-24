@@ -4,7 +4,7 @@
     <DataAnnotationsValidator />
     <ValidationSummary />
    <fieldset disabled="@Disabled">
-        <div class="d-flex flex-column mt-4" id="flexcolumnonlineconsultation">
+    <div class="d-flex flex-column mt-4" id="flexcolumnonlineconsultation">
         <div class="card bg-light mb-3 OnlineConsultationCard">
             <div class="card-header">Online Consultation</div>
             <div class="card-body">
@@ -128,19 +128,26 @@
                     </div>
                 </div>
 
+                <div class="form-group mb-3">
+                    <label>Online Consultation Price SGD$: </label>
+                    <input type="number" @bind="@onlineconsultation.ConsultationPrice" class="form-control" aria-label="Amount (to the nearest dollar)" />
+                    <ValidationMessage For="@(() => onlineconsultation.ConsultationPrice)" />
+                </div>
+
             </div>
         </div>
     </div>
  </div>
     </fieldset>
-
+    <div class="d-flex flex-column-md-6 mt-2 justify-content-center">
     @if (!Disabled)
     {
-        <button type="submit" class="btn btn-success btn-block">
+            <button type="submit" class="btn btn-success me-2">
             @ButtonText
     </button>
     }
     <BackToList Target="OnlineConsultation" />
+    </div>
 </EditForm>
 
 @code {
