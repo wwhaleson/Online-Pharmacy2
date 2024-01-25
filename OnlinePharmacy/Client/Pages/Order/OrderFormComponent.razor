@@ -38,7 +38,12 @@
             @ButtonText
         </button>
     }
-    <BackToList Target="OrderStatus" />
+    <a href="/OrderItem/create" class="btn btn-secondary createorderitembutton">
+        <span class="oi oi-plus"></span>
+        Create New Order Item
+    </a>
+    <br />
+    <BackToList Target="Order" />
 </EditForm>
 
 @code {
@@ -54,5 +59,6 @@
     {
         OrderItems = await _client.GetFromJsonAsync<List<OrderItem>>($"{Endpoints.OrderItemsEndpoint}");
     }
+
 
 }

@@ -64,10 +64,13 @@
             @ButtonText
         </button>
     }
-    <a href="/OrderStatus" class="btn btn-secondary orderitembutton">
-        <span class="oi oi-arrow-circle-left"></span>
-        Back to List
+
+    <a href="/PrescriptionItem/create" class="btn btn-secondary createprescriptionitembutton">
+        <span class="oi oi-plus"></span>
+        Create New Prescription Item
     </a>
+    <br />
+    <BackToList Target="Order" />
 </EditForm>
 
 @code {

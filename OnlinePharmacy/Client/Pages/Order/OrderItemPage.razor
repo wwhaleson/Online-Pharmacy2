@@ -39,10 +39,10 @@
                             <td class="dr">@orderitem.OrderItemSubTotal</td>
 
                             <td class="dr">
-                                <a href="/orders/view/@orderitem.OrderItemID" class="btn btn-primary">
+                                <a href="/OrderItem/view/@orderitem.OrderItemID" class="btn btn-primary">
                                     <i class="bi bi-file-earmark"></i>
                                 </a>
-                                <a href="/orders/edit/@orderitem.OrderItemID" class="btn btn-warning">
+                                <a href="/OrderItem/edit/@orderitem.OrderItemID" class="btn btn-warning">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
                                 <button class="btn btn-danger" @onclick="@(()=>Delete(orderitem.OrderItemID))">
@@ -55,7 +55,7 @@
             </table>
         </div>
     }
-    <a href="/OrderStatus" class="btn btn-secondary orderbutton">
+    <a href="/Order" class="btn btn-secondary orderbutton">
         <span class="oi oi-arrow-left"></span>
         Back
     </a>

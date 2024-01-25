@@ -6,7 +6,7 @@
 
 <div class="container">
     <div class="d-flex flex-column" id="dflexPrescriptionItem">
-        <h1 class="mt-5" id="PrescriptionItemheader">PrescriptionItem</h1>
+        <h1 class="mt-5" id="PrescriptionItemheader">Prescription Item</h1>
         <a href="/PrescriptionItem/create" class="btn btn-secondary createprescriptionitembutton">
             <span class="oi oi-plus"></span>
             Create New Prescription Item
@@ -62,7 +62,7 @@
         <span class="oi oi-arrow-left"></span>
         Back
     </a>
-    <a href="/OrderStatus" class="btn btn-secondary orderbutton">
+    <a href="/Order" class="btn btn-secondary orderbutton">
         <span class="oi oi-arrow-right"></span>
         Next
     </a>
@@ -70,7 +70,7 @@
 </div>
 
 @code {
-    private List<PrescriptionItem>?PrescriptionItems;
+    private List<PrescriptionItem>? PrescriptionItems;
     <!--When the page begins to load-->
     protected async override Task OnInitializedAsync()
     {
