@@ -58,6 +58,14 @@
         </div>
 
         <div class="form-group">
+            <label>Unit Number: </label>
+            <div>
+                <input type="int" @bind="@customer.CustUnitNo" class="form-control" />
+                <ValidationMessage For="@(() => customer.CustUnitNo)" />
+            </div>
+        </div>
+
+        <div class="form-group">
             <label>Address: </label>
             <div>
                 <InputText @bind-Value="@customer.CustAddress" class="form-control" />

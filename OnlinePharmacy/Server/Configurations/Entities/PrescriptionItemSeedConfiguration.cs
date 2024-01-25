@@ -22,7 +22,9 @@ namespace OnlinePharmacy.Server.Configurations.Entities
                PrescriptionItemQuantity = 1,
                PrescriptionItemSubTotal = 10,
                PrescriptionID = 1,
-               ProductID = 3
+               ProductID = 3,
+               OrderID=1
+
 
 
 
@@ -33,7 +35,8 @@ namespace OnlinePharmacy.Server.Configurations.Entities
                 PrescriptionItemQuantity = 2,
                 PrescriptionItemSubTotal = 20,
                 PrescriptionID = 2,
-                ProductID = 4
+                ProductID = 4,
+                OrderID = 2
 
             }
 

@@ -40,16 +40,16 @@
                         <td class="dr">@onlineconsultation.ConsultationDateStart.Value.ToString("dddd, dd MMMM yyyy")</td>
                         <td class="dr">@onlineconsultation.ConsultationTimeStart.Value.ToString("hh:mm tt")</td>
                         <td class="dr">@onlineconsultation.ConsultationStatus</td>
-                        <td class="dr">
-                                <a href="/OnlineConsultation/view/@onlineconsultation.OnlineConsultationID" class="btn btn-primary">
-                                    <i class="bi bi-file-earmark"></i>
+                        <td class="dr d-flex flex-wrap justify-content-center">
+                            <a href="/OnlineConsultation/view/@onlineconsultation.OnlineConsultationID" class="btn btn-primary mb-2 me-2">
+                                <i class="bi bi-file-earmark"></i>
                             </a>
-                                <a href="/OnlineConsultation/edit/@onlineconsultation.OnlineConsultationID" class="btn btn-warning">
-                                    <i class="bi bi-pencil-square"></i>
+                            <a href="/OnlineConsultation/edit/@onlineconsultation.OnlineConsultationID" class="btn btn-warning mb-2 me-2">
+                                <i class="bi bi-pencil-square"></i>
                             </a>
-                            <button class="btn btn-danger" @onclick="@(()=>Delete(onlineconsultation.OnlineConsultationID))">
-                                    <i class="bi bi-x-lg"></i>
-                        </button>
+                            <button class="btn btn-danger mb-2" @onclick="@(()=>Delete(onlineconsultation.OnlineConsultationID))">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
                         </td>
                     </tr>
                     

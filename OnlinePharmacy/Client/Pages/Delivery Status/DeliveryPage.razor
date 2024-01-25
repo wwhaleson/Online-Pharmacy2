@@ -2,10 +2,10 @@
 @inject HttpClient _client
 @inject IJSRuntime js
 @page "/Delivery"
-<PageTitle>Delivery Status</PageTitle>
+<PageTitle>Delivery</PageTitle>
 <div class="container">
     <div class="d-flex flex-column" id="dflexdeliver">
-        <h1 class="mt-5" id="deliverstatusheader">Delivery Status</h1>
+        <h1 class="mt-5" id="deliverheader">Delivery</h1>
         <a href="/Delivery/create" class="btn btn-secondary createdeliverybutton">
             <span class="oi oi-plus"></span>
             Create New Delivery
@@ -39,14 +39,14 @@
                             <td class="dr">@delivery.EstimatedDeliveryDate.Value.ToString("dddd, dd MMMM yyyy")</td>
                             <td class="dr">@delivery.EstimatedDeliveryTime.Value.ToString("hh:mm tt")</td>
                             <td class="dr">@delivery.DeliveryStatus</td>
-                            <td class="dr">
-                                <a href="/Delivery/view/@delivery.DeliveryID" class="btn btn-primary">
+                            <td class="dr d-flex flex-wrap justify-content-center">
+                                <a href="/Delivery/view/@delivery.DeliveryID" class="btn btn-primary mb-2 me-2">
                                     <i class="bi bi-file-earmark"></i>
                                 </a>
-                                <a href="/Delivery/edit/@delivery.DeliveryID" class="btn btn-warning">
+                                <a href="/Delivery/edit/@delivery.DeliveryID" class="btn btn-warning mb-2 me-2">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
-                                <button class="btn btn-danger" @onclick="@(()=>Delete(delivery.DeliveryID))">
+                                <button class="btn btn-danger mb-2" @onclick="@(()=>Delete(delivery.DeliveryID))">
                                     <i class="bi bi-x-lg"></i>
                                 </button>
                             </td>

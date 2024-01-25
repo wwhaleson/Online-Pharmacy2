@@ -19,8 +19,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\2.ico" />
-    <None Include="wwwroot\1.jpg" />
+    <None Include="Pages\Error\404.razor" />
+    <None Include="Pages\Error\500.razor" />
+    <None Include="Pages\Error\Unauthorized.razor" />
+    <None Include="wwwroot\scripts\datatable.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +30,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.13" PrivateAssets="all" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="7.0.13" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
+    <PackageReference Include="Toolbelt.Blazor.HttpClientInterceptor" Version="10.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,6 +43,7 @@
 
   <ItemGroup>
     <Folder Include="Pages\Customer\" />
+    <Folder Include="Pages\Order\" />
   </ItemGroup>
 
 </Project>

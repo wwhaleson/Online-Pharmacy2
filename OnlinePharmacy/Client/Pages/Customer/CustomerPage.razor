@@ -2,6 +2,7 @@
 @inject HttpClient _client
 @inject IJSRuntime js
 @page "/Customer"
+@implements IDisposable
 <PageTitle>Customer Status</PageTitle>
 <div class="container">
     <div class="d-flex flex-column" id="dflexcustomer">
@@ -17,8 +18,8 @@
     }
     else
     {
-        <div class="table-responsive mt-3">
-            <table class="table ">
+        <div class="table-responsive mt-3" >
+            <table class="table "id="customersTable">
                 <thead class="table-light">
                     <tr id="Customertablecolumnname">
                         <th scope="col" class="dcol">#Id</th>
@@ -86,5 +87,14 @@
                 await OnInitializedAsync();
             }
         }
+    }
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        await js.InvokeVoidAsync("AddDataTable", "#customersTable");
+    }
+
+    public void Dispose()
+    {
+        js.InvokeVoidAsync("DataTablesDispose", "#customersTable");
     }
 }

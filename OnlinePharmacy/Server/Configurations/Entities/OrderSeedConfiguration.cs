@@ -23,8 +23,8 @@ namespace OnlinePharmacy.Server.Configurations.Entities
                 OrderID = 1,
                 OrderDate = DateTime.Now,
                 OrderTime = DateTime.Now,
-                TotalCost = null,
-                PaymentType = null,
+                TotalCost = 15,
+                PaymentType = "Credit Card",
                 CustomerID = 1,
                 StaffID = 2
 
@@ -35,8 +35,8 @@ namespace OnlinePharmacy.Server.Configurations.Entities
                  OrderID = 2,
                  OrderDate = DateTime.Now,
                  OrderTime = DateTime.Now,
-                 TotalCost = null,
-                 PaymentType = null,
+                 TotalCost = 25,
+                 PaymentType = "Credit Card",
                  CustomerID = 2,
                  StaffID = 2
              }

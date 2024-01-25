@@ -18,6 +18,7 @@ namespace OnlinePharmacy.Server.Configurations.Entities
                 new Staff
                 {
                     StaffID=1,
+                    StaffImage = "https://www.shutterstock.com/image-photo/indian-young-doctor-cardiologist-man-260nw-2370864331.jpg",
                     StaffFname = "Tom" ,
                     StaffLname = "Lim",
                     StaffGender = "Male",
@@ -30,6 +31,7 @@ namespace OnlinePharmacy.Server.Configurations.Entities
                 new Staff
                 {
                     StaffID = 2,
+                    StaffImage = "https://images.pond5.com/pharmacist-icon-profession-and-job-illustration-137441229_iconl_nowm.jpeg",
                     StaffFname = "Mary",
                     StaffLname = "Ong",
                     StaffGender = "Female",

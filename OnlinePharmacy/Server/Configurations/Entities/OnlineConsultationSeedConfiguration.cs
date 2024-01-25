@@ -18,11 +18,11 @@ namespace OnlinePharmacy.Server.Configurations.Entities
                     ConsultationDateStart = DateTime.UtcNow,
                     ConsultationDateEnd = DateTime.UtcNow,
                     ConsultationPrice = 40, // Use decimal value
-                    ConsultationSymptom = null,
-                    ConsultationDiagnosis = null,
-                    ConsultationDuration = 1,
-                    ConsultationStatus = null,
-                    ConsultationPlatform = null,
+                    ConsultationSymptom = "Fever, Headache",
+                    ConsultationDiagnosis = "Common cold",
+                    /*ConsultationDuration = 1,*/
+                    ConsultationStatus = "Completed",
+                    ConsultationPlatform = "Online Call",
                     CustomerID = 1,
                     PharmacistID = 1
                 },
@@ -33,12 +33,12 @@ namespace OnlinePharmacy.Server.Configurations.Entities
                     ConsultationTimeEnd = DateTime.UtcNow,
                     ConsultationDateStart = DateTime.UtcNow,
                     ConsultationDateEnd = DateTime.UtcNow,
-                    ConsultationPrice = null,
-                    ConsultationSymptom = null,
-                    ConsultationDiagnosis = null,
-                    ConsultationDuration = 2,
-                    ConsultationStatus = null,
-                    ConsultationPlatform = null,
+                    ConsultationPrice = 45.75m,
+                    ConsultationSymptom = "Headache",
+                    ConsultationDiagnosis = "Common cold",
+                    /*ConsultationDuration = 2,*/
+                    ConsultationStatus = "Completed",
+                    ConsultationPlatform = "Online Call",
                     CustomerID = 2,
                     PharmacistID = 1
                 }

@@ -1,27 +1,25 @@
-﻿#dflexorderitem {
+﻿#dflexdeliver {
     justify-content: center;
 }
-
-#orderitemheader {
+#deliverheader {
     text-align: center;
     font-weight: 800;
     font-size: 35px;
     font-family: "Rubik", serif;
 }
-
-#orderitemtablecolumnname {
-    border: 2px solid;
+#delivertablecolumnname {
+    border:2px solid;
 }
 
-.dcol {
-    text-align: center;
+.dcol{
+    text-align:center;
 }
 
 .dr {
     text-align: center;
 }
 
-.createorderitembutton {
+.createdeliverybutton {
     width: 25%;
     align-self: end;
 }
