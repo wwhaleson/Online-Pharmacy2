@@ -1,0 +1,92 @@
+﻿@attribute [Authorize]
+@inject HttpClient _client
+@inject IJSRuntime js
+@page "/OrderItem"
+<PageTitle>Order Items</PageTitle>
+<div class="container">
+    <div class="d-flex flex-column" id="dflexorderitem">
+        <h1 class="mt-5" id="orderitemheader">Order Item</h1>
+        <a href="/OrderItem/create" class="btn btn-secondary createorderitembutton">
+            <span class="oi oi-plus"></span>
+            Create New Order Item
+        </a>
+    </div>
+
+    @if (OrderItems == null)
+    {
+        <div class="alert alert-info">Loading Order Items</div>
+    }
+    else
+    {
+        <div class="table-responsive mt-3">
+            <table class="table ">
+                <thead class="table-light">
+                    <tr id="orderitemtablecolumnname">
+                        <th scope="col" class="dcol">#Order ID</th>
+                        <th scope="col" class="dcol">#Product ID</th>
+                        <th scope="col" class="dcol">Order Item Qty</th>
+                        <th scope="col" class="dcol">Sub-Total</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var orderitem in OrderItems)
+                    {
+                        <tr>
+                            <td class="dr">@orderitem.OrderID</td>
+                            <td class="dr">@orderitem.ProductID</td>
+                            <td class="dr">@orderitem.OrderItemQty</td>
+                            <td class="dr">@orderitem.OrderItemSubTotal</td>
+
+                            <td class="dr">
+                                <a href="/OrderItem/view/@orderitem.OrderItemID" class="btn btn-primary">
+                                    <i class="bi bi-file-earmark"></i>
+                                </a>
+                                <a href="/OrderItem/edit/@orderitem.OrderItemID" class="btn btn-warning">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <button class="btn btn-danger" @onclick="@(()=>Delete(orderitem.OrderItemID))">
+                                    <i class="bi bi-x-lg"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    <a href="/Order" class="btn btn-secondary orderbutton">
+        <span class="oi oi-arrow-left"></span>
+        Back
+    </a>
+    <a href="/PrescriptionItem" class="btn btn-secondary prescriptionitembutton">
+        <span class="oi oi-arrow-right"></span>
+        Next
+    </a>
+</div>
+
+
+
+
+@code {
+    private List<OrderItem>? OrderItems;
+    <!--When the page begins to load-->
+    protected async override Task OnInitializedAsync()
+    {
+        OrderItems = await _client.GetFromJsonAsync<List<OrderItem>>($"{Endpoints.OrderItemsEndpoint}");
+    }
+    async Task Delete(int orderitemId)
+    {
+        if (OrderItems != null)
+        {
+            var orderitem = OrderItems.First(q => q.OrderItemID == orderitemId);
+            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to Delete {orderitem.OrderItemID}?");
+            if (confirm)
+            {
+                await _client.DeleteAsync($"{Endpoints.OrderItemsEndpoint}/{orderitemId}");
+                await OnInitializedAsync();
+            }
+        }
+    }
+
+}

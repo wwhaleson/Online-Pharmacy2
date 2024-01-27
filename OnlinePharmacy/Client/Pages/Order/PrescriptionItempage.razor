@@ -1,0 +1,93 @@
+﻿@attribute [Authorize]
+@inject HttpClient _client
+@inject IJSRuntime js
+@page "/PrescriptionItem"
+<PageTitle>PrescriptionItem</PageTitle>
+
+<div class="container">
+    <div class="d-flex flex-column" id="dflexPrescriptionItem">
+        <h1 class="mt-5" id="PrescriptionItemheader">Prescription Item</h1>
+        <a href="/PrescriptionItem/create" class="btn btn-secondary createprescriptionitembutton">
+            <span class="oi oi-plus"></span>
+            Create New Prescription Item
+        </a>
+    </div>
+    
+    @if (PrescriptionItems == null)
+    {
+        <div class="alert alert-info">Loading Prescription Items</div>
+    }
+    else{
+    <div class="table-responsive mt-3">
+        <table class="table ">
+            <thead class="table-light">
+                <tr id="PrescriptionItemtablecolumnname">
+                    <th scope="col" class="dcol">#PrescriptionItemID</th>
+                    <th scope="col" class="dcol">#PrescriptionID</th>
+                    <th scope="col" class="dcol">#ProductID</th>
+                    <th scope="col" class="dcol">#OrderID</th>
+                    <th scope="col" class="dcol">Prescription Qty</th>
+                    <th scope="col" class="dcol">Sub-Total</th>            
+                </tr>
+            </thead>
+
+
+            <tbody>
+                @foreach (var prescriptionitem in PrescriptionItems)
+                {
+                    <tr>
+                        <td class="dr">@prescriptionitem.PrescriptionItemID</td>
+                        <td class="dr">@prescriptionitem.PrescriptionID</td>
+                        <td class="dr">@prescriptionitem.ProductID</td>
+                        <td class="dr">@prescriptionitem.OrderID</td>
+                        <td class="dr">@prescriptionitem.PrescriptionItemQuantity</td>
+                        <td class="dr">@prescriptionitem.PrescriptionItemSubTotal</td>
+                        <td class="dr">
+                            <a href="/PrescriptionItem/view/@prescriptionitem.PrescriptionItemID" class="btn btn-primary">
+                                    <i class="bi bi-file-earmark"></i>
+                            </a>
+                            <a href="/PrescriptionItem/edit/@prescriptionitem.PrescriptionItemID" class="btn btn-warning">
+                                    <i class="bi bi-pencil-square"></i>
+                            </a>
+                            <button class="btn btn-danger" @onclick="@(()=>Delete(prescriptionitem.PrescriptionItemID))">
+                                    <i class="bi bi-x-lg"></i>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>}
+    <a href="/OrderItem" class="btn btn-secondary orderitembutton">
+        <span class="oi oi-arrow-left"></span>
+        Back
+    </a>
+    <a href="/Order" class="btn btn-secondary orderbutton">
+        <span class="oi oi-arrow-right"></span>
+        Next
+    </a>
+
+</div>
+
+@code {
+    private List<PrescriptionItem>? PrescriptionItems;
+    <!--When the page begins to load-->
+    protected async override Task OnInitializedAsync()
+    {
+        PrescriptionItems = await _client.GetFromJsonAsync<List<PrescriptionItem>>($"{Endpoints.PrescriptionItemsEndpoint}");
+    }
+    async Task Delete(int prescriptionitemId)
+    {
+        if (PrescriptionItems != null)
+        {
+            var prescriptionitem = PrescriptionItems.First(q => q.PrescriptionItemID == prescriptionitemId);
+            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to Delete {prescriptionitem.PrescriptionItemID}?");
+            if (confirm)
+            {
+                await _client.DeleteAsync($"{Endpoints.PrescriptionItemsEndpoint}/{prescriptionitemId}");
+                await OnInitializedAsync();
+            }
+        }
+    }
+
+}

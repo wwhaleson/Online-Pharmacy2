@@ -7,13 +7,12 @@
 <PageTitle>Prescription</PageTitle>
 
 <div class="container">
-   
     <div class="d-flex flex-column" id="dflexPrescription">
         <h1 class="mt-5" id="Prescriptionheader">Prescription</h1>
-        <!--<a href="/Prescription/create" class="btn btn-secondary createprescriptionbutton">
+        <a href="/Prescription/create" class="btn btn-secondary createprescriptionbutton">
             <span class="oi oi-plus"></span>
             Create New Prescription
-        </a>-->
+        </a>
     </div>
     
     @if (Prescriptions == null)
@@ -42,14 +41,14 @@
                         <td class="dr">@prescription.OnlineConsultationID</td>
                         <td class="dr">@prescription.IssueDate.Value.ToString("dddd, dd MMMM yyyy")</td>
                         <td class="dr">@prescription.ExpiryDate.Value.ToString("dddd, dd MMMM yyyy")</td>
-                        <td class="dr d-flex flex-wrap justify-content-center">
-                            <a href="/Prescription/view/@prescription.PrescriptionID" class="btn btn-primary mb-2 me-2">
+                        <td class="dr">
+                            <a href="/Prescription/view/@prescription.PrescriptionID" class="btn btn-primary">
                                     <i class="bi bi-file-earmark"></i>
                             </a>
-                            <a href="/Prescription/edit/@prescription.PrescriptionID" class="btn btn-warning mb-2 me-2">
+                            <a href="/Prescription/edit/@prescription.PrescriptionID" class="btn btn-warning">
                                     <i class="bi bi-pencil-square"></i>
                             </a>
-                            <button class="btn btn-danger mb-2" @onclick="@(()=>Delete(prescription.PrescriptionID))">
+                            <button class="btn btn-danger" @onclick="@(()=>Delete(prescription.PrescriptionID))">
                                     <i class="bi bi-x-lg"></i>
                             </button>
                         </td>
@@ -58,6 +57,15 @@
             </tbody>
         </table>
     </div>}
+    <a href="/OrderItem" class="btn btn-secondary orderitembutton">
+        <span class="oi oi-arrow-left"></span>
+        Back
+    </a>
+    <a href="/Order" class="btn btn-secondary orderbutton">
+        <span class="oi oi-arrow-right"></span>
+        Next
+    </a>
+
 </div>
 
 @code {

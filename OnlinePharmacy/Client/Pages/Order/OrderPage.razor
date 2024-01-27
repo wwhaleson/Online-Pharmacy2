@@ -1,0 +1,117 @@
+﻿@attribute [Authorize]
+@inject HttpClient _client
+@inject IJSRuntime js
+@page "/Order"
+<PageTitle>Order</PageTitle>
+<div class="container">
+    <div class="d-flex flex-column" id="dflexorder">
+        <h1 class="mt-5" id="orderheader">Order</h1>
+        <a href="/Order/create" class="btn btn-secondary createorderbutton">
+            <span class="oi oi-plus"></span>
+            Order
+        </a>
+
+    </div>
+
+    @if (Orders == null)
+    {
+        <div class="alert alert-info">Loading Orders</div>
+    }
+    else{
+    <div class="table-responsive mt-3">
+        <table class="table ">
+            <thead class="table-light">
+                <tr id="ordertablecolumnname">
+                    <th scope="col" class="dcol">#Order ID</th>
+                    <th scope="col" class="dcol">Order Date</th>
+                    <th scope="col" class="dcol">Order Time</th>
+                    <th scope="col" class="dcol">Total Cost</th>
+                    <th scope="col" class="dcol">Payment Type</th>
+                    <th scope="col" class="dcol">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                    @foreach (var order in Orders)
+                    {
+                        <tr>
+                            <td class="dr">@order.OrderID</td>
+                            <td class="dr">@order.OrderDate.Value.ToString("dddd, dd MMMM yyyy")</td>
+                            <td class="dr">@order.OrderTime.Value.ToString("hh:mm tt")</td>
+                            @{
+                                decimal? totalCost = 0; // Initialize totalCost with the order's existing TotalCost
+
+                                // Iterate over OrderItems and update totalCost
+                                foreach (var orderitem in OrderItems)
+                                {
+                                    if (orderitem.OrderID == order.OrderID)
+                                    {
+                                        totalCost += orderitem.OrderItemSubTotal;
+                                    }
+                                }
+
+                                // Iterate over PrescriptionItems and update totalCost
+                                foreach (var prescriptionitem in PrescriptionItems)
+                                {
+                                    if (prescriptionitem.OrderID == order.OrderID)
+                                    {
+                                        totalCost += prescriptionitem.PrescriptionItemSubTotal;
+                                    }
+                                }
+                                order.TotalCost = totalCost;
+                            }
+                            <td class="dr">@order.TotalCost</td>
+
+                            <td class="dr">@order.PaymentType</td>
+                            <td class="dr">
+                                <a href="/Order/view/@order.OrderID" class="btn btn-primary">
+                                    <i class="bi bi-file-earmark"></i>
+                                </a>
+                                <a href="/Order/edit/@order.OrderID" class="btn btn-warning">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <button class="btn btn-danger" @onclick="@(()=>Delete(order.OrderID))">
+                                    <i class="bi bi-x-lg"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+            </tbody>
+        </table>
+    </div>
+    }
+
+    <a href="/OrderItem" class="btn btn-secondary orderitembutton">
+        <span class="oi oi-arrow-right"></span>
+        Next
+    </a>
+</div>
+
+
+
+
+@code {
+    private List<Order>? Orders;
+    private List<OrderItem>? OrderItems;
+    private List<PrescriptionItem>? PrescriptionItems;
+    <!--When the page begins to load-->
+    protected async override Task OnInitializedAsync()
+    {
+        Orders = await _client.GetFromJsonAsync<List<Order>>($"{Endpoints.OrdersEndpoint}");
+        OrderItems = await _client.GetFromJsonAsync<List<OrderItem>>($"{Endpoints.OrderItemsEndpoint}");
+        PrescriptionItems = await _client.GetFromJsonAsync<List<PrescriptionItem>>($"{Endpoints.PrescriptionItemsEndpoint}");
+    }
+    async Task Delete(int orderId)
+    {
+        if (Orders != null)
+        {
+            var order = Orders.First(q => q.OrderID == orderId);
+            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to Delete {order.OrderID}?");
+            if (confirm)
+            {
+                await _client.DeleteAsync($"{Endpoints.OrdersEndpoint}/{orderId}");
+                await OnInitializedAsync();
+            }
+        }
+    }
+}
