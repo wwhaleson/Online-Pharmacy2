@@ -1,0 +1,32 @@
+﻿@attribute [Authorize]
+@page "/PrescriptionItem/create/"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+<h1 class="mt-3" id="CreatePrescriptionItemheader"> Create Prescription Item</h1>
+
+
+<FormComponent ButtonText="Create Prescription Item" prescriptionitem="prescriptionitem" OnValidSubmit="@CreatePrescriptionItems" />
+
+@code {
+    PrescriptionItem prescriptionitem = new PrescriptionItem();
+
+
+    private IList<Prescription>? Prescriptions;
+    private IList<Product>? Products;
+    private IList<Order>? Orders;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Prescriptions = await _client.GetFromJsonAsync<List<Prescription>>($"{Endpoints.PrescriptionsEndpoint}");
+        Products = await _client.GetFromJsonAsync<List<Product>>($"{Endpoints.ProductsEndpoint}");
+        Orders = await _client.GetFromJsonAsync<List<Order>>($"{Endpoints.OrdersEndpoint}");
+
+    }
+
+    private async Task CreatePrescriptionItems()
+    {
+        await _client.PostAsJsonAsync(Endpoints.PrescriptionItemsEndpoint, prescriptionitem);
+        _navManager.NavigateTo("/Prescription/");
+    }
+
+}

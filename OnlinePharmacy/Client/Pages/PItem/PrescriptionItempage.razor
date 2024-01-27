@@ -1,0 +1,90 @@
+﻿@attribute [Authorize]
+@inject HttpClient _client
+@inject IJSRuntime js
+@inject HttpInterceptorService _interceptor
+@implements IDisposable
+@page "/PrescriptionItem"
+<PageTitle>Prescription Item</PageTitle>
+
+<div class="container">
+   
+    <div class="d-flex flex-column" id="dflexPrescriptionItem">
+        <h1 class="mt-5" id="PrescriptionItemheader">Prescription</h1>
+        <!--<a href="/Prescription/create" class="btn btn-secondary createprescriptionbutton">
+            <span class="oi oi-plus"></span>
+            Create New Prescription
+        </a>-->
+    </div>
+    
+    @if (PrescriptionItems == null)
+    {
+        <div class="alert alert-info">Loading Prescriptions Item</div>
+    }
+    else{
+    <div class="table-responsive mt-3">
+        <table class="table ">
+            <thead class="table-light">
+                <tr id="PrescriptionItem tablecolumnname">
+                    <th scope="col" class="dcol">#PrescriptionItemID</th>
+                    <th scope="col" class="dcol">Precription Name</th>
+                    <th scope="col" class="dcol">PrescriptionItemQuantity</th>
+                    <th scope="col" class="dcol">PrescriptionItemSubTotal</th>
+                    <th scope="col" class="dcol">Actions</th>   
+                </tr>
+            </thead>
+
+             
+            <tbody>
+                @foreach (var prescriptionitem in PrescriptionItems)
+                {
+                    <tr>
+                        <td class="dr">@prescriptionitem.PrescriptionItemID</td>
+                        <td class="dr">@prescriptionitem.Product.ProductName</td>
+                        <td class="dr">@prescriptionitem.PrescriptionItemQuantity</td>
+                        <td class="dr">@prescriptionitem.PrescriptionItemSubTotal</td>
+                        <td class="dr d-flex flex-wrap justify-content-center">
+                            <a href="/Prescription/view/@prescriptionitem.PrescriptionItemID" class="btn btn-primary mb-2 me-2">
+                                <i class="bi bi-file-earmark"></i>
+                            </a>
+                            <a href="/Prescription/edit/@prescriptionitem.PrescriptionItemID" class="btn btn-warning mb-2 me-2">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
+                                <button class="btn btn-danger mb-2" @onclick="@(()=>Delete(prescriptionitem.PrescriptionItemID))">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>}
+</div>
+
+@code {
+    private List<PrescriptionItem>? PrescriptionItems;
+    <!--When the page begins to load-->
+    protected async override Task OnInitializedAsync()
+    {
+        _interceptor.MonitorEvent();
+        PrescriptionItems = await _client.GetFromJsonAsync<List<PrescriptionItem>>($"{Endpoints.PrescriptionItemsEndpoint}");
+    }
+    async Task Delete(int prescriptionitemId)
+    {
+        if (PrescriptionItems != null)
+        {
+            var prescriptionitem = PrescriptionItems.First(q => q.PrescriptionItemID == prescriptionitemId);
+            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to Delete {prescriptionitem.PrescriptionItemID}?");
+            if (confirm)
+            {
+                await _client.DeleteAsync($"{Endpoints.PrescriptionItemsEndpoint}/{prescriptionitemId}");
+                await OnInitializedAsync();
+            }
+        }
+    }
+    public void Dispose()
+    {
+        _interceptor.DisposeEvent();
+    }
+
+
+}

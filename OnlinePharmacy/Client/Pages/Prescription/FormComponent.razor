@@ -73,6 +73,8 @@
 
     private IList<OnlineConsultation>? OnlineConsultations;
 
+
+
     protected async override Task OnInitializedAsync()
     {
         OnlineConsultations = await _client.GetFromJsonAsync<List<OnlineConsultation>>($"{Endpoints.OnlineConsultationsEndpoint}");
