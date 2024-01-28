@@ -457,9 +457,9 @@ namespace OnlinePharmacy.Server.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PrescriptionItemQuantity = table.Column<int>(type: "int", nullable: false),
                     PrescriptionItemSubTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PrescriptionID = table.Column<int>(type: "int", nullable: true),
+                    PrescriptionID = table.Column<int>(type: "int", nullable: false),
                     ProductID = table.Column<int>(type: "int", nullable: false),
-                    OrderID = table.Column<int>(type: "int", nullable: false)
+                    OrderID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -468,13 +468,13 @@ namespace OnlinePharmacy.Server.Migrations
                         name: "FK_PrescriptionItem_Order_OrderID",
                         column: x => x.OrderID,
                         principalTable: "Order",
-                        principalColumn: "OrderID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "OrderID");
                     table.ForeignKey(
                         name: "FK_PrescriptionItem_Prescription_PrescriptionID",
                         column: x => x.PrescriptionID,
                         principalTable: "Prescription",
-                        principalColumn: "PrescriptionID");
+                        principalColumn: "PrescriptionID",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_PrescriptionItem_Product_ProductID",
                         column: x => x.ProductID,
@@ -495,7 +495,7 @@ namespace OnlinePharmacy.Server.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "0d990327-2e74-4703-8f84-30580473fa38", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEFXSi90VGZglyF5eWtGTZPfn8jZKER+Wf+TJAyrwzds4JrVyJHMZCVojRRNV1hE2ew==", null, false, "a8b8c9b4-b123-4d3f-8633-8a3b7cabd5a2", false, "admin@localhost.com" });
+                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "fb346cb0-8abd-404d-8ad4-c2bd94624d9f", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAENcRCK3dfy6vqkEi9qJeB7yBRKCxGXjUQCR0YVtNnhD9WswGrytcFDzTQohRGIMe8g==", null, false, "b287ecba-a123-4555-a4ee-ea19acb872a5", false, "admin@localhost.com" });
 
             migrationBuilder.InsertData(
                 table: "Category",
@@ -521,11 +521,11 @@ namespace OnlinePharmacy.Server.Migrations
                 columns: new[] { "ProductID", "CategoryID", "PrescriptionStatus", "ProductBrand", "ProductCategoryID", "ProductDescription", "ProductDosage", "ProductExpiryDate", "ProductImage", "ProductIngredients", "ProductMaximumAge", "ProductMinimumAge", "ProductName", "ProductPrice", "ProductUsage", "StockQuantity" },
                 values: new object[,]
                 {
-                    { 1, null, false, "SCOTT'S", 2, "Scott's is the Number 1 Kids' Multivitamin Brand in Singapore*. Worry about your little ones being picky with food and not getting the necessary nutrients for proper growth/development? Do not worry, Scott’s Multivitamin Gummies is coming to your rescue! Available in three delicious fruity flavors Apple, Tropical Fruits, and the NEWEST addition - Mango; it contains Zinc and five essential vitamins - A, B6, C, D, E - to support your kid immunity, bone growth and healthy vision every day. Moreover, Scott's micro encapsulation technology locks in the goodness of Zinc and 5 Vitamins (Vitamin A, B6, C, D & E) whilst giving kids the taste they love.", "3x/Day", new DateTime(2024, 6, 28, 8, 3, 20, 783, DateTimeKind.Utc).AddTicks(5653), "https://m.media-amazon.com/images/I/51Wylj9xQJL._AC_UF1000,1000_QL80_.jpg", "Glucose, Syrup, Sugar, Gelatin, Acidity Regulator (Citric Acid, Sodium Citrate), Humectant (Sorbitol), Flavouring substance, Vitamins and Mineral (Vitamin C, Zinc, Vitamin E, Vitamin B6, Vitamin A and Vitamin D) and Colouring substance (Tartrazine)\r\n", 12, 2, "SCOTT'S Multivitamins Gummies Mango", 22m, "Strong bones and teeth, improve the immune system, growth and development", 100 },
-                    { 2, null, false, "Panadol", 3, "Panadol Children’s Suspension 1-6 Years (120mg/5ml) provides relief from fever and pain in children aged 1 to 6 years. Like all Children’s Panadol products, Panadol Children’s Suspension 1-6 Years is gentle on little stomachs. A strawberry-flavoured suspension, Panadol Children’s Suspension 1-6 Years contains no alcohol and is aspirin-free.", "5-10ml (based on child's weight 9.5-19.5kg)\nDo not take more frequently than once every 4 Hours and do not exceed more than four doses in 24 hours. Do not take for more than 3 days without asking your doctor.", new DateTime(2024, 6, 28, 8, 3, 20, 783, DateTimeKind.Utc).AddTicks(5659), "https://alcare.sg/wp-content/uploads/2019/08/PAN1-S.jpg", "Active ingredient: 120 mg/5 ml Paracetamol\r\nExcipients: No Alcohol, no Aspirin.", 6, 1, "Panadol Children's Suspension", 9m, "Fever, Headaches, Symptoms of colds and flu, Teething pain, Toothaches, Earache, Pain associated with immunisation", 90 },
-                    { 3, null, true, "Amoxil", 1, "Amoxicillin is a penicillin antibiotic. It is used to treat bacterial infections, such as chest infections (including pneumonia) and dental abscesses. It can also be used together with other antibiotics and medicines to treat stomach ulcers.", "1.25-12.5ml (based on child's weight 3.6-36kg)\nGive this dose three (3) times a day—once in the morning, once at mid-day, and once in the evening—for as long as directed.", new DateTime(2024, 6, 28, 8, 3, 20, 783, DateTimeKind.Utc).AddTicks(5662), "https://d3pq5rjvq8yvv1.cloudfront.net/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/a/m/amox500tab.jpg", "Croscarmellose sodium, gelatin, magnesium stearate, titanium dioxide, and yellow iron oxide.", 12, 5, "Amoxicillin", 10m, "Bacterial infections, such as chest infections (including pneumonia) and dental abscesses. Can also be used together with other antibiotics and medicines to treat stomach ulcers.", 50 },
-                    { 4, null, true, "Ibuprofen", 1, "Ibuprofen is a nonsteroidal anti-inflammatory drug.", "Ibuprofen dose is 400mg(two tablets) to be taken initially. 200mg(one tablet) to 400mg(two tablets) may be taken every 4 hours when required.", new DateTime(2024, 6, 28, 8, 3, 20, 783, DateTimeKind.Utc).AddTicks(5667), "https://www.biovea.com/sg/images/products/xlrg/7188_z.jpg", "Lactose, Maize Starch, Hypromellose, Sodium Starch Glycollate, Colloidal Anhydrous Silica, Magnesium Stearate, Sucrose, Talc, Titanium Dioxide (E171) and Carnauba Wax", 12, 5, "Ibuprofen", 10m, "Treat fever, pain, and inflammation in children", 50 },
-                    { 5, null, false, "Zyrtec", 3, "Zyrtec pcs 10's is now Zyrtec-R pcs 10's.\r\nNew Name, New Pack, Same Formula.\r\nZyrtec-R is an antihistamine.", "Children aged from 2 to 12 years: 2.5 mL of oral solution (half of a spoon) twice daily. Children aged from 6 to 12 years: 5 mg [10 drops, or 5 ml oral solution (1 full spoon) or half of the tablet] twice daily.", new DateTime(2024, 6, 28, 8, 3, 20, 783, DateTimeKind.Utc).AddTicks(5675), "https://m.media-amazon.com/images/I/717EcbxEZ2L._AC_UF1000,1000_QL80_.jpg", "", 12, 2, "Zyrtec 24 Allergic Syrup", 12m, "Treats allergy symptoms like itchy eyes, sneezing, a stuffy nose or hives", 30 }
+                    { 1, null, false, "SCOTT'S", 2, "Scott's is the Number 1 Kids' Multivitamin Brand in Singapore*. Worry about your little ones being picky with food and not getting the necessary nutrients for proper growth/development? Do not worry, Scott’s Multivitamin Gummies is coming to your rescue! Available in three delicious fruity flavors Apple, Tropical Fruits, and the NEWEST addition - Mango; it contains Zinc and five essential vitamins - A, B6, C, D, E - to support your kid immunity, bone growth and healthy vision every day. Moreover, Scott's micro encapsulation technology locks in the goodness of Zinc and 5 Vitamins (Vitamin A, B6, C, D & E) whilst giving kids the taste they love.", "3x/Day", new DateTime(2024, 6, 28, 12, 22, 20, 520, DateTimeKind.Utc).AddTicks(4227), "https://m.media-amazon.com/images/I/51Wylj9xQJL._AC_UF1000,1000_QL80_.jpg", "Glucose, Syrup, Sugar, Gelatin, Acidity Regulator (Citric Acid, Sodium Citrate), Humectant (Sorbitol), Flavouring substance, Vitamins and Mineral (Vitamin C, Zinc, Vitamin E, Vitamin B6, Vitamin A and Vitamin D) and Colouring substance (Tartrazine)\r\n", 12, 2, "SCOTT'S Multivitamins Gummies Mango", 22m, "Strong bones and teeth, improve the immune system, growth and development", 100 },
+                    { 2, null, false, "Panadol", 3, "Panadol Children’s Suspension 1-6 Years (120mg/5ml) provides relief from fever and pain in children aged 1 to 6 years. Like all Children’s Panadol products, Panadol Children’s Suspension 1-6 Years is gentle on little stomachs. A strawberry-flavoured suspension, Panadol Children’s Suspension 1-6 Years contains no alcohol and is aspirin-free.", "5-10ml (based on child's weight 9.5-19.5kg)\nDo not take more frequently than once every 4 Hours and do not exceed more than four doses in 24 hours. Do not take for more than 3 days without asking your doctor.", new DateTime(2024, 6, 28, 12, 22, 20, 520, DateTimeKind.Utc).AddTicks(4232), "https://alcare.sg/wp-content/uploads/2019/08/PAN1-S.jpg", "Active ingredient: 120 mg/5 ml Paracetamol\r\nExcipients: No Alcohol, no Aspirin.", 6, 1, "Panadol Children's Suspension", 9m, "Fever, Headaches, Symptoms of colds and flu, Teething pain, Toothaches, Earache, Pain associated with immunisation", 90 },
+                    { 3, null, true, "Amoxil", 1, "Amoxicillin is a penicillin antibiotic. It is used to treat bacterial infections, such as chest infections (including pneumonia) and dental abscesses. It can also be used together with other antibiotics and medicines to treat stomach ulcers.", "1.25-12.5ml (based on child's weight 3.6-36kg)\nGive this dose three (3) times a day—once in the morning, once at mid-day, and once in the evening—for as long as directed.", new DateTime(2024, 6, 28, 12, 22, 20, 520, DateTimeKind.Utc).AddTicks(4235), "https://d3pq5rjvq8yvv1.cloudfront.net/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/a/m/amox500tab.jpg", "Croscarmellose sodium, gelatin, magnesium stearate, titanium dioxide, and yellow iron oxide.", 12, 5, "Amoxicillin", 10m, "Bacterial infections, such as chest infections (including pneumonia) and dental abscesses. Can also be used together with other antibiotics and medicines to treat stomach ulcers.", 50 },
+                    { 4, null, true, "Ibuprofen", 1, "Ibuprofen is a nonsteroidal anti-inflammatory drug.", "Ibuprofen dose is 400mg(two tablets) to be taken initially. 200mg(one tablet) to 400mg(two tablets) may be taken every 4 hours when required.", new DateTime(2024, 6, 28, 12, 22, 20, 520, DateTimeKind.Utc).AddTicks(4237), "https://www.biovea.com/sg/images/products/xlrg/7188_z.jpg", "Lactose, Maize Starch, Hypromellose, Sodium Starch Glycollate, Colloidal Anhydrous Silica, Magnesium Stearate, Sucrose, Talc, Titanium Dioxide (E171) and Carnauba Wax", 12, 5, "Ibuprofen", 10m, "Treat fever, pain, and inflammation in children", 50 },
+                    { 5, null, false, "Zyrtec", 3, "Zyrtec pcs 10's is now Zyrtec-R pcs 10's.\r\nNew Name, New Pack, Same Formula.\r\nZyrtec-R is an antihistamine.", "Children aged from 2 to 12 years: 2.5 mL of oral solution (half of a spoon) twice daily. Children aged from 6 to 12 years: 5 mg [10 drops, or 5 ml oral solution (1 full spoon) or half of the tablet] twice daily.", new DateTime(2024, 6, 28, 12, 22, 20, 520, DateTimeKind.Utc).AddTicks(4240), "https://m.media-amazon.com/images/I/717EcbxEZ2L._AC_UF1000,1000_QL80_.jpg", "", 12, 2, "Zyrtec 24 Allergic Syrup", 12m, "Treats allergy symptoms like itchy eyes, sneezing, a stuffy nose or hives", 30 }
                 });
 
             migrationBuilder.InsertData(
@@ -547,8 +547,8 @@ namespace OnlinePharmacy.Server.Migrations
                 columns: new[] { "OnlineConsultationID", "ConsultationDateEnd", "ConsultationDateStart", "ConsultationDiagnosis", "ConsultationPlatform", "ConsultationPrice", "ConsultationStatus", "ConsultationSymptom", "ConsultationTimeEnd", "ConsultationTimeStart", "CustomerID", "PharmacistID", "StaffID" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 1, 28, 8, 3, 20, 783, DateTimeKind.Utc).AddTicks(4890), new DateTime(2024, 1, 28, 8, 3, 20, 783, DateTimeKind.Utc).AddTicks(4889), "Common cold", "Online Call", 40m, "Completed", "Fever, Headache", new DateTime(2024, 1, 28, 8, 3, 20, 783, DateTimeKind.Utc).AddTicks(4889), new DateTime(2024, 1, 28, 8, 3, 20, 783, DateTimeKind.Utc).AddTicks(4888), 1, 1, null },
-                    { 2, new DateTime(2024, 1, 28, 8, 3, 20, 783, DateTimeKind.Utc).AddTicks(4898), new DateTime(2024, 1, 28, 8, 3, 20, 783, DateTimeKind.Utc).AddTicks(4897), "Common cold", "Online Call", 45.75m, "Completed", "Headache", new DateTime(2024, 1, 28, 8, 3, 20, 783, DateTimeKind.Utc).AddTicks(4897), new DateTime(2024, 1, 28, 8, 3, 20, 783, DateTimeKind.Utc).AddTicks(4896), 2, 1, null }
+                    { 1, new DateTime(2024, 1, 28, 12, 22, 20, 520, DateTimeKind.Utc).AddTicks(3523), new DateTime(2024, 1, 28, 12, 22, 20, 520, DateTimeKind.Utc).AddTicks(3522), "Common cold", "Online Call", 40m, "Completed", "Fever, Headache", new DateTime(2024, 1, 28, 12, 22, 20, 520, DateTimeKind.Utc).AddTicks(3522), new DateTime(2024, 1, 28, 12, 22, 20, 520, DateTimeKind.Utc).AddTicks(3521), 1, 1, null },
+                    { 2, new DateTime(2024, 1, 28, 12, 22, 20, 520, DateTimeKind.Utc).AddTicks(3529), new DateTime(2024, 1, 28, 12, 22, 20, 520, DateTimeKind.Utc).AddTicks(3529), "Common cold", "Online Call", 45.75m, "Completed", "Headache", new DateTime(2024, 1, 28, 12, 22, 20, 520, DateTimeKind.Utc).AddTicks(3528), new DateTime(2024, 1, 28, 12, 22, 20, 520, DateTimeKind.Utc).AddTicks(3528), 2, 1, null }
                 });
 
             migrationBuilder.InsertData(
@@ -556,8 +556,8 @@ namespace OnlinePharmacy.Server.Migrations
                 columns: new[] { "OrderID", "CustomerID", "OrderDate", "OrderTime", "PaymentType", "StaffID", "TotalCost" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2024, 2, 28, 16, 3, 20, 783, DateTimeKind.Local).AddTicks(5188), new DateTime(2024, 2, 28, 16, 3, 20, 783, DateTimeKind.Local).AddTicks(5196), "Credit Card", 2, 15m },
-                    { 2, 2, new DateTime(2024, 2, 28, 16, 3, 20, 783, DateTimeKind.Local).AddTicks(5201), new DateTime(2024, 2, 28, 16, 3, 20, 783, DateTimeKind.Local).AddTicks(5202), "Credit Card", 2, 25m }
+                    { 1, 1, new DateTime(2024, 2, 28, 20, 22, 20, 520, DateTimeKind.Local).AddTicks(3783), new DateTime(2024, 2, 28, 20, 22, 20, 520, DateTimeKind.Local).AddTicks(3790), "Credit Card", 2, 15m },
+                    { 2, 2, new DateTime(2024, 2, 28, 20, 22, 20, 520, DateTimeKind.Local).AddTicks(3793), new DateTime(2024, 2, 28, 20, 22, 20, 520, DateTimeKind.Local).AddTicks(3794), "Credit Card", 2, 25m }
                 });
 
             migrationBuilder.InsertData(
@@ -565,8 +565,8 @@ namespace OnlinePharmacy.Server.Migrations
                 columns: new[] { "DeliveryID", "DeliveryCost", "DeliveryMethod", "DeliveryStatus", "EstimatedDeliveryDate", "EstimatedDeliveryTime", "OrderID", "StaffID" },
                 values: new object[,]
                 {
-                    { 1, 5m, "Standard", "Packing", new DateTime(2024, 1, 28, 16, 3, 20, 783, DateTimeKind.Local).AddTicks(4570), new DateTime(2024, 1, 28, 16, 3, 20, 783, DateTimeKind.Local).AddTicks(4586), 1, 1 },
-                    { 2, 5m, "Standard", "Packing", new DateTime(2024, 1, 28, 16, 3, 20, 783, DateTimeKind.Local).AddTicks(4589), new DateTime(2024, 1, 28, 16, 3, 20, 783, DateTimeKind.Local).AddTicks(4589), 2, 1 }
+                    { 1, 5m, "Standard", "Packing", new DateTime(2024, 1, 28, 20, 22, 20, 520, DateTimeKind.Local).AddTicks(3356), new DateTime(2024, 1, 28, 20, 22, 20, 520, DateTimeKind.Local).AddTicks(3368), 1, 1 },
+                    { 2, 5m, "Standard", "Packing", new DateTime(2024, 1, 28, 20, 22, 20, 520, DateTimeKind.Local).AddTicks(3370), new DateTime(2024, 1, 28, 20, 22, 20, 520, DateTimeKind.Local).AddTicks(3370), 2, 1 }
                 });
 
             migrationBuilder.InsertData(

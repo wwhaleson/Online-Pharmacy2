@@ -25,6 +25,7 @@ namespace OnlinePharmacy.Shared.Domain
         [Range(0.01, double.MaxValue, ErrorMessage = "Prescription Item Subtotal must be greater than 0")]
         public decimal? PrescriptionItemSubTotal { get; set; }
 
+        [Required]
         [Display(Name = "Prescription ID")]
         public int? PrescriptionID { get; set; }
 
@@ -36,8 +37,7 @@ namespace OnlinePharmacy.Shared.Domain
 
         public virtual Product? Product { get; set; }
 
-        [Required]
-        [Display(Name = "Order ID")]
+
         public int? OrderID { get; set; }
 
         public virtual Order Order { get; set; }

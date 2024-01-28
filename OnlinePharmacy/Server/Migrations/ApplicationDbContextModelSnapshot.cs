@@ -396,7 +396,7 @@ namespace OnlinePharmacy.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0d990327-2e74-4703-8f84-30580473fa38",
+                            ConcurrencyStamp = "fb346cb0-8abd-404d-8ad4-c2bd94624d9f",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -404,9 +404,9 @@ namespace OnlinePharmacy.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFXSi90VGZglyF5eWtGTZPfn8jZKER+Wf+TJAyrwzds4JrVyJHMZCVojRRNV1hE2ew==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENcRCK3dfy6vqkEi9qJeB7yBRKCxGXjUQCR0YVtNnhD9WswGrytcFDzTQohRGIMe8g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a8b8c9b4-b123-4d3f-8633-8a3b7cabd5a2",
+                            SecurityStamp = "b287ecba-a123-4555-a4ee-ea19acb872a5",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
@@ -597,8 +597,8 @@ namespace OnlinePharmacy.Server.Migrations
                             DeliveryCost = 5m,
                             DeliveryMethod = "Standard",
                             DeliveryStatus = "Packing",
-                            EstimatedDeliveryDate = new DateTime(2024, 1, 28, 16, 3, 20, 783, DateTimeKind.Local).AddTicks(4570),
-                            EstimatedDeliveryTime = new DateTime(2024, 1, 28, 16, 3, 20, 783, DateTimeKind.Local).AddTicks(4586),
+                            EstimatedDeliveryDate = new DateTime(2024, 1, 28, 20, 22, 20, 520, DateTimeKind.Local).AddTicks(3356),
+                            EstimatedDeliveryTime = new DateTime(2024, 1, 28, 20, 22, 20, 520, DateTimeKind.Local).AddTicks(3368),
                             OrderID = 1,
                             StaffID = 1
                         },
@@ -608,8 +608,8 @@ namespace OnlinePharmacy.Server.Migrations
                             DeliveryCost = 5m,
                             DeliveryMethod = "Standard",
                             DeliveryStatus = "Packing",
-                            EstimatedDeliveryDate = new DateTime(2024, 1, 28, 16, 3, 20, 783, DateTimeKind.Local).AddTicks(4589),
-                            EstimatedDeliveryTime = new DateTime(2024, 1, 28, 16, 3, 20, 783, DateTimeKind.Local).AddTicks(4589),
+                            EstimatedDeliveryDate = new DateTime(2024, 1, 28, 20, 22, 20, 520, DateTimeKind.Local).AddTicks(3370),
+                            EstimatedDeliveryTime = new DateTime(2024, 1, 28, 20, 22, 20, 520, DateTimeKind.Local).AddTicks(3370),
                             OrderID = 2,
                             StaffID = 1
                         });
@@ -682,30 +682,30 @@ namespace OnlinePharmacy.Server.Migrations
                         new
                         {
                             OnlineConsultationID = 1,
-                            ConsultationDateEnd = new DateTime(2024, 1, 28, 8, 3, 20, 783, DateTimeKind.Utc).AddTicks(4890),
-                            ConsultationDateStart = new DateTime(2024, 1, 28, 8, 3, 20, 783, DateTimeKind.Utc).AddTicks(4889),
+                            ConsultationDateEnd = new DateTime(2024, 1, 28, 12, 22, 20, 520, DateTimeKind.Utc).AddTicks(3523),
+                            ConsultationDateStart = new DateTime(2024, 1, 28, 12, 22, 20, 520, DateTimeKind.Utc).AddTicks(3522),
                             ConsultationDiagnosis = "Common cold",
                             ConsultationPlatform = "Online Call",
                             ConsultationPrice = 40m,
                             ConsultationStatus = "Completed",
                             ConsultationSymptom = "Fever, Headache",
-                            ConsultationTimeEnd = new DateTime(2024, 1, 28, 8, 3, 20, 783, DateTimeKind.Utc).AddTicks(4889),
-                            ConsultationTimeStart = new DateTime(2024, 1, 28, 8, 3, 20, 783, DateTimeKind.Utc).AddTicks(4888),
+                            ConsultationTimeEnd = new DateTime(2024, 1, 28, 12, 22, 20, 520, DateTimeKind.Utc).AddTicks(3522),
+                            ConsultationTimeStart = new DateTime(2024, 1, 28, 12, 22, 20, 520, DateTimeKind.Utc).AddTicks(3521),
                             CustomerID = 1,
                             PharmacistID = 1
                         },
                         new
                         {
                             OnlineConsultationID = 2,
-                            ConsultationDateEnd = new DateTime(2024, 1, 28, 8, 3, 20, 783, DateTimeKind.Utc).AddTicks(4898),
-                            ConsultationDateStart = new DateTime(2024, 1, 28, 8, 3, 20, 783, DateTimeKind.Utc).AddTicks(4897),
+                            ConsultationDateEnd = new DateTime(2024, 1, 28, 12, 22, 20, 520, DateTimeKind.Utc).AddTicks(3529),
+                            ConsultationDateStart = new DateTime(2024, 1, 28, 12, 22, 20, 520, DateTimeKind.Utc).AddTicks(3529),
                             ConsultationDiagnosis = "Common cold",
                             ConsultationPlatform = "Online Call",
                             ConsultationPrice = 45.75m,
                             ConsultationStatus = "Completed",
                             ConsultationSymptom = "Headache",
-                            ConsultationTimeEnd = new DateTime(2024, 1, 28, 8, 3, 20, 783, DateTimeKind.Utc).AddTicks(4897),
-                            ConsultationTimeStart = new DateTime(2024, 1, 28, 8, 3, 20, 783, DateTimeKind.Utc).AddTicks(4896),
+                            ConsultationTimeEnd = new DateTime(2024, 1, 28, 12, 22, 20, 520, DateTimeKind.Utc).AddTicks(3528),
+                            ConsultationTimeStart = new DateTime(2024, 1, 28, 12, 22, 20, 520, DateTimeKind.Utc).AddTicks(3528),
                             CustomerID = 2,
                             PharmacistID = 1
                         });
@@ -755,8 +755,8 @@ namespace OnlinePharmacy.Server.Migrations
                         {
                             OrderID = 1,
                             CustomerID = 1,
-                            OrderDate = new DateTime(2024, 2, 28, 16, 3, 20, 783, DateTimeKind.Local).AddTicks(5188),
-                            OrderTime = new DateTime(2024, 2, 28, 16, 3, 20, 783, DateTimeKind.Local).AddTicks(5196),
+                            OrderDate = new DateTime(2024, 2, 28, 20, 22, 20, 520, DateTimeKind.Local).AddTicks(3783),
+                            OrderTime = new DateTime(2024, 2, 28, 20, 22, 20, 520, DateTimeKind.Local).AddTicks(3790),
                             PaymentType = "Credit Card",
                             StaffID = 2,
                             TotalCost = 15m
@@ -765,8 +765,8 @@ namespace OnlinePharmacy.Server.Migrations
                         {
                             OrderID = 2,
                             CustomerID = 2,
-                            OrderDate = new DateTime(2024, 2, 28, 16, 3, 20, 783, DateTimeKind.Local).AddTicks(5201),
-                            OrderTime = new DateTime(2024, 2, 28, 16, 3, 20, 783, DateTimeKind.Local).AddTicks(5202),
+                            OrderDate = new DateTime(2024, 2, 28, 20, 22, 20, 520, DateTimeKind.Local).AddTicks(3793),
+                            OrderTime = new DateTime(2024, 2, 28, 20, 22, 20, 520, DateTimeKind.Local).AddTicks(3794),
                             PaymentType = "Credit Card",
                             StaffID = 2,
                             TotalCost = 25m
@@ -854,10 +854,10 @@ namespace OnlinePharmacy.Server.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PrescriptionItemID"));
 
                     b.Property<int?>("OrderID")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int?>("PrescriptionID")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int?>("PrescriptionItemQuantity")
@@ -988,7 +988,7 @@ namespace OnlinePharmacy.Server.Migrations
                             ProductCategoryID = 2,
                             ProductDescription = "Scott's is the Number 1 Kids' Multivitamin Brand in Singapore*. Worry about your little ones being picky with food and not getting the necessary nutrients for proper growth/development? Do not worry, Scott’s Multivitamin Gummies is coming to your rescue! Available in three delicious fruity flavors Apple, Tropical Fruits, and the NEWEST addition - Mango; it contains Zinc and five essential vitamins - A, B6, C, D, E - to support your kid immunity, bone growth and healthy vision every day. Moreover, Scott's micro encapsulation technology locks in the goodness of Zinc and 5 Vitamins (Vitamin A, B6, C, D & E) whilst giving kids the taste they love.",
                             ProductDosage = "3x/Day",
-                            ProductExpiryDate = new DateTime(2024, 6, 28, 8, 3, 20, 783, DateTimeKind.Utc).AddTicks(5653),
+                            ProductExpiryDate = new DateTime(2024, 6, 28, 12, 22, 20, 520, DateTimeKind.Utc).AddTicks(4227),
                             ProductImage = "https://m.media-amazon.com/images/I/51Wylj9xQJL._AC_UF1000,1000_QL80_.jpg",
                             ProductIngredients = "Glucose, Syrup, Sugar, Gelatin, Acidity Regulator (Citric Acid, Sodium Citrate), Humectant (Sorbitol), Flavouring substance, Vitamins and Mineral (Vitamin C, Zinc, Vitamin E, Vitamin B6, Vitamin A and Vitamin D) and Colouring substance (Tartrazine)\r\n",
                             ProductMaximumAge = 12,
@@ -1006,7 +1006,7 @@ namespace OnlinePharmacy.Server.Migrations
                             ProductCategoryID = 3,
                             ProductDescription = "Panadol Children’s Suspension 1-6 Years (120mg/5ml) provides relief from fever and pain in children aged 1 to 6 years. Like all Children’s Panadol products, Panadol Children’s Suspension 1-6 Years is gentle on little stomachs. A strawberry-flavoured suspension, Panadol Children’s Suspension 1-6 Years contains no alcohol and is aspirin-free.",
                             ProductDosage = "5-10ml (based on child's weight 9.5-19.5kg)\nDo not take more frequently than once every 4 Hours and do not exceed more than four doses in 24 hours. Do not take for more than 3 days without asking your doctor.",
-                            ProductExpiryDate = new DateTime(2024, 6, 28, 8, 3, 20, 783, DateTimeKind.Utc).AddTicks(5659),
+                            ProductExpiryDate = new DateTime(2024, 6, 28, 12, 22, 20, 520, DateTimeKind.Utc).AddTicks(4232),
                             ProductImage = "https://alcare.sg/wp-content/uploads/2019/08/PAN1-S.jpg",
                             ProductIngredients = "Active ingredient: 120 mg/5 ml Paracetamol\r\nExcipients: No Alcohol, no Aspirin.",
                             ProductMaximumAge = 6,
@@ -1024,7 +1024,7 @@ namespace OnlinePharmacy.Server.Migrations
                             ProductCategoryID = 1,
                             ProductDescription = "Amoxicillin is a penicillin antibiotic. It is used to treat bacterial infections, such as chest infections (including pneumonia) and dental abscesses. It can also be used together with other antibiotics and medicines to treat stomach ulcers.",
                             ProductDosage = "1.25-12.5ml (based on child's weight 3.6-36kg)\nGive this dose three (3) times a day—once in the morning, once at mid-day, and once in the evening—for as long as directed.",
-                            ProductExpiryDate = new DateTime(2024, 6, 28, 8, 3, 20, 783, DateTimeKind.Utc).AddTicks(5662),
+                            ProductExpiryDate = new DateTime(2024, 6, 28, 12, 22, 20, 520, DateTimeKind.Utc).AddTicks(4235),
                             ProductImage = "https://d3pq5rjvq8yvv1.cloudfront.net/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/a/m/amox500tab.jpg",
                             ProductIngredients = "Croscarmellose sodium, gelatin, magnesium stearate, titanium dioxide, and yellow iron oxide.",
                             ProductMaximumAge = 12,
@@ -1042,7 +1042,7 @@ namespace OnlinePharmacy.Server.Migrations
                             ProductCategoryID = 1,
                             ProductDescription = "Ibuprofen is a nonsteroidal anti-inflammatory drug.",
                             ProductDosage = "Ibuprofen dose is 400mg(two tablets) to be taken initially. 200mg(one tablet) to 400mg(two tablets) may be taken every 4 hours when required.",
-                            ProductExpiryDate = new DateTime(2024, 6, 28, 8, 3, 20, 783, DateTimeKind.Utc).AddTicks(5667),
+                            ProductExpiryDate = new DateTime(2024, 6, 28, 12, 22, 20, 520, DateTimeKind.Utc).AddTicks(4237),
                             ProductImage = "https://www.biovea.com/sg/images/products/xlrg/7188_z.jpg",
                             ProductIngredients = "Lactose, Maize Starch, Hypromellose, Sodium Starch Glycollate, Colloidal Anhydrous Silica, Magnesium Stearate, Sucrose, Talc, Titanium Dioxide (E171) and Carnauba Wax",
                             ProductMaximumAge = 12,
@@ -1060,7 +1060,7 @@ namespace OnlinePharmacy.Server.Migrations
                             ProductCategoryID = 3,
                             ProductDescription = "Zyrtec pcs 10's is now Zyrtec-R pcs 10's.\r\nNew Name, New Pack, Same Formula.\r\nZyrtec-R is an antihistamine.",
                             ProductDosage = "Children aged from 2 to 12 years: 2.5 mL of oral solution (half of a spoon) twice daily. Children aged from 6 to 12 years: 5 mg [10 drops, or 5 ml oral solution (1 full spoon) or half of the tablet] twice daily.",
-                            ProductExpiryDate = new DateTime(2024, 6, 28, 8, 3, 20, 783, DateTimeKind.Utc).AddTicks(5675),
+                            ProductExpiryDate = new DateTime(2024, 6, 28, 12, 22, 20, 520, DateTimeKind.Utc).AddTicks(4240),
                             ProductImage = "https://m.media-amazon.com/images/I/717EcbxEZ2L._AC_UF1000,1000_QL80_.jpg",
                             ProductIngredients = "",
                             ProductMaximumAge = 12,
@@ -1228,7 +1228,7 @@ namespace OnlinePharmacy.Server.Migrations
             modelBuilder.Entity("OnlinePharmacy.Shared.Domain.Order", b =>
                 {
                     b.HasOne("OnlinePharmacy.Shared.Domain.Customer", "Customer")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("CustomerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1278,13 +1278,13 @@ namespace OnlinePharmacy.Server.Migrations
                 {
                     b.HasOne("OnlinePharmacy.Shared.Domain.Order", "Order")
                         .WithMany()
-                        .HasForeignKey("OrderID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OrderID");
 
                     b.HasOne("OnlinePharmacy.Shared.Domain.Prescription", "Prescription")
                         .WithMany()
-                        .HasForeignKey("PrescriptionID");
+                        .HasForeignKey("PrescriptionID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("OnlinePharmacy.Shared.Domain.Product", "Product")
                         .WithMany()
@@ -1311,6 +1311,8 @@ namespace OnlinePharmacy.Server.Migrations
             modelBuilder.Entity("OnlinePharmacy.Shared.Domain.Customer", b =>
                 {
                     b.Navigation("OnlineConsultations");
+
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("OnlinePharmacy.Shared.Domain.Staff", b =>

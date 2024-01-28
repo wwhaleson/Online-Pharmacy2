@@ -48,25 +48,19 @@ namespace OnlinePharmacy.Shared.Domain
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            // Check if OrderDate is earlier than today's date
-            if (OrderDate != null)
+            DateTime currentDateTime = DateTime.Now;
+
+            // Check if OrderDate is today's date
+            if (OrderDate != null && OrderDate != currentDateTime.Date)
             {
-                if (OrderDate < DateTime.Today)
-                {
-                    yield return new ValidationResult("Order Date cannot be earlier than today", new[] { "OrderDate" });
-                }
+                yield return new ValidationResult("Order Date must be today's date", new[] { "OrderDate" });
             }
 
-            // Check if OrderTime is earlier than the current time now
-            if (OrderTime != null)
+            // Check if OrderTime is in the past
+            if (OrderTime != null && OrderDate == currentDateTime.Date && OrderTime.Value.TimeOfDay < currentDateTime.TimeOfDay)
             {
-
-                if (OrderTime > DateTime.Now)
-                {
-                    yield return new ValidationResult("Order Date and Time cannot be earlier than the current date and time now", new[] { "OrderDate", "OrderTime" });
-                }
+                yield return new ValidationResult("Order Time cannot be in the past", new[] { "OrderTime" });
             }
-
 
         }
     }

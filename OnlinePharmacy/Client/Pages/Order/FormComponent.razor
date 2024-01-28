@@ -1,0 +1,128 @@
+﻿@inject HttpClient _client
+<EditForm Model="@order" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <fieldset disabled="@Disabled">
+        <div class="d-flex flex-column mt-4" id="flexcolumnorder">
+            <div class="card bg-light mb-3 OrderCard">
+                <div class="card-header">Order</div>
+                <div class="card-body">
+                    <div class="row gx-3 mb-3">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Customer: </label>
+                                <div>
+                                    <InputSelect @bind-Value="order.CustomerID" class="form-control">
+                                        <option value="">-- Select Customer --</option>
+                                        @if (Customers != null)
+                                        {
+                                            foreach (var customer in Customers)
+                                            {
+                                                <option value="@customer.CustomerID">@customer.CustFname @customer.CustLname</option>
+                                            }
+                                        }
+                                    </InputSelect>
+                                    <ValidationMessage For="@(() => order.CustomerID)" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Staff: </label>
+                                <div>
+                                    <InputSelect @bind-Value="order.StaffID" class="form-control">
+                                        <option value="">-- Clerk --</option>
+                                        @if (Staffs != null)
+                                        {
+                                            foreach (var staff in Staffs.Where(staff => staff.Position == "Order Clerk"))
+                                            {
+                                                <option value="@staff.StaffID">@staff.StaffFname @staff.StaffLname</option>
+                                            }
+                                        }
+                                    </InputSelect>
+                                    <ValidationMessage For="@(() => order.CustomerID)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row gx-3 mb-3">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Order Date: </label>
+                                <div>
+                                    <InputDate @bind-Value="@order.OrderDate" class="form-control" />
+                                    <ValidationMessage For="@(() => order.OrderDate)" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Order Time: </label>
+                                <div>
+                                    <input type="time" @bind="@order.OrderTime" class="form-control" />
+                                    <ValidationMessage For="@(() => order.OrderTime)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 
+                    <div class="row gx-3 mb-3">
+                        <div class="form-group">
+                            <label>Total Price SGD$: </label>
+                            <div>
+                                <input type="number" @bind="@order.TotalCost" class="form-control"/>
+                                <ValidationMessage For="@(() => order.TotalCost)" />
+                            </div>
+                        </div>
+
+                        <!-- Diagnosis -->
+                        <div class="form-group">
+                            <label>Payment Type: </label>
+                            <div>
+                                <InputSelect @bind-Value="order.PaymentType" class="form-control">
+                                    <option value="">-- Select Payment Type--</option>
+                                    <option value="Credit Card">Credit Card</option>
+                                    <option value="PayLah!">PayLah!</option>
+                                    <option value="PayNow">PayNow</option>
+                                    <option value="PayPal">PayPal</option>
+                                </InputSelect>
+                                <ValidationMessage For="@(() => order.PaymentType)" />
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <div class="d-flex flex-column-md-6 mt-2 justify-content-center">
+        @if (!Disabled)
+        {
+            <button type="submit" class="btn btn-success me-2">
+                @ButtonText
+            </button>
+        }
+        <BackToList Target="Order" />
+    </div>
+</EditForm>
+
+
+@code {
+    [Parameter] public bool Disabled { get; set; } = false;
+    [Parameter] public Order? order { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+
+    private IList<Staff>? Staffs;
+    private IList<Customer>? Customers;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Staffs = await _client.GetFromJsonAsync<List<Staff>>($"{Endpoints.StaffsEndpoint}");
+        Customers = await _client.GetFromJsonAsync<List<Customer>>($"{Endpoints.CustomersEndpoint}");
+    }
+
+}
