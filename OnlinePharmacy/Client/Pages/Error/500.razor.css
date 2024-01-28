@@ -1,0 +1,21 @@
+﻿
+
+#dflexerror500 {
+    justify-content: center;
+    margin-bottom: 5px;
+}
+#500error {
+    font-weight: 900;
+    font-family: "Rubik", serif;
+    font-size: 100px;
+    text-align: center;
+}
+#explain500{
+    font-weight: 500;
+    font-family: "Rubik", serif;
+    font-size: 20px;
+    text-align: center;
+}
+.dflexbacktostore {
+    justify-content: center;
+}

@@ -1,4 +1,25 @@
 ﻿@page "/500"
-<h1 class="text-danger">
-We have encountered an error completing your request. Please try
-again.</h1>
+<PageTitle>ERROR 500</PageTitle>
+@inject NavigationManager Navigation
+
+<div class="container">
+    <div class="d-flex flex-column" id="dflexerror404">
+        <h1 class="mt-5" id="500error">Error 500</h1>
+
+        <h3 id="explain500">
+            We have encountered an error completing your request. Please try
+            again.
+        </h3>
+
+    </div>
+    <div class="d-flex mt-5 dflexbacktostore">
+        <button class="btn btn-outline-primary btn-lg" type="button" align="center" @onclick="homepage">BACK TO STORE</button>
+    </div>
+</div>
+
+@code {
+    void homepage()
+    {
+        Navigation.NavigateTo("/");
+    }
+}

@@ -51,12 +51,10 @@ namespace OnlinePharmacy.Shared.Domain
 
         [Required(ErrorMessage = "Consultation Status is required")]
         [StringLength(50, MinimumLength = 2, ErrorMessage = "Consultation Status length should be between 2 and 50")]
-        [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "Consultation Status should only contain alphabetic characters")]
         public string? ConsultationStatus { get; set; }
 
         [Required(ErrorMessage = "Consultation Platform is required")]
         [StringLength(50, MinimumLength = 4, ErrorMessage = "Consultation Platform length should be between 2 and 50")]
-        [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "Consultation Platform should only contain alphabetic characters")]
         public string? ConsultationPlatform { get; set; }
 
         [Required(ErrorMessage = "Customer ID is required")]

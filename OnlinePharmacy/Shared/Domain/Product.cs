@@ -64,7 +64,7 @@ namespace OnlinePharmacy.Shared.Domain
 
         [Required]
         [Display(Name = "Prescription Status")]
-        public bool? PrescriptionStatus { get; set; }
+        public bool PrescriptionStatus { get; set; }
 
         [Required(ErrorMessage = "Product Price is required")]
         [Range(0.01, double.MaxValue, ErrorMessage = "Product Price must be greater than 0")]

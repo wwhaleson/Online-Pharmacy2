@@ -1,7 +1,22 @@
-﻿#flexcolumnprescriptionitem {
-    align-items: center;
+﻿.em {
+    text-align: center;
 }
-
+.form-control{
+    text-align:center;
+    border:none;
+}
+.prescriptionproductproduct-thumb{
+    justify-items:center;
+}
+.precriptionitemtableheader {
+    font-size: 25px;
+    font-family: "Rubik", serif;
+}
+.PrescriptionProductimage {
+    height: 200px;
+    width: 200px;
+    align-self: center;
+}
 .PrescriptionItemCard {
     max-width: 1000px;
     width: 100%;
@@ -12,4 +27,8 @@
     font-family: "Rubik", serif;
     font-size: 20px;
     text-align: center;
+}
+
+#flexcolumnprescriptionitem {
+    align-items: center;
 }

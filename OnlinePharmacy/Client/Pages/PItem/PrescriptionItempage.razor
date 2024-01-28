@@ -9,11 +9,11 @@
 <div class="container">
    
     <div class="d-flex flex-column" id="dflexPrescriptionItem">
-        <h1 class="mt-5" id="PrescriptionItemheader">Prescription</h1>
-        <!--<a href="/Prescription/create" class="btn btn-secondary createprescriptionbutton">
+        <h1 class="mt-5" id="PrescriptionItemheader">Prescription Item</h1>
+        <a href="/PrescriptionItem/create" class="btn btn-secondary createprescriptionitembutton">
             <span class="oi oi-plus"></span>
             Create New Prescription
-        </a>-->
+        </a>
     </div>
     
     @if (PrescriptionItems == null)
@@ -43,10 +43,10 @@
                         <td class="dr">@prescriptionitem.PrescriptionItemQuantity</td>
                         <td class="dr">@prescriptionitem.PrescriptionItemSubTotal</td>
                         <td class="dr d-flex flex-wrap justify-content-center">
-                            <a href="/Prescription/view/@prescriptionitem.PrescriptionItemID" class="btn btn-primary mb-2 me-2">
+                            <a href="/PrescriptionItem/view/@prescriptionitem.PrescriptionItemID" class="btn btn-primary mb-2 me-2">
                                 <i class="bi bi-file-earmark"></i>
                             </a>
-                            <a href="/Prescription/edit/@prescriptionitem.PrescriptionItemID" class="btn btn-warning mb-2 me-2">
+                            <a href="/PrescriptionItem/edit/@prescriptionitem.PrescriptionItemID" class="btn btn-warning mb-2 me-2">
                                 <i class="bi bi-pencil-square"></i>
                             </a>
                                 <button class="btn btn-danger mb-2" @onclick="@(()=>Delete(prescriptionitem.PrescriptionItemID))">

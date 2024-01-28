@@ -21,8 +21,8 @@ namespace OnlinePharmacy.Server.Configurations.Entities
             new Order
             {
                 OrderID = 1,
-                OrderDate = DateTime.Now,
-                OrderTime = DateTime.Now,
+                OrderDate = DateTime.Now.AddMonths(1), // Set OrderDate to tomorrow (to satisfy the validation rule)
+                OrderTime = DateTime.Now.AddMonths(1), // Set OrderTime to one hour later (to satisfy the validation rule)
                 TotalCost = 15,
                 PaymentType = "Credit Card",
                 CustomerID = 1,
@@ -33,8 +33,8 @@ namespace OnlinePharmacy.Server.Configurations.Entities
              new Order
              {
                  OrderID = 2,
-                 OrderDate = DateTime.Now,
-                 OrderTime = DateTime.Now,
+                 OrderDate = DateTime.Now.AddMonths(1), // Set OrderDate to tomorrow (to satisfy the validation rule)
+                 OrderTime = DateTime.Now.AddMonths(1), // Set OrderTime to one hour later (to satisfy the validation rule)
                  TotalCost = 25,
                  PaymentType = "Credit Card",
                  CustomerID = 2,

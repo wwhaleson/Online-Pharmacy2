@@ -1,4 +1,24 @@
 ﻿@page "/404"
-<h1 class="text-danger">
-The resource you are looking for could not be found.
-</h1>
+<PageTitle>ERROR 404</PageTitle>
+@inject NavigationManager Navigation
+
+
+<div class="container">
+    <div class="d-flex flex-column" id="dflexerror404">
+        <h1 class="mt-5" id="404error">Error 404</h1>
+
+        <h3 id="explain404">The resource you are looking for could not be found.</h3>
+
+    </div>
+    <div class="d-flex mt-5 dflexbacktostore">
+        <button class="btn btn-outline-primary btn-lg" type="button" align="center" @onclick="homepage">BACK TO STORE</button>
+    </div>
+</div>
+
+
+@code {
+    void homepage()
+    {
+        Navigation.NavigateTo("/");
+    }
+}

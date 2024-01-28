@@ -44,11 +44,6 @@
 }
 
 
-#Shoppingbag{
-    position: relative;
-    margin-right:20px;
-}
-
 #Searchscope {
     margin-right: 20px;
     height:30px;
@@ -56,13 +51,6 @@
 
 #Profileicon {
     margin-right: 20px;
-}
-
-#shoppingbagnumberofproducts {
-    position: absolute;
-    top: 5px;
-    left: 20px;
-    font-size: 10px;
 }
 
 #navtoggler {
@@ -73,41 +61,9 @@
     background-color:grey;
 }
 
-
-
-#prescriptionmedicine:hover {
-    font-weight: 600;
-}
-
-#overthecountermedicine:hover {
-    font-weight: 600;
-}
-
-#vitamins:hover {
-    font-weight: 600;
-}
-
-#homecareandrecoveryaid:hover {
-    font-weight: 600;
-}
-
 #productslink:hover {
     color: forestgreen;
     font-weight: 600;
-}
-#onlineconsultationslink:hover {
-    color: forestgreen;
-    font-weight: 600;
-}
-
-
-#prescriptionmeds:hover {
-    color: forestgreen;
-    font-weight: 600;
-}
-
-#prescriptionmeds {
-    white-space: nowrap;
 }
 
 
