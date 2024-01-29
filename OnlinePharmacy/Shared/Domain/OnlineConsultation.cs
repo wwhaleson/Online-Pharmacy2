@@ -81,7 +81,7 @@ namespace OnlinePharmacy.Shared.Domain
                 }
             }
 
-            // Check if both ConsultationDateStart and ConsultationDateEnd are greater than or equal to today
+            /* Check if both ConsultationDateStart and ConsultationDateEnd are greater than or equal to today
             if (ConsultationDateStart != null && ConsultationDateStart < DateTime.Today)
             {
                 yield return new ValidationResult("Consultation Date Start cannot be less than today", new[] { "ConsultationDateStart" });
@@ -91,6 +91,7 @@ namespace OnlinePharmacy.Shared.Domain
             {
                 yield return new ValidationResult("Consultation Date End cannot be less than today", new[] { "ConsultationDateEnd" });
             }
+            */
 
             // Check if ConsultationTimeStart is greater than ConsultationTimeEnd
             if (ConsultationTimeStart != null && ConsultationTimeEnd != null)

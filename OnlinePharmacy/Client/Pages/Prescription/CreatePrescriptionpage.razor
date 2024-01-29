@@ -21,7 +21,7 @@
     private async Task CreatePrescriptions()
     {
         await _client.PostAsJsonAsync(Endpoints.PrescriptionsEndpoint, prescription);
-        _navManager.NavigateTo("/Prescription/");
+        _navManager.NavigateTo("/PrescriptionItem/create/");
     }
 
 }

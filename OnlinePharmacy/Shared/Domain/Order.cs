@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnlinePharmacy.Shared.Domain
 {
-    public class Order : IValidatableObject
+    public class Order 
     {
         [Required(ErrorMessage = "Order ID is required")]
         [Display(Name = "Order ID")]
@@ -46,9 +46,9 @@ namespace OnlinePharmacy.Shared.Domain
 
         public virtual Staff? Staff { get; set; }
 
+        /*
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            DateTime currentDateTime = DateTime.Now;
 
             // Check if OrderDate is today's date
             if (OrderDate != null && OrderDate != currentDateTime.Date)
@@ -62,6 +62,6 @@ namespace OnlinePharmacy.Shared.Domain
                 yield return new ValidationResult("Order Time cannot be in the past", new[] { "OrderTime" });
             }
 
-        }
+        }*/
     }
 }

@@ -63,7 +63,8 @@ namespace OnlinePharmacy.Shared.Domain
         [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$", ErrorMessage = "Password does not meet the complexity requirements")]
         public string CustPass { get; set; }
 
+        /*
         public virtual List<OnlineConsultation>? OnlineConsultations { get; set; }
-        public virtual List<Order>? Orders { get; set; }
+        public virtual List<Order>? Orders { get; set; }*/
     }
 }

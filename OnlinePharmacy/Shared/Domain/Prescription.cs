@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnlinePharmacy.Shared.Domain
 {
-    public class Prescription : IValidatableObject
+    public class Prescription
     {
         [Required(ErrorMessage = "Prescription ID is required")]
         [Display(Name = "Prescription ID")]
@@ -29,6 +29,7 @@ namespace OnlinePharmacy.Shared.Domain
 
         public virtual OnlineConsultation? OnlineConsultation { get; set; }
 
+        /*
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
 
@@ -65,7 +66,7 @@ namespace OnlinePharmacy.Shared.Domain
 
 
         }
-
+        */
 
     }
 }
