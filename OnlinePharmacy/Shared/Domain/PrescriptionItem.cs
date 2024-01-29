@@ -28,18 +28,11 @@ namespace OnlinePharmacy.Shared.Domain
         [Required(ErrorMessage = "Prescription ID is required")]
         [Display(Name = "Prescription ID")]
         public int? PrescriptionID { get; set; }
-
         public virtual Prescription? Prescription { get; set; }
 
         [Required(ErrorMessage = "Product ID is required")]
         [Display(Name = "Product ID")]
         public int ProductID { get; set; }
-
         public virtual Product? Product { get; set; }
-
-
-        public int? OrderID { get; set; }
-        public virtual Order? Order { get; set; }
-
     }
 }

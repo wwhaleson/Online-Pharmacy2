@@ -20,7 +20,5 @@ namespace OnlinePharmacy.Shared.Domain
         [Required]
         [StringLength(100, MinimumLength = 5, ErrorMessage = "Category Description does not meet length requiremnts")]
         public string CategoryDescription { get; set; }
-
-
     }
 }

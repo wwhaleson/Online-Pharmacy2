@@ -1,6 +1,8 @@
 ﻿@attribute [Authorize]
 @inject HttpClient _client
 @inject IJSRuntime js
+@inject HttpInterceptorService _interceptor
+@implements IDisposable
 @page "/Category"
 <PageTitle>Category</PageTitle>
 
@@ -64,6 +66,7 @@
     <!--When the page begins to load-->
     protected async override Task OnInitializedAsync()
     {
+        _interceptor.MonitorEvent();
         Categories = await _client.GetFromJsonAsync<List<Category>>($"{Endpoints.CategoriesEndpoint}");
     }
     async Task Delete(int categoryId)
@@ -78,6 +81,10 @@
                 await OnInitializedAsync();
             }
         }
+    }
+    public void Dispose()
+    {
+        _interceptor.DisposeEvent();
     }
 
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnlinePharmacy.Shared.Domain
 {
-    public class Prescription
+    public class Prescription : IValidatableObject
     {
         [Required(ErrorMessage = "Prescription ID is required")]
         [Display(Name = "Prescription ID")]
@@ -26,13 +26,11 @@ namespace OnlinePharmacy.Shared.Domain
         [Required(ErrorMessage = "Online Consultation ID is required")]
         [Display(Name = "Online Consultation ID")]
         public int OnlineConsultationID { get; set; }
-
         public virtual OnlineConsultation? OnlineConsultation { get; set; }
 
-        /*
+        
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-
             //throw new NotImplementedException();
             if (IssueDate != null)
             {
@@ -58,15 +56,12 @@ namespace OnlinePharmacy.Shared.Domain
                 yield return new ValidationResult("Issue Date must be today or in the future", new[] { "IssueDate" });
             }
 
-            if (ExpiryDate != null && ExpiryDate < today)
+            if (ExpiryDate != null && ExpiryDate <= today)
             {
                 yield return new ValidationResult("Expiry Date must be today or in the future", new[] { "ExpiryDate" });
             }
 
-
-
         }
-        */
-
+        
     }
 }

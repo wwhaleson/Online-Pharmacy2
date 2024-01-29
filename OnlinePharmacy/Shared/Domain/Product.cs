@@ -71,14 +71,15 @@ namespace OnlinePharmacy.Shared.Domain
         [DataType(DataType.Currency)]
         public decimal? ProductPrice { get; set; }
 
+        
         [Required]
         [Display(Name = "Stock Quantity")]
         public int? StockQuantity { get; set; }
 
+
         [Required(ErrorMessage = "Product Category ID is required")]
         [Display(Name = "Product Category ID")]
         public int ProductCategoryID { get; set; }
-
         public virtual Category? Category { get; set; }
 
 
@@ -102,8 +103,6 @@ namespace OnlinePharmacy.Shared.Domain
                     yield return new ValidationResult("Product Minimum Age must be greater than Product Maximum Age", new[] { "ProductMaximumAge" });
                 }
             }
-
-
 
         }
     }
