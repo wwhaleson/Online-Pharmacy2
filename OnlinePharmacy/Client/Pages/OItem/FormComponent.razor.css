@@ -1,0 +1,39 @@
+﻿.em {
+    text-align: center;
+}
+
+.form-control {
+    text-align: center;
+    border: none;
+}
+
+.orderproductproduct-thumb {
+    justify-items: center;
+}
+
+.orderitemtableheader {
+    font-size: 25px;
+    font-family: "Rubik", serif;
+}
+
+.OrderProductimage {
+    height: 200px;
+    width: 200px;
+    align-self: center;
+}
+
+.OrderItemCard {
+    max-width: 1000px;
+    width: 100%;
+}
+
+.card-header {
+    font-weight: 800;
+    font-family: "Rubik", serif;
+    font-size: 20px;
+    text-align: center;
+}
+
+#flexcolumnorderitem {
+    align-items: center;
+}

@@ -16,11 +16,36 @@ namespace OnlinePharmacy.Server.Configurations.Entities
     {
         public void Configure(EntityTypeBuilder<OrderItem> builder)
         {
+            builder.HasData(
+           new OrderItem
+           {
+               OrderItemID = 1,
+               OrderItemQty = 2,
+               OrderItemSubTotal = 20,
+               OrderID = 1,
+               ProductID = 1,
 
 
 
-
+           },
+            new OrderItem
+            {
+                OrderItemID = 2,
+                OrderItemQty = 3,
+                OrderItemSubTotal = 21,
+                OrderID = 2,
+                ProductID = 2,
             
+
+            }
+
+
+            );
+
+
+
+
+
 
             //throw new NotImplementedException();
         }
