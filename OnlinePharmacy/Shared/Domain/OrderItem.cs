@@ -28,7 +28,7 @@ namespace OnlinePharmacy.Shared.Domain
         [Display(Name = "Order ID")]
         public int OrderID { get; set; }
 
-        public virtual Order Order { get; set; }
+        public virtual Order? Order { get; set; }
 
         [Required(ErrorMessage = "Product ID is required")]
         [Display(Name = "Product ID")]
