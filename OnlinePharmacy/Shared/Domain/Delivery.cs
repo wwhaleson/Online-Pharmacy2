@@ -36,17 +36,14 @@ namespace OnlinePharmacy.Shared.Domain
         public string DeliveryMethod { get; set; }
 
         [Required(ErrorMessage = "Delivery Cost is required")]
-        [Range(0.00, double.MaxValue, ErrorMessage = "Delivery Cost must be a valid cost")]
+        [RegularExpression(@"^\d+(\.\d{1,2})?$", ErrorMessage = "Delivery Cost must be a valid cost with up to two decimal places")]
         public decimal DeliveryCost { get; set; }
 
         [Required(ErrorMessage = "Order ID is required")]
         public int OrderID { get; set; }
-
         public virtual Order? Order { get; set; }
 
-
         public int? StaffID { get; set; }
-
         public virtual Staff? Staff { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
@@ -54,7 +51,7 @@ namespace OnlinePharmacy.Shared.Domain
             //throw new NotImplementedException();
             if (EstimatedDeliveryDate != null)
             {
-                if (EstimatedDeliveryDate <= DateTime.Now.Date)
+                if (EstimatedDeliveryDate < DateTime.Now.Date)
                 {
                     yield return new ValidationResult("Estimated Delivery Date must be today's date or later", new[] { "EstimatedDeliveryDate" });
                 }

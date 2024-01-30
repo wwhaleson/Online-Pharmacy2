@@ -49,7 +49,8 @@ namespace OnlinePharmacy.Shared.Domain
 
         [Required(ErrorMessage = "Phone Number is required")]
         [DataType(DataType.PhoneNumber)]
-        [RegularExpression(@"(6|8|9)\d{7}", ErrorMessage = "Contact Number is not a valid phone number")]
+        [RegularExpression(@"^(6|8|9)\d{7}$", ErrorMessage = "Contact Number is not a valid phone number")]
+        [StringLength(8, MinimumLength = 8, ErrorMessage = "Phone number must be 8 digits")]
         public int CustPhoneNo { get; set; }
 
         [Required(ErrorMessage = "Email Address is required")]
@@ -57,13 +58,10 @@ namespace OnlinePharmacy.Shared.Domain
         [EmailAddress]
         public string CustEmail { get; set; }
 
-
         [Required(ErrorMessage = "Password is required")]
         [DataType(DataType.Password)]
         [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$", ErrorMessage = "Password does not meet the complexity requirements")]
         public string CustPass { get; set; }
 
-        public virtual List<OnlineConsultation>? OnlineConsultations { get; set; }
-        public virtual List<Order>? Orders { get; set; }
     }
 }

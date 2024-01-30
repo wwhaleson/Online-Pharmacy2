@@ -36,7 +36,6 @@ namespace OnlinePharmacy.Shared.Domain
         [EmailAddress(ErrorMessage = "The Staff Email field is not a valid email address")]
         public string Staff_email { get; set; }
 
-
         [Required(ErrorMessage = "Password is required")]
         [DataType(DataType.Password)]
         [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$", ErrorMessage = "Password does not meet the complexity requirements")]
@@ -47,8 +46,5 @@ namespace OnlinePharmacy.Shared.Domain
         [StringLength(100, MinimumLength = 2, ErrorMessage = "Choose the appropriate Position")]
         [Display(Name = "Position")]
         public string Position { get; set; }
-
-
-        public virtual List<OnlineConsultation>? OnlineConsultations { get; set; }
     }
 }

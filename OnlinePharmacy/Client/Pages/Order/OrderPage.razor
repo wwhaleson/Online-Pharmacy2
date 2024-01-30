@@ -39,28 +39,7 @@
                             <td class="dr">@order.OrderID</td>
                             <td class="dr">@order.OrderDate.Value.ToString("dddd, dd MMMM yyyy")</td>
                             <td class="dr">@order.OrderTime.Value.ToString("hh:mm tt")</td>
-                            @{
-                                decimal? totalCost = 0; // Initialize totalCost with the order's existing TotalCost
-
-                                // Iterate over OrderItems and update totalCost
-                                foreach (var orderitem in OrderItems)
-                                {
-                                    if (orderitem.OrderID == order.OrderID)
-                                    {
-                                        totalCost += orderitem.OrderItemSubTotal;
-                                    }
-                                }
-
-                                // Iterate over PrescriptionItems and update totalCost
-                                foreach (var prescriptionitem in PrescriptionItems)
-                                {
-                                    if (prescriptionitem.OrderID == order.OrderID)
-                                    {
-                                        totalCost += prescriptionitem.PrescriptionItemSubTotal;
-                                    }
-                                }
-                                order.TotalCost = totalCost;
-                            }
+                            
                             <td class="dr">@order.TotalCost</td>
 
                             <td class="dr">@order.PaymentType</td>
