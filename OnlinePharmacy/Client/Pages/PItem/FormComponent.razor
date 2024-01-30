@@ -18,7 +18,7 @@
                                             <div class="form-group">
                                                 <label>Prescription ID: </label>
                                                 <div>
-                                                    <InputSelect @bind-Value="prescriptionitem.PrescriptionID" class="form-control">
+                                                    <InputSelect @bind-Value="prescriptionitem.PrescriptionID" class="form-control" disabled readonly>
                                                         <option value="">-- Select Prescription --</option>
                                                         @if (Prescriptions != null)
                                                         {
@@ -175,5 +175,3 @@
         }
     }
 }
-
-

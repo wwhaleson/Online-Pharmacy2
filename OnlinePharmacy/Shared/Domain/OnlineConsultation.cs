@@ -59,12 +59,12 @@ namespace OnlinePharmacy.Shared.Domain
 
         [Required(ErrorMessage = "Customer ID is required")]
         [Display(Name = "Customer ID")]
-        public int CustomerID { get; set; }
+        public int? CustomerID { get; set; }
         public virtual Customer? Customer { get; set; }
 
         [Required(ErrorMessage = "Pharmacist ID is required")]
         [Display(Name = "Pharmacist ID")]
-        public int PharmacistID { get; set; }
+        public int? PharmacistID { get; set; }
         public virtual Staff? Staff { get; set; } 
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
@@ -95,6 +95,15 @@ namespace OnlinePharmacy.Shared.Domain
                 if (startTime < allowedStartTime || endTime > allowedEndTime)
                 {
                     yield return new ValidationResult("Consultation times must be between 9 am and 9 pm", new[] { "ConsultationTimeStart", "ConsultationTimeEnd" });
+                }
+            }
+            if (ConsultationDateStart != null)
+            {
+                DateTime currentDate = DateTime.Now.Date;
+
+                if (ConsultationDateStart.Value.Date < currentDate)
+                {
+                    yield return new ValidationResult("Consultation Date Start must be today or later", new[] { "ConsultationDateStart" });
                 }
             }
 

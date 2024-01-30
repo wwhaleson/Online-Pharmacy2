@@ -6,6 +6,11 @@
 @page "/Staff"
 <PageTitle>Staff</PageTitle>
 
+@{
+    int intSno = 0;
+}
+
+
 <div class="container">
 
     <div class="d-flex flex-column" id="dflexStaff">
@@ -14,6 +19,10 @@
             <span class="oi oi-plus"></span>
             Create New Staff
         </a>
+    </div>
+    <div class="col-4 p-0 justify-content-end">
+        <Input @oninput="Search" placeholder="Seach First Name" class="p-3"/>
+
     </div>
 
 
@@ -27,6 +36,7 @@
             {
                 @foreach (var staff in Staffs)
                 {
+                    intSno = intSno + 1;
                     <div class="col aStaff">
                         <div class="card h-100 Staffcard text-decoration-none" style="word-wrap: break-word; cursor: pointer;">
                             @if (!string.IsNullOrEmpty(staff.StaffImage) && Uri.TryCreate(staff.StaffImage, UriKind.RelativeOrAbsolute, out _))
@@ -39,6 +49,7 @@
                                 <img src="https://cdn-icons-png.flaticon.com/512/2815/2815428.png" class="staffimage img-fluid">
                             }
                             <div class="card-body Staffcardbody">
+                                <h6>@intSno</h6>
                                 <h3 class="staffname">@staff.StaffFname @staff.StaffLname</h3>
                                 <h5 class="staffposition">@staff.Position</h5>
                             </div>
@@ -87,6 +98,23 @@
     public void Dispose()
     {
         _interceptor.DisposeEvent();
+    }
+
+
+    public async void Search(ChangeEventArgs args)
+    {
+        var searchTerm = (string)args.Value;
+
+        if (searchTerm == "")
+        {
+            Staffs = await _client.GetFromJsonAsync<List<Staff>>($"{Endpoints.StaffsEndpoint}");
+        }
+        else
+        {
+            Staffs = Staffs.Where(x => x.StaffFname.Contains(searchTerm)).OrderByDescending(x => x.StaffID).ToList();
+        }
+        StateHasChanged();
+
     }
 
 }

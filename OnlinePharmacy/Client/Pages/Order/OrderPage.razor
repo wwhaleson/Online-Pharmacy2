@@ -1,5 +1,7 @@
 ﻿@attribute [Authorize]
 @inject HttpClient _client
+@inject HttpInterceptorService _interceptor
+@implements IDisposable
 @inject IJSRuntime js
 @page "/Order"
 <PageTitle>Order</PageTitle>
@@ -77,10 +79,16 @@
     <!--When the page begins to load-->
     protected async override Task OnInitializedAsync()
     {
+        _interceptor.MonitorEvent();
         Orders = await _client.GetFromJsonAsync<List<Order>>($"{Endpoints.OrdersEndpoint}");
         OrderItems = await _client.GetFromJsonAsync<List<OrderItem>>($"{Endpoints.OrderItemsEndpoint}");
         PrescriptionItems = await _client.GetFromJsonAsync<List<PrescriptionItem>>($"{Endpoints.PrescriptionItemsEndpoint}");
     }
+    public void Dispose()
+    {
+        _interceptor.DisposeEvent();
+    }
+
     async Task Delete(int orderId)
     {
         if (Orders != null)

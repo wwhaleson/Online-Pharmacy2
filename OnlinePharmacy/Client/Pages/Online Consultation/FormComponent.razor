@@ -120,9 +120,7 @@
                     <div>
                         <InputSelect @bind-Value="onlineconsultation.ConsultationStatus" class="form-control">
                             <option value="">-- Select Consultation Status --</option>
-                            <option value="Scheduled">Scheduled</option>
                             <option value="Completed">Completed</option>
-                            <option value="Cancelled">Cancelled</option>
                         </InputSelect>
                         <ValidationMessage For="@(() => onlineconsultation.ConsultationStatus)" />
                     </div>
@@ -130,7 +128,7 @@
 
                 <div class="form-group mb-3">
                     <label>Online Consultation Price SGD$: </label>
-                    <input type="number" @bind="@onlineconsultation.ConsultationPrice" class="form-control" aria-label="Amount (to the nearest dollar)" />
+                    <input type="number" @bind="@onlineconsultation.ConsultationPrice" class="form-control" aria-label="Amount (to the nearest dollar) " step="0.01" />
                     <ValidationMessage For="@(() => onlineconsultation.ConsultationPrice)" />
                 </div>
 
@@ -164,6 +162,19 @@
     {
         Pharmacists = await _client.GetFromJsonAsync<List<Staff>>($"{Endpoints.StaffsEndpoint}");
         Customers = await _client.GetFromJsonAsync<List<Customer>>($"{Endpoints.CustomersEndpoint}");
+    }
+
+
+        private void OnStartDateChanged(DateTime? newStartDate)
+    {
+        // Update the end date to match the start date
+        onlineconsultation.ConsultationDateEnd = newStartDate;
+    }
+
+    private void OnEndDateChanged(DateTime? newEndDate)
+    {
+        // Update the start date to match the end date
+        onlineconsultation.ConsultationDateStart = newEndDate;
     }
 
 }

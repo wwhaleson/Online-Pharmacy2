@@ -4,6 +4,7 @@
 
 <h1 class="mt-3" id="EditPrescriptionheader">Edit Prescription</h1>
 <FormComponent ButtonText="Update" OnValidSubmit="EditPrescription" prescription="prescription" />
+<Next Target="PrescriptionItem" />
 @code {
 
     [Parameter] public int id { get; set; }
