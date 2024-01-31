@@ -13,16 +13,9 @@
                             <div class="form-group">
                                 <label>Online Consultation: </label>
                                 <div>
-                                    <InputSelect @bind-Value="prescription.OnlineConsultationID" class="form-control" disabled readonly>
-                                        @if (OnlineConsultations != null)
-                                        {
-                                            foreach (var onlineconsultation in OnlineConsultations)
-                                            {
-                                                <option value="@onlineconsultation.OnlineConsultationID">@onlineconsultation.OnlineConsultationID</option>
-                                            }
-                                        }
-                                    </InputSelect>
-                                    <ValidationMessage For="@(() => prescription.OnlineConsultationID)"/>
+                                    <h5>
+                                        @prescription.OnlineConsultationID
+                                    </h5>
                                 </div>
                             </div>
                         </div>                   
@@ -59,7 +52,6 @@
             @ButtonText
         </button>
     }
-    <BackToList Target="Prescription" />
     </div>
 </EditForm>
 

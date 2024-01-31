@@ -5,7 +5,16 @@
 <h1 class="mt-3" id="EditOnlineConsultationheader">Edit Online Consultation</h1>
 
 <FormComponent ButtonText="Update" OnValidSubmit="EditOnlineConsultation" onlineconsultation="onlineconsultation" />
-<Next Target="Prescription" />
+
+<div class="d-flex justify-content-around">
+    <a href="/Prescription/edit/@id" class="btn btn-primary ">
+        <span class="oi oi-arrow-right"></span>
+        Edit Prescription
+    </a>
+</div>
+
+
+
 @code {
 
     [Parameter] public int id { get; set; }
@@ -20,7 +29,7 @@
     {
         await _client.PutAsJsonAsync($"{Endpoints.OnlineConsultationsEndpoint}/{id}",
         onlineconsultation);
-        _navManager.NavigateTo("/OnlineConsultation/");
+        /*_navManager.NavigateTo("/OnlineConsultation/");*/
     }
 
 }

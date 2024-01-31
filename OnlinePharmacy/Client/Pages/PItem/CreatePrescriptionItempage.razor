@@ -2,7 +2,7 @@
 @page "/PrescriptionItem/create/"
 @inject HttpClient _client
 @inject NavigationManager _navManager
-@inject IJSRuntime _jsRuntime
+@inject IJSRuntime JSRuntime
 <h1 class="mt-3" id="CreatePrescriptionItemheader"> Create Prescription Item</h1>
 
 
@@ -49,9 +49,8 @@
     private async Task CreatePrescriptionItems()
     {
         await _client.PostAsJsonAsync(Endpoints.PrescriptionItemsEndpoint, prescriptionitem);
-        /*_navManager.NavigateTo("/PrescriptionItem/");*/
-        // Reset the prescriptionitem to a new instance
-        // Show the modal after creating the Prescription Item
+        await JSRuntime.InvokeVoidAsync("alert", "Prescription item was created!");
+        prescriptionitem = new PrescriptionItem();
 
     }
 

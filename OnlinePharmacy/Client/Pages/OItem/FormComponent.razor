@@ -1,6 +1,4 @@
 ﻿@inject HttpClient _client
-@inject IJSRuntime JSRuntime
-
 
 <EditForm Model="@orderitem" OnValidSubmit="@OnValidSubmit">
     <DataAnnotationsValidator />
@@ -65,7 +63,7 @@
                                                                                     {
                                                                                         if (product.PrescriptionStatus == false)
                                                                                         {
-                                                                                            <option value="@product.ProductID">@product.ProductID</option>
+                                                                                            <option value="@product.ProductID">@product.ProductName</option>
                                                                                         }
                                                                                     }
                                                                                 }
@@ -120,16 +118,12 @@
     <div class="d-flex flex-column-md-6 mt-2 justify-content-center">
         @if (!Disabled)
         {
-            <button type="submit" class="btn btn-success me-2" @onclick="ShowAlert">
+            <button type="submit" class="btn btn-success me-2">
                 @ButtonText
             </button>
 
         }
     </div>
-    <a href="/Order/" class="btn btn-secondary backbutton">
-        <span class="oi oi-arrow-circle-left"></span>
-        Back to Order
-    </a>
 </EditForm>
 
 @code {
@@ -184,12 +178,6 @@
             orderitem.OrderItemSubTotal = 0; // or handle the case when the input is not a valid integer
             StateHasChanged();
         }
-    }
-
-    private async Task ShowAlert()
-    {
-        // Call a JavaScript function to show an alert
-        await JSRuntime.InvokeVoidAsync("alert", "Order item was submitted!");
     }
 }
 

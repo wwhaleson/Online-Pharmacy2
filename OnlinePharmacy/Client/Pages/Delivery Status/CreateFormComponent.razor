@@ -17,12 +17,10 @@
                                 <div>
                                     <InputSelect @bind-Value="delivery.OrderID" class="form-control">
                                         <option value="">-- Order ID --</option>
-                                        @if (Orders != null)
+                                        @if (Orders != null && Orders.Any())
                                         {
-                                            foreach (var order in Orders)
-                                            {
-                                                <option value="@order.CustomerID">@order.OrderID</option>
-                                            }
+                                            var latestOrder = Orders.OrderByDescending(oc => oc.OrderID).First();
+                                            <option value="@latestOrder.OrderID">@latestOrder.OrderID</option>
                                         }
                                     </InputSelect>
                                     <ValidationMessage For="@(() => delivery.OrderID)" />
@@ -103,15 +101,15 @@
                 </div>
             </div>
         </div>
-       
+
     </fieldset>
     <div class="d-flex flex-column-md-6 mt-2 justify-content-center">
-    @if (!Disabled)
-    {
+        @if (!Disabled)
+        {
             <button type="submit" class="btn btn-success me-2">
-            @ButtonText
-        </button>
-    }
+                @ButtonText
+            </button>
+        }
     </div>
 </EditForm>
 

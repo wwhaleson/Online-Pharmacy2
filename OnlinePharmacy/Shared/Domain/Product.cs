@@ -87,15 +87,6 @@ namespace OnlinePharmacy.Shared.Domain
         {
 
             //throw new NotImplementedException();
-            if (ProductExpiryDate != null)
-            {
-                if (ProductExpiryDate <= DateTime.Now)
-                {
-                    yield return new ValidationResult("Product Expiry Date must be greater than Date now", new[] { "ProductExpiryDate" });
-                }
-            }
-
-            //throw new NotImplementedException();
             if (ProductMinimumAge != null)
             {
                 if (ProductMaximumAge <= ProductMinimumAge)

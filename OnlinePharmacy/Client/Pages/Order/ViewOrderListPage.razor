@@ -7,7 +7,7 @@
 
 <div class="container">
     <div class="d-flex flex-column" id="dflexorderview">
-        <h1 class="mt-5" id="orderviewheader">Order View</h1>
+        <h1 class="mt-5" id="orderviewheader">Order Items</h1>
 
     </div>
 
@@ -49,31 +49,6 @@
                                         <i class="bi bi-pencil-square"></i>
                                     </a>
                                     <button class="btn btn-danger" @onclick="@(()=>DeleteOI(orderitem.OrderItemID))">
-                                        <i class="bi bi-x-lg"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        }
-
-                    }
-                    @foreach (var prescriptionitem in PrescriptionItems)
-                    {
-                        @if (prescriptionitem.OrderID == id)
-                        {
-                            <tr>
-                                <td class="dr">@prescriptionitem.PrescriptionItemID</td>
-                                <td class="dr">Prescripted</td>
-                                <td class="dr">@prescriptionitem.ProductID</td>
-                                <td class="dr">@prescriptionitem.PrescriptionItemQuantity</td>
-                                <td class="dr">@prescriptionitem.PrescriptionItemSubTotal</td>
-                                <td class="dr">
-                                    <a href="/PrescriptionItem/view/@prescriptionitem.PrescriptionItemID" class="btn btn-primary">
-                                        <i class="bi bi-file-earmark"></i>
-                                    </a>
-                                    <a href="/PrescriptionItem/edit/@prescriptionitem.PrescriptionItemID" class="btn btn-warning">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </a>
-                                    <button class="btn btn-danger" @onclick="@(()=>DeletePI(prescriptionitem.PrescriptionItemID))">
                                         <i class="bi bi-x-lg"></i>
                                     </button>
                                 </td>

@@ -31,12 +31,6 @@ namespace OnlinePharmacy.Shared.Domain
         
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            DateTime today = DateTime.Today;
-
-            if (IssueDate != null && IssueDate != today)
-            {
-                yield return new ValidationResult("Issue Date must be today", new[] { "IssueDate" });
-            }
 
             if (ExpiryDate != null && (IssueDate == null || ExpiryDate <= IssueDate))
             {

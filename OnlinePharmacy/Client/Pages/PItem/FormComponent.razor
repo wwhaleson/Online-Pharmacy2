@@ -18,17 +18,9 @@
                                             <div class="form-group">
                                                 <label>Prescription ID: </label>
                                                 <div>
-                                                    <InputSelect @bind-Value="prescriptionitem.PrescriptionID" class="form-control" disabled readonly>
-                                                        <option value="">-- Select Prescription --</option>
-                                                        @if (Prescriptions != null)
-                                                        {
-                                                        foreach (var prescription in Prescriptions)
-                                                            {
-                                                                <option value="@prescription.PrescriptionID">@prescription.PrescriptionID</option>
-                                                            }
-                                                        }
-                                                    </InputSelect>
-                                                    <ValidationMessage For="@(() => prescriptionitem.PrescriptionID)" />
+                                                    <h5>
+                                                        @prescriptionitem.PrescriptionID
+                                                    </h5>
                                                 </div>
                                             </div>
                                         </div>
