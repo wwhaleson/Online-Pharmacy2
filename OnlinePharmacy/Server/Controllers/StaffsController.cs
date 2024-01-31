@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol;
 using OnlinePharmacy.Server.Data;
 using OnlinePharmacy.Server.IRepository;
 using OnlinePharmacy.Shared.Domain;
@@ -24,13 +27,36 @@ namespace OnlinePharmacy.Server.Controllers
             _unitOfWork = unitOfWork;
         }
 
+
         // GET: api/Staffs
         [HttpGet]
         public async Task<IActionResult> GetStaffs()
         {
+
+    
             var staffs = await _unitOfWork.Staffs.GetAll();
+
             return Ok(staffs);
+
+
+
+            // You might return ObjectResult or another appropriate result type here
+            //return Ok(staffs);
+
+
+            //var staffs = await _unitOfWork.Staffs.GetAll();
+            //return Ok(staffs);
+
+            //var staffs = await _unitOfWork.Staffs.GetAll(); // Assuming GetAll returns all staff members
+
+            // Filter staffs with the first name "Tom"
+            //var filteredStaffs = staffs.Where(b => b.StaffFname.Equals("Tom")).ToList();
+
+            //return Ok(filteredStaffs);
+
         }
+
+
 
         // GET: api/Staffs/5
         [HttpGet("{id}")]

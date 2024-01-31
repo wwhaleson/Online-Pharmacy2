@@ -2,6 +2,7 @@
 @inject HttpClient _client
 @inject IJSRuntime js
 @page "/Customer"
+@inject HttpInterceptorService _interceptor
 @implements IDisposable
 <PageTitle>Customer Status</PageTitle>
 <div class="container">
@@ -73,6 +74,7 @@
     <!--When the page begins to load-->
     protected async override Task OnInitializedAsync()
     {
+        _interceptor.MonitorEvent();
         Customers = await _client.GetFromJsonAsync<List<Customer>>($"{Endpoints.CustomersEndpoint}");
     }
     async Task Delete(int customerId)
@@ -95,6 +97,7 @@
 
     public void Dispose()
     {
+        _interceptor.DisposeEvent();
         js.InvokeVoidAsync("DataTablesDispose", "#customersTable");
     }
 }

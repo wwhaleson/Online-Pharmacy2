@@ -1,46 +1,45 @@
 ﻿@inject HttpClient _client
 
-<EditForm Model="@orderitem" OnValidSubmit="@OnValidSubmit">
+<EditForm Model="@prescriptionitem" OnValidSubmit="@OnValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <fieldset disabled="@Disabled">
-        <div class="d-flex flex-column mt-4" id="flexcolumnorderitem">
-            <div class="d-flex flex-column mt-4" id="flexcolumnorderitem">
-                <div class="card bg-light mb-3 OrderItemCard">
-                    <div class="card-header">Order Item</div>
+        <div class="d-flex flex-column mt-4" id="flexcolumnprescriptionitem">
+            <div class="d-flex flex-column mt-4" id="flexcolumnprescriptionitem2">
+                <div class="card bg-light mb-3 PrescriptionItemCard">
+                    <div class="card-header">Prescription Item</div>
                     <div class="card-body">
-                        <div class="container-xl px-4 mt-4" id="orderitemdetails">
-                            <div class="row gx-3 mb-3">                                     
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Order ID: </label>
-                                                <div>
-                                                    <InputSelect @bind-Value="orderitem.OrderID" class="form-control">
-                                                        <option value="">-- Select Order --</option>
-                                                        @if (Orders != null)
-                                                        {
-                                                        foreach (var order in Orders)
-                                                            {
-                                                                <option value="@orderitem.OrderID">@orderitem.OrderID</option>
-                                                            }
-                                                        }
-                                                    </InputSelect>
+                        <div class="container-xl px-4 mt-4" id="prescriptionitemdetails">
 
-                                                    <ValidationMessage For="@(() => orderitem.OrderID)" />
-                                                </div>
-                                            </div>
+
+                            <div class="row gx-3 mb-3">
+                                <!-- Form Group-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Prescription ID: </label>
+                                        <div>
+                                            <InputSelect @bind-Value="prescriptionitem.PrescriptionID" class="form-control">
+                                                <option value="">-- Select Prescription --</option>
+                                                @if (Prescriptions != null && Prescriptions.Any())
+                                                {
+                                                    var latestPrescription = Prescriptions.OrderByDescending(p => p.PrescriptionID).First();
+                                                    <option value="@latestPrescription.PrescriptionID">@latestPrescription.PrescriptionID</option>
+                                                }
+                                            </InputSelect>
+                                            <ValidationMessage For="@(() => prescriptionitem.PrescriptionID)" />
                                         </div>
+                                    </div>
+                                </div>
                             </div>
-
                             <div class="row">
-                                <div class="table-responsive ordershopping-cart">
+                                <div class="table-responsive prescriptionshopping-cart">
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th class="text-center orderitemtableheader">Order Product</th>
-                                                <th class="text-center orderitemtableheader">Quantity</th>
-                                                <th class="text-center orderitemtableheader">Price</th>
-                                                <th class="text-center orderitemtableheader">Subtotal</th>
+                                                <th class="text-center precriptionitemtableheader">Prescription Product</th>
+                                                <th class="text-center precriptionitemtableheader">Quantity</th>
+                                                <th class="text-center precriptionitemtableheader">Price</th>
+                                                <th class="text-center precriptionitemtableheader">Subtotal</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -48,28 +47,24 @@
                                                 <td>
                                                     <div class="d-flex justify-content-center align-items-center">
                                                         <div class="flex-row">
-                                                            <a class="orderproductproduct-thumb">
-                                                                <img src="@GetProductImage(orderitem.ProductID)" class="OrderProductimage">
+                                                            <a class="prescriptionproductproduct-thumb">
+                                                                <img src="@GetProductImage(prescriptionitem.ProductID)" class="PrescriptionProductimage">
                                                             </a>
-                                                            <div class="orderproduct-info mt-4">
-                                                                <h4 class="orderitem-title text-center">
+                                                            <div class="prescriptionproduct-info mt-4">
+                                                                <h4 class="prescriptionitem-title text-center">
                                                                     <div class="form-group">
-                                                                        <label>Product ID: </label>
                                                                         <div>
-                                                                            <InputSelect @bind-Value="orderitem.ProductID" class="form-control">
-                                                                                <option value="">-- Select Product ID --</option>
+                                                                            <InputSelect @bind-Value="prescriptionitem.ProductID" class="form-control border-0 text-center" oninput="@OnProductSelected">
+                                                                                <option value="">-- Prescription Product --</option>
                                                                                 @if (Products != null)
                                                                                 {
-                                                                                    foreach (var product in Products)
+                                                                                    foreach (var product in Products.Where(p => p.PrescriptionStatus))
                                                                                     {
-                                                                                        if (product.PrescriptionStatus == false)
-                                                                                        {
-                                                                                            <option value="@product.ProductID">@product.ProductName</option>
-                                                                                        }
+                                                                                        <option value="@product.ProductID">@product.ProductName</option>
                                                                                     }
                                                                                 }
                                                                             </InputSelect>
-                                                                            <ValidationMessage For="@(() => orderitem.ProductID)" />
+                                                                            <ValidationMessage For="@(() => prescriptionitem.ProductID)" />
                                                                         </div>
                                                                     </div>
                                                                 </h4>
@@ -82,8 +77,8 @@
                                                     <div class="count-input">
                                                         <div>
                                                             <h4>
-                                                                <input type="number" @bind="@orderitem.OrderItemQty" class="form-control-sm-5 border-0 text-center" @oninput="@OnQuantityChanged" />
-                                                                <ValidationMessage For="@(() => orderitem.OrderItemQty)" />
+                                                                <input type="number" @bind="@prescriptionitem.PrescriptionItemQuantity" class="form-control-sm-5 border-0 text-center" @oninput="@OnQuantityChanged" />
+                                                                <ValidationMessage For="@(() => prescriptionitem.PrescriptionItemQuantity)" />
                                                             </h4>
                                                         </div>
                                                     </div>
@@ -91,15 +86,15 @@
                                                 <td class="text-center text-lg text-medium">
                                                     <div>
                                                         <h4>
-                                                            @GetProductPrice(orderitem.ProductID)
+                                                            @GetProductPrice(prescriptionitem.ProductID)
                                                         </h4>
                                                     </div>
                                                 </td>
                                                 <td class="text-center text-lg text-medium">
                                                     <div>
                                                         <h4>
-                                                            <!-- Bind the result of the multiplication to OrderItemSubTotal -->
-                                                            @orderitem.OrderItemSubTotal
+                                                            <!-- Bind the result of the multiplication to PrescriptionItemSubTotal -->
+                                                            @prescriptionitem.PrescriptionItemSubTotal
                                                         </h4>
                                                     </div>
                                                 </td>
@@ -115,35 +110,32 @@
         </div>
 
     </fieldset>
-
     <div class="d-flex flex-column-md-6 mt-2 justify-content-center">
         @if (!Disabled)
         {
             <button type="submit" class="btn btn-success me-2">
                 @ButtonText
             </button>
-
         }
+        <ConfirmFinalised Target="OnlineConsultation" />
     </div>
 </EditForm>
 
 @code {
     [Parameter] public bool Disabled { get; set; } = false;
-    [Parameter] public OrderItem? orderitem { get; set; }
+    [Parameter] public PrescriptionItem? prescriptionitem { get; set; }
     [Parameter] public string ButtonText { get; set; } = "Save";
     [Parameter] public EventCallback OnValidSubmit { get; set; }
 
-
+    private IList<Prescription>? Prescriptions;
     private IList<Product>? Products;
     private IList<Order>? Orders;
 
-
     protected async override Task OnInitializedAsync()
     {
-
+        Prescriptions = await _client.GetFromJsonAsync<List<Prescription>>($"{Endpoints.PrescriptionsEndpoint}");
         Products = await _client.GetFromJsonAsync<List<Product>>($"{Endpoints.ProductsEndpoint}");
         Orders = await _client.GetFromJsonAsync<List<Order>>($"{Endpoints.OrdersEndpoint}");
-
     }
 
     private string GetProductImage(int productId)
@@ -166,17 +158,17 @@
         return selectedProduct?.ProductPrice ?? 0.0m; // Assuming ProductPrice is of type decimal
     }
 
-    // Update this method to calculate the subtotal and update the OrderItemSubTotal
+    // Update this method to calculate the subtotal and update the PrescriptionItemSubTotal
     private void OnQuantityChanged(ChangeEventArgs e)
     {
         if (int.TryParse(e.Value.ToString(), out int quantity))
         {
-            orderitem.OrderItemSubTotal = quantity * GetProductPrice(orderitem.ProductID);
+            prescriptionitem.PrescriptionItemSubTotal = quantity * GetProductPrice(prescriptionitem.ProductID);
             StateHasChanged(); // Ensure the component re-renders to reflect the updated subtotal.
         }
         else
         {
-            orderitem.OrderItemSubTotal = 0; // or handle the case when the input is not a valid integer
+            prescriptionitem.PrescriptionItemSubTotal = 0; // or handle the case when the input is not a valid integer
             StateHasChanged();
         }
     }

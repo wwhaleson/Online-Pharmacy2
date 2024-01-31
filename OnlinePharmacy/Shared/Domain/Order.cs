@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OnlinePharmacy.Shared.Domain
 {
-    public class Order : IValidatableObject
+    public class Order
     {
         [Required(ErrorMessage = "Order ID is required")]
         [Display(Name = "Order ID")]
@@ -41,21 +41,6 @@ namespace OnlinePharmacy.Shared.Domain
         public int StaffID { get; set; }
         public virtual Staff? Staff { get; set; }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            DateTime currentDateTime = DateTime.Now;
-
-            // Check if OrderDate is today's date or later
-            if (OrderDate != null && OrderDate.Value.Date < currentDateTime.Date)
-            {
-                yield return new ValidationResult("Order Date must be today's date or later", new[] { "OrderDate" });
-            }
-
-            // Check if OrderTime is in the past
-            if (OrderTime != null && OrderDate == currentDateTime.Date && OrderTime.Value.TimeOfDay < currentDateTime.TimeOfDay)
-            {
-                yield return new ValidationResult("Order Time cannot be in the past", new[] { "OrderTime" });
-            }
-        }
+        
     }
 }

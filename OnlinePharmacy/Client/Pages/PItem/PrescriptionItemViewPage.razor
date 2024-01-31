@@ -3,6 +3,8 @@
 @inject NavigationManager _navManager
 <h1 class="mt-3" id="ViewPrescriptionItemheader"> View Prescription Item</h1>
 <FormComponent prescriptionitem="prescriptionitem" Disabled="true" />
+
+
 @code {
     [Parameter] public int id { get; set; }
     PrescriptionItem? prescriptionitem = new PrescriptionItem();

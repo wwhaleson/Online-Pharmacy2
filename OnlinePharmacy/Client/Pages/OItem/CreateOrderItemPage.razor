@@ -2,13 +2,16 @@
 @page "/OrderItem/create/"
 @inject HttpClient _client
 @inject NavigationManager _navManager
-
+@inject IJSRuntime JSRuntime
 
 <h1 class="mt-3" id="CreateOrderItemheader"> Create Order Item</h1>
 
 
-<CreateFormComponent ButtonText="Create Order Item" orderitem="orderitem" OnValidSubmit="@CreateOrderItems"/>
-
+<FormComponent ButtonText="Create Order Item" orderitem="orderitem" OnValidSubmit="@CreateOrderItems"/>
+<a href="/Delivery/create/" class="btn btn-primary">
+    <span class="oi oi-arrow-right"></span>
+    Create Delivery
+</a>
 
 @code {
 
@@ -27,8 +30,9 @@
 
     private async Task CreateOrderItems()
     {
-       
+
         await _client.PostAsJsonAsync(Endpoints.OrderItemsEndpoint, orderitem);
+        await JSRuntime.InvokeVoidAsync("alert", "Order item was created!");
         orderitem = new OrderItem();
        
     }

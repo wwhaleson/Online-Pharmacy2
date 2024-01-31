@@ -45,10 +45,6 @@ namespace OnlinePharmacy.Shared.Domain
         [StringLength(255, MinimumLength = 4, ErrorMessage = "Consultation Diagnosis length should be between 5 and 255")]
         public string? ConsultationDiagnosis { get; set; }
 
-        /*[Required(ErrorMessage = "Consultation Duration is required")]
-        [Range(20, int.MaxValue, ErrorMessage = "Consultation Duration must be greater than 20 minutes")]
-        public int? ConsultationDuration { get; set; }*/
-
         [Required(ErrorMessage = "Consultation Status is required")]
         [StringLength(50, MinimumLength = 2, ErrorMessage = "Consultation Status length should be between 2 and 50")]
         public string? ConsultationStatus { get; set; }
@@ -59,12 +55,12 @@ namespace OnlinePharmacy.Shared.Domain
 
         [Required(ErrorMessage = "Customer ID is required")]
         [Display(Name = "Customer ID")]
-        public int CustomerID { get; set; }
+        public int? CustomerID { get; set; }
         public virtual Customer? Customer { get; set; }
 
         [Required(ErrorMessage = "Pharmacist ID is required")]
         [Display(Name = "Pharmacist ID")]
-        public int PharmacistID { get; set; }
+        public int? PharmacistID { get; set; }
         public virtual Staff? Staff { get; set; } 
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
@@ -97,6 +93,7 @@ namespace OnlinePharmacy.Shared.Domain
                     yield return new ValidationResult("Consultation times must be between 9 am and 9 pm", new[] { "ConsultationTimeStart", "ConsultationTimeEnd" });
                 }
             }
+
 
         }
 

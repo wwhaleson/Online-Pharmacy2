@@ -22,7 +22,7 @@
     else
     {
         <div class="table-responsive mt-3">
-            <table class="table ">
+            <table class="table" id="categorysTable">
                 <thead class="table-light">
                     <tr id="categorytablecolumnname">
                         <th scope="col" class="dcol">#Category ID</th>
@@ -59,8 +59,6 @@
 </div>
 
 
-
-
 @code {
     private List<Category>? Categories;
     <!--When the page begins to load-->
@@ -85,6 +83,13 @@
     public void Dispose()
     {
         _interceptor.DisposeEvent();
+
+        js.InvokeVoidAsync("DataTablesDispose", "#categorysTable");
+    }
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        await js.InvokeVoidAsync("AddDataTable", "#categorysTable");
     }
 
 }

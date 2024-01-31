@@ -10,7 +10,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace OnlinePharmacy.Shared.Domain
 {
-    public class Delivery:IValidatableObject
+    public class Delivery
     {
         [Required(ErrorMessage = "Delivery ID is required")]
         [Display(Name = "Delivery ID")]
@@ -45,31 +45,6 @@ namespace OnlinePharmacy.Shared.Domain
 
         public int? StaffID { get; set; }
         public virtual Staff? Staff { get; set; }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            //throw new NotImplementedException();
-            if (EstimatedDeliveryDate != null)
-            {
-                if (EstimatedDeliveryDate < DateTime.Now.Date)
-                {
-                    yield return new ValidationResult("Estimated Delivery Date must be today's date or later", new[] { "EstimatedDeliveryDate" });
-                }
-
-            }
-
-            //throw new NotImplementedException();
-            if (EstimatedDeliveryTime != null)
-            {
-                DateTime currentTime = DateTime.Now;
-
-                if (EstimatedDeliveryTime.Value.TimeOfDay <= currentTime.TimeOfDay)
-                {
-                    yield return new ValidationResult("Estimated Delivery Time must be later than the current time", new[] { "EstimatedDeliveryTime" });
-                }
-            }
-
-        }
 
     }
 }

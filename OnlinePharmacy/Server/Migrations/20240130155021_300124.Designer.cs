@@ -12,8 +12,13 @@ using OnlinePharmacy.Server.Data;
 namespace OnlinePharmacy.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
+<<<<<<<< HEAD:OnlinePharmacy/Server/Migrations/20240131014927_latest.Designer.cs
     [Migration("20240131014927_latest")]
     partial class latest
+========
+    [Migration("20240130155021_300124")]
+    partial class _300124
+>>>>>>>> 5d8362f2a67edd35b056019d175b58eaebb100ac:OnlinePharmacy/Server/Migrations/20240130155021_300124.Designer.cs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -399,7 +404,11 @@ namespace OnlinePharmacy.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
+<<<<<<<< HEAD:OnlinePharmacy/Server/Migrations/20240131014927_latest.Designer.cs
                             ConcurrencyStamp = "290f3be0-f5d3-4749-9e62-f8f89334fbbb",
+========
+                            ConcurrencyStamp = "f2a43a0e-fe4b-4b0c-ad9b-fbc0485460c3",
+>>>>>>>> 5d8362f2a67edd35b056019d175b58eaebb100ac:OnlinePharmacy/Server/Migrations/20240130155021_300124.Designer.cs
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -407,9 +416,15 @@ namespace OnlinePharmacy.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
+<<<<<<<< HEAD:OnlinePharmacy/Server/Migrations/20240131014927_latest.Designer.cs
                             PasswordHash = "AQAAAAIAAYagAAAAEBoChFqmjTrZ9X38mkBk/j0bhFlUmxcXT2lQHxBtEHWUl5Fjc7giNY0jkSt7zuxXaw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "a1ac0fa8-57f1-486a-8800-e230c7cba8f3",
+========
+                            PasswordHash = "AQAAAAIAAYagAAAAEJGpjb778Asvn0bRRa/5iqvgLIQ+slno3vCkL6CAw57TiRckbpCISWWsRPVdr6jP4A==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "d42e2b11-e533-4c47-a57c-133de840efc1",
+>>>>>>>> 5d8362f2a67edd35b056019d175b58eaebb100ac:OnlinePharmacy/Server/Migrations/20240130155021_300124.Designer.cs
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
@@ -601,8 +616,13 @@ namespace OnlinePharmacy.Server.Migrations
                             DeliveryCost = 5m,
                             DeliveryMethod = "Standard",
                             DeliveryStatus = "Packing",
+<<<<<<<< HEAD:OnlinePharmacy/Server/Migrations/20240131014927_latest.Designer.cs
                             EstimatedDeliveryDate = new DateTime(2024, 1, 31, 9, 49, 27, 334, DateTimeKind.Local).AddTicks(375),
                             EstimatedDeliveryTime = new DateTime(2024, 1, 31, 9, 49, 27, 334, DateTimeKind.Local).AddTicks(390),
+========
+                            EstimatedDeliveryDate = new DateTime(2024, 1, 30, 23, 50, 21, 518, DateTimeKind.Local).AddTicks(7353),
+                            EstimatedDeliveryTime = new DateTime(2024, 1, 30, 23, 50, 21, 518, DateTimeKind.Local).AddTicks(7366),
+>>>>>>>> 5d8362f2a67edd35b056019d175b58eaebb100ac:OnlinePharmacy/Server/Migrations/20240130155021_300124.Designer.cs
                             OrderID = 1,
                             StaffID = 1
                         },
@@ -612,8 +632,13 @@ namespace OnlinePharmacy.Server.Migrations
                             DeliveryCost = 5m,
                             DeliveryMethod = "Standard",
                             DeliveryStatus = "Packing",
+<<<<<<<< HEAD:OnlinePharmacy/Server/Migrations/20240131014927_latest.Designer.cs
                             EstimatedDeliveryDate = new DateTime(2024, 1, 31, 9, 49, 27, 334, DateTimeKind.Local).AddTicks(393),
                             EstimatedDeliveryTime = new DateTime(2024, 1, 31, 9, 49, 27, 334, DateTimeKind.Local).AddTicks(393),
+========
+                            EstimatedDeliveryDate = new DateTime(2024, 1, 30, 23, 50, 21, 518, DateTimeKind.Local).AddTicks(7368),
+                            EstimatedDeliveryTime = new DateTime(2024, 1, 30, 23, 50, 21, 518, DateTimeKind.Local).AddTicks(7369),
+>>>>>>>> 5d8362f2a67edd35b056019d175b58eaebb100ac:OnlinePharmacy/Server/Migrations/20240130155021_300124.Designer.cs
                             OrderID = 2,
                             StaffID = 1
                         });
@@ -667,10 +692,12 @@ namespace OnlinePharmacy.Server.Migrations
                         .IsRequired()
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CustomerID")
+                    b.Property<int?>("CustomerID")
+                        .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int>("PharmacistID")
+                    b.Property<int?>("PharmacistID")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int?>("StaffID")
@@ -688,30 +715,50 @@ namespace OnlinePharmacy.Server.Migrations
                         new
                         {
                             OnlineConsultationID = 1,
+<<<<<<<< HEAD:OnlinePharmacy/Server/Migrations/20240131014927_latest.Designer.cs
                             ConsultationDateEnd = new DateTime(2024, 1, 31, 1, 49, 27, 334, DateTimeKind.Utc).AddTicks(882),
                             ConsultationDateStart = new DateTime(2024, 1, 31, 1, 49, 27, 334, DateTimeKind.Utc).AddTicks(881),
+========
+                            ConsultationDateEnd = new DateTime(2024, 1, 30, 15, 50, 21, 518, DateTimeKind.Utc).AddTicks(7613),
+                            ConsultationDateStart = new DateTime(2024, 1, 30, 15, 50, 21, 518, DateTimeKind.Utc).AddTicks(7612),
+>>>>>>>> 5d8362f2a67edd35b056019d175b58eaebb100ac:OnlinePharmacy/Server/Migrations/20240130155021_300124.Designer.cs
                             ConsultationDiagnosis = "Common cold",
                             ConsultationPlatform = "Online Call",
                             ConsultationPrice = 40m,
                             ConsultationStatus = "Completed",
                             ConsultationSymptom = "Fever, Headache",
+<<<<<<<< HEAD:OnlinePharmacy/Server/Migrations/20240131014927_latest.Designer.cs
                             ConsultationTimeEnd = new DateTime(2024, 1, 31, 1, 49, 27, 334, DateTimeKind.Utc).AddTicks(881),
                             ConsultationTimeStart = new DateTime(2024, 1, 31, 1, 49, 27, 334, DateTimeKind.Utc).AddTicks(880),
+========
+                            ConsultationTimeEnd = new DateTime(2024, 1, 30, 15, 50, 21, 518, DateTimeKind.Utc).AddTicks(7612),
+                            ConsultationTimeStart = new DateTime(2024, 1, 30, 15, 50, 21, 518, DateTimeKind.Utc).AddTicks(7611),
+>>>>>>>> 5d8362f2a67edd35b056019d175b58eaebb100ac:OnlinePharmacy/Server/Migrations/20240130155021_300124.Designer.cs
                             CustomerID = 1,
                             PharmacistID = 1
                         },
                         new
                         {
                             OnlineConsultationID = 2,
+<<<<<<<< HEAD:OnlinePharmacy/Server/Migrations/20240131014927_latest.Designer.cs
                             ConsultationDateEnd = new DateTime(2024, 1, 31, 1, 49, 27, 334, DateTimeKind.Utc).AddTicks(890),
                             ConsultationDateStart = new DateTime(2024, 1, 31, 1, 49, 27, 334, DateTimeKind.Utc).AddTicks(889),
+========
+                            ConsultationDateEnd = new DateTime(2024, 1, 30, 15, 50, 21, 518, DateTimeKind.Utc).AddTicks(7704),
+                            ConsultationDateStart = new DateTime(2024, 1, 30, 15, 50, 21, 518, DateTimeKind.Utc).AddTicks(7704),
+>>>>>>>> 5d8362f2a67edd35b056019d175b58eaebb100ac:OnlinePharmacy/Server/Migrations/20240130155021_300124.Designer.cs
                             ConsultationDiagnosis = "Common cold",
                             ConsultationPlatform = "Online Call",
                             ConsultationPrice = 45.75m,
                             ConsultationStatus = "Completed",
                             ConsultationSymptom = "Headache",
+<<<<<<<< HEAD:OnlinePharmacy/Server/Migrations/20240131014927_latest.Designer.cs
                             ConsultationTimeEnd = new DateTime(2024, 1, 31, 1, 49, 27, 334, DateTimeKind.Utc).AddTicks(889),
                             ConsultationTimeStart = new DateTime(2024, 1, 31, 1, 49, 27, 334, DateTimeKind.Utc).AddTicks(888),
+========
+                            ConsultationTimeEnd = new DateTime(2024, 1, 30, 15, 50, 21, 518, DateTimeKind.Utc).AddTicks(7703),
+                            ConsultationTimeStart = new DateTime(2024, 1, 30, 15, 50, 21, 518, DateTimeKind.Utc).AddTicks(7703),
+>>>>>>>> 5d8362f2a67edd35b056019d175b58eaebb100ac:OnlinePharmacy/Server/Migrations/20240130155021_300124.Designer.cs
                             CustomerID = 2,
                             PharmacistID = 1
                         });
@@ -761,8 +808,13 @@ namespace OnlinePharmacy.Server.Migrations
                         {
                             OrderID = 1,
                             CustomerID = 1,
+<<<<<<<< HEAD:OnlinePharmacy/Server/Migrations/20240131014927_latest.Designer.cs
                             OrderDate = new DateTime(2024, 2, 29, 9, 49, 27, 334, DateTimeKind.Local).AddTicks(1452),
                             OrderTime = new DateTime(2024, 2, 29, 9, 49, 27, 334, DateTimeKind.Local).AddTicks(1466),
+========
+                            OrderDate = new DateTime(2024, 2, 29, 23, 50, 21, 518, DateTimeKind.Local).AddTicks(8016),
+                            OrderTime = new DateTime(2024, 2, 29, 23, 50, 21, 518, DateTimeKind.Local).AddTicks(8023),
+>>>>>>>> 5d8362f2a67edd35b056019d175b58eaebb100ac:OnlinePharmacy/Server/Migrations/20240130155021_300124.Designer.cs
                             PaymentType = "Credit Card",
                             StaffID = 2,
                             TotalCost = 15m
@@ -771,8 +823,13 @@ namespace OnlinePharmacy.Server.Migrations
                         {
                             OrderID = 2,
                             CustomerID = 2,
+<<<<<<<< HEAD:OnlinePharmacy/Server/Migrations/20240131014927_latest.Designer.cs
                             OrderDate = new DateTime(2024, 2, 29, 9, 49, 27, 334, DateTimeKind.Local).AddTicks(1473),
                             OrderTime = new DateTime(2024, 2, 29, 9, 49, 27, 334, DateTimeKind.Local).AddTicks(1474),
+========
+                            OrderDate = new DateTime(2024, 2, 29, 23, 50, 21, 518, DateTimeKind.Local).AddTicks(8029),
+                            OrderTime = new DateTime(2024, 2, 29, 23, 50, 21, 518, DateTimeKind.Local).AddTicks(8029),
+>>>>>>>> 5d8362f2a67edd35b056019d175b58eaebb100ac:OnlinePharmacy/Server/Migrations/20240130155021_300124.Designer.cs
                             PaymentType = "Credit Card",
                             StaffID = 2,
                             TotalCost = 25m
@@ -843,7 +900,8 @@ namespace OnlinePharmacy.Server.Migrations
                         .IsRequired()
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("OnlineConsultationID")
+                    b.Property<int?>("OnlineConsultationID")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("PrescriptionID");
@@ -863,7 +921,11 @@ namespace OnlinePharmacy.Server.Migrations
                         new
                         {
                             PrescriptionID = 2,
+<<<<<<<< HEAD:OnlinePharmacy/Server/Migrations/20240131014927_latest.Designer.cs
                             ExpiryDate = new DateTime(2024, 7, 31, 0, 0, 0, 0, DateTimeKind.Local),
+========
+                            ExpiryDate = new DateTime(2024, 7, 30, 0, 0, 0, 0, DateTimeKind.Local),
+>>>>>>>> 5d8362f2a67edd35b056019d175b58eaebb100ac:OnlinePharmacy/Server/Migrations/20240130155021_300124.Designer.cs
                             IssueDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Local),
                             OnlineConsultationID = 2
                         });
@@ -1005,7 +1067,11 @@ namespace OnlinePharmacy.Server.Migrations
                             ProductCategoryID = 2,
                             ProductDescription = "Scott's is the Number 1 Kids' Multivitamin Brand in Singapore*. Worry about your little ones being picky with food and not getting the necessary nutrients for proper growth/development? Do not worry, Scott’s Multivitamin Gummies is coming to your rescue! Available in three delicious fruity flavors Apple, Tropical Fruits, and the NEWEST addition - Mango; it contains Zinc and five essential vitamins - A, B6, C, D, E - to support your kid immunity, bone growth and healthy vision every day. Moreover, Scott's micro encapsulation technology locks in the goodness of Zinc and 5 Vitamins (Vitamin A, B6, C, D & E) whilst giving kids the taste they love.",
                             ProductDosage = "3x/Day",
+<<<<<<<< HEAD:OnlinePharmacy/Server/Migrations/20240131014927_latest.Designer.cs
                             ProductExpiryDate = new DateTime(2024, 6, 30, 1, 49, 27, 334, DateTimeKind.Utc).AddTicks(2031),
+========
+                            ProductExpiryDate = new DateTime(2024, 6, 30, 15, 50, 21, 518, DateTimeKind.Utc).AddTicks(8436),
+>>>>>>>> 5d8362f2a67edd35b056019d175b58eaebb100ac:OnlinePharmacy/Server/Migrations/20240130155021_300124.Designer.cs
                             ProductImage = "https://m.media-amazon.com/images/I/51Wylj9xQJL._AC_UF1000,1000_QL80_.jpg",
                             ProductIngredients = "Glucose, Syrup, Sugar, Gelatin, Acidity Regulator (Citric Acid, Sodium Citrate), Humectant (Sorbitol), Flavouring substance, Vitamins and Mineral (Vitamin C, Zinc, Vitamin E, Vitamin B6, Vitamin A and Vitamin D) and Colouring substance (Tartrazine)\r\n",
                             ProductMaximumAge = 12,
@@ -1023,7 +1089,11 @@ namespace OnlinePharmacy.Server.Migrations
                             ProductCategoryID = 3,
                             ProductDescription = "Panadol Children’s Suspension 1-6 Years (120mg/5ml) provides relief from fever and pain in children aged 1 to 6 years. Like all Children’s Panadol products, Panadol Children’s Suspension 1-6 Years is gentle on little stomachs. A strawberry-flavoured suspension, Panadol Children’s Suspension 1-6 Years contains no alcohol and is aspirin-free.",
                             ProductDosage = "5-10ml (based on child's weight 9.5-19.5kg)\nDo not take more frequently than once every 4 Hours and do not exceed more than four doses in 24 hours. Do not take for more than 3 days without asking your doctor.",
+<<<<<<<< HEAD:OnlinePharmacy/Server/Migrations/20240131014927_latest.Designer.cs
                             ProductExpiryDate = new DateTime(2024, 6, 30, 1, 49, 27, 334, DateTimeKind.Utc).AddTicks(2036),
+========
+                            ProductExpiryDate = new DateTime(2024, 6, 30, 15, 50, 21, 518, DateTimeKind.Utc).AddTicks(8440),
+>>>>>>>> 5d8362f2a67edd35b056019d175b58eaebb100ac:OnlinePharmacy/Server/Migrations/20240130155021_300124.Designer.cs
                             ProductImage = "https://alcare.sg/wp-content/uploads/2019/08/PAN1-S.jpg",
                             ProductIngredients = "Active ingredient: 120 mg/5 ml Paracetamol\r\nExcipients: No Alcohol, no Aspirin.",
                             ProductMaximumAge = 6,
@@ -1041,7 +1111,11 @@ namespace OnlinePharmacy.Server.Migrations
                             ProductCategoryID = 1,
                             ProductDescription = "Amoxicillin is a penicillin antibiotic. It is used to treat bacterial infections, such as chest infections (including pneumonia) and dental abscesses. It can also be used together with other antibiotics and medicines to treat stomach ulcers.",
                             ProductDosage = "1.25-12.5ml (based on child's weight 3.6-36kg)\nGive this dose three (3) times a day—once in the morning, once at mid-day, and once in the evening—for as long as directed.",
+<<<<<<<< HEAD:OnlinePharmacy/Server/Migrations/20240131014927_latest.Designer.cs
                             ProductExpiryDate = new DateTime(2024, 6, 30, 1, 49, 27, 334, DateTimeKind.Utc).AddTicks(2040),
+========
+                            ProductExpiryDate = new DateTime(2024, 6, 30, 15, 50, 21, 518, DateTimeKind.Utc).AddTicks(8444),
+>>>>>>>> 5d8362f2a67edd35b056019d175b58eaebb100ac:OnlinePharmacy/Server/Migrations/20240130155021_300124.Designer.cs
                             ProductImage = "https://d3pq5rjvq8yvv1.cloudfront.net/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/a/m/amox500tab.jpg",
                             ProductIngredients = "Croscarmellose sodium, gelatin, magnesium stearate, titanium dioxide, and yellow iron oxide.",
                             ProductMaximumAge = 12,
@@ -1059,7 +1133,11 @@ namespace OnlinePharmacy.Server.Migrations
                             ProductCategoryID = 1,
                             ProductDescription = "Ibuprofen is a nonsteroidal anti-inflammatory drug.",
                             ProductDosage = "Ibuprofen dose is 400mg(two tablets) to be taken initially. 200mg(one tablet) to 400mg(two tablets) may be taken every 4 hours when required.",
+<<<<<<<< HEAD:OnlinePharmacy/Server/Migrations/20240131014927_latest.Designer.cs
                             ProductExpiryDate = new DateTime(2024, 6, 30, 1, 49, 27, 334, DateTimeKind.Utc).AddTicks(2043),
+========
+                            ProductExpiryDate = new DateTime(2024, 6, 30, 15, 50, 21, 518, DateTimeKind.Utc).AddTicks(8447),
+>>>>>>>> 5d8362f2a67edd35b056019d175b58eaebb100ac:OnlinePharmacy/Server/Migrations/20240130155021_300124.Designer.cs
                             ProductImage = "https://www.biovea.com/sg/images/products/xlrg/7188_z.jpg",
                             ProductIngredients = "Lactose, Maize Starch, Hypromellose, Sodium Starch Glycollate, Colloidal Anhydrous Silica, Magnesium Stearate, Sucrose, Talc, Titanium Dioxide (E171) and Carnauba Wax",
                             ProductMaximumAge = 12,
@@ -1077,7 +1155,11 @@ namespace OnlinePharmacy.Server.Migrations
                             ProductCategoryID = 3,
                             ProductDescription = "Zyrtec pcs 10's is now Zyrtec-R pcs 10's.\r\nNew Name, New Pack, Same Formula.\r\nZyrtec-R is an antihistamine.",
                             ProductDosage = "Children aged from 2 to 12 years: 2.5 mL of oral solution (half of a spoon) twice daily. Children aged from 6 to 12 years: 5 mg [10 drops, or 5 ml oral solution (1 full spoon) or half of the tablet] twice daily.",
+<<<<<<<< HEAD:OnlinePharmacy/Server/Migrations/20240131014927_latest.Designer.cs
                             ProductExpiryDate = new DateTime(2024, 6, 30, 1, 49, 27, 334, DateTimeKind.Utc).AddTicks(2046),
+========
+                            ProductExpiryDate = new DateTime(2024, 6, 30, 15, 50, 21, 518, DateTimeKind.Utc).AddTicks(8449),
+>>>>>>>> 5d8362f2a67edd35b056019d175b58eaebb100ac:OnlinePharmacy/Server/Migrations/20240130155021_300124.Designer.cs
                             ProductImage = "https://m.media-amazon.com/images/I/717EcbxEZ2L._AC_UF1000,1000_QL80_.jpg",
                             ProductIngredients = "",
                             ProductMaximumAge = 12,
