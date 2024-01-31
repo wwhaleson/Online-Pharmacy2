@@ -3,6 +3,15 @@
 @inject NavigationManager _navManager
 <h1 class="mt-3" id="ViewPrescriptionItemheader"> View Prescription Item</h1>
 <FormComponent prescriptionitem="prescriptionitem" Disabled="true" />
+
+
+<div class="d-flex justify-content-end m-2">
+    <a href="/OnlineConsultation" class="btn btn-primary ">
+        <span class="oi oi-arrow-right"></span>
+        Back to Online Consultation
+    </a>
+</div>
+
 @code {
     [Parameter] public int id { get; set; }
     PrescriptionItem? prescriptionitem = new PrescriptionItem();

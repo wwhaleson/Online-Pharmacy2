@@ -1,12 +1,12 @@
 ﻿@page "/OnlineConsultation/edit/{id:int}"
 @inject HttpClient _client
 @inject NavigationManager _navManager
-
+@inject IJSRuntime JSRuntime
 <h1 class="mt-3" id="EditOnlineConsultationheader">Edit Online Consultation</h1>
 
 <FormComponent ButtonText="Update" OnValidSubmit="EditOnlineConsultation" onlineconsultation="onlineconsultation" />
 
-<div class="d-flex justify-content-around">
+<div class="d-flex justify-content-end m-2">
     <a href="/Prescription/edit/@id" class="btn btn-primary ">
         <span class="oi oi-arrow-right"></span>
         Edit Prescription
@@ -16,7 +16,6 @@
 
 
 @code {
-
     [Parameter] public int id { get; set; }
     OnlineConsultation? onlineconsultation = new OnlineConsultation();
     protected async override Task OnParametersSetAsync()
@@ -29,7 +28,6 @@
     {
         await _client.PutAsJsonAsync($"{Endpoints.OnlineConsultationsEndpoint}/{id}",
         onlineconsultation);
-        /*_navManager.NavigateTo("/OnlineConsultation/");*/
+        await JSRuntime.InvokeVoidAsync("alert", "Online Consultation was edited!");
     }
-
 }
