@@ -70,13 +70,13 @@
 @code {
     private List<Order>? Orders;
     private List<OrderItem>? OrderItems;
-    private List<PrescriptionItem>? PrescriptionItems;
+
     <!--When the page begins to load-->
     protected async override Task OnInitializedAsync()
     {
         Orders = await _client.GetFromJsonAsync<List<Order>>($"{Endpoints.OrdersEndpoint}");
         OrderItems = await _client.GetFromJsonAsync<List<OrderItem>>($"{Endpoints.OrderItemsEndpoint}");
-        PrescriptionItems = await _client.GetFromJsonAsync<List<PrescriptionItem>>($"{Endpoints.PrescriptionItemsEndpoint}");
+
     }
     async Task Delete(int orderId)
     {

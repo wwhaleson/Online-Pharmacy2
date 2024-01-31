@@ -19,14 +19,13 @@
                                                 <div>
                                                     <InputSelect @bind-Value="orderitem.OrderID" class="form-control">
                                                         <option value="">-- Select Order --</option>
-                                                        @if (Orders != null)
+                                                        @if (Orders != null && Orders.Any())
                                                         {
-                                                        foreach (var order in Orders)
-                                                            {
-                                                                <option value="@orderitem.OrderID">@orderitem.OrderID</option>
-                                                            }
+                                                            var latestOrder = Orders.OrderByDescending(p => p.OrderID).First();
+                                                            <option value="@latestOrder.OrderID">@latestOrder.OrderID</option>
                                                         }
                                                     </InputSelect>
+
 
                                                     <ValidationMessage For="@(() => orderitem.OrderID)" />
                                                 </div>

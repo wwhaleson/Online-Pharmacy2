@@ -11,7 +11,7 @@
 
     </div>
 
-    @if (OrderItems == null && PrescriptionItems == null)
+    @if (OrderItems == null)
     {
         <div class="alert alert-info">Loading Order View</div>
     }
@@ -56,31 +56,6 @@
                         }
 
                     }
-                    @foreach (var prescriptionitem in PrescriptionItems)
-                    {
-                        @if (prescriptionitem.OrderID == id)
-                        {
-                            <tr>
-                                <td class="dr">@prescriptionitem.PrescriptionItemID</td>
-                                <td class="dr">Prescripted</td>
-                                <td class="dr">@prescriptionitem.ProductID</td>
-                                <td class="dr">@prescriptionitem.PrescriptionItemQuantity</td>
-                                <td class="dr">@prescriptionitem.PrescriptionItemSubTotal</td>
-                                <td class="dr">
-                                    <a href="/PrescriptionItem/view/@prescriptionitem.PrescriptionItemID" class="btn btn-primary">
-                                        <i class="bi bi-file-earmark"></i>
-                                    </a>
-                                    <a href="/PrescriptionItem/edit/@prescriptionitem.PrescriptionItemID" class="btn btn-warning">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </a>
-                                    <button class="btn btn-danger" @onclick="@(()=>DeletePI(prescriptionitem.PrescriptionItemID))">
-                                        <i class="bi bi-x-lg"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        }
-
-                    }
                 </tbody>
             </table>
         </div>
@@ -100,12 +75,12 @@
 
 
     private List<OrderItem>? OrderItems;
-    private List<PrescriptionItem>? PrescriptionItems;
+
     <!--When the page begins to load-->
     protected async override Task OnInitializedAsync()
     {
         OrderItems = await _client.GetFromJsonAsync<List<OrderItem>>($"{Endpoints.OrderItemsEndpoint}");
-        PrescriptionItems = await _client.GetFromJsonAsync<List<PrescriptionItem>>($"{Endpoints.PrescriptionItemsEndpoint}");
+
     }
 
 
@@ -122,20 +97,4 @@
             }
         }
     }
-
-
-    async Task DeletePI(int prescriptionitemId)
-    {
-        if (PrescriptionItems != null)
-        {
-            var prescriptionitem = PrescriptionItems.First(q => q.PrescriptionItemID == prescriptionitemId);
-            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to Delete {prescriptionitem.PrescriptionItemID}?");
-            if (confirm)
-            {
-                await _client.DeleteAsync($"{Endpoints.PrescriptionItemsEndpoint}/{prescriptionitemId}");
-                await OnInitializedAsync();
-            }
-        }
-    }
-
 }
