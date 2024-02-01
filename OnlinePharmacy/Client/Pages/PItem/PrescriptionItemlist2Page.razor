@@ -3,7 +3,7 @@
 @inject NavigationManager _navManager
 @inject IJSRuntime js
 <PageTitle>Prescription Item List</PageTitle>
-<h1 class="mt-3" id="ViewPrescriptionItemseditheader">View Prescription Items</h1>
+<h1 class="mt-3" id="ViewPrescriptionItemseditheader">Edit Prescription Items</h1>
 
 
 <div class="container">
@@ -39,7 +39,7 @@
                                 <td class="dr">@prescriptionitem.PrescriptionItemQuantity</td>
                                 <td class="dr">@prescriptionitem.PrescriptionItemSubTotal</td>
                                 <td class="dr">
-                                    <a href="/PrescriptionItem/edit/@prescriptionitem.PrescriptionItemID" class="btn btn-primary">
+                                    <a href="/PrescriptionItem/edit/@prescriptionitem.PrescriptionItemID" class="btn btn-warning">
                                        <i class="bi bi-pencil-square"></i>
                                     </a>
                                 </td>
