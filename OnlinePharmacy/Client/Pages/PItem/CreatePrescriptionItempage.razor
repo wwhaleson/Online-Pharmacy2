@@ -49,7 +49,7 @@
     private async Task CreatePrescriptionItems()
     {
         await _client.PostAsJsonAsync(Endpoints.PrescriptionItemsEndpoint, prescriptionitem);
-        await JSRuntime.InvokeVoidAsync("alert", "Prescription item was created!");
+        await JSRuntime.InvokeVoidAsync("alert", "Prescription Item was Created!");
         prescriptionitem = new PrescriptionItem();
 
     }

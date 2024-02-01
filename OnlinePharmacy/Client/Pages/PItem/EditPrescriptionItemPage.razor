@@ -22,7 +22,7 @@
     {
         await _client.PutAsJsonAsync($"{Endpoints.PrescriptionItemsEndpoint}/{id}",
         prescriptionitem);
-        await JSRuntime.InvokeVoidAsync("alert", "Prescription Item was edited!");
+        await JSRuntime.InvokeVoidAsync("alert", "Prescription Item was Edited!");
     }
 
 }
