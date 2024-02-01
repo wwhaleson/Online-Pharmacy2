@@ -41,26 +41,30 @@
                                                         <td>
                                                             <div class="d-flex justify-content-center align-items-center">
                                                                 <div class="flex-row">
-                                                                    <a class="prescriptionproductproduct-thumb">
-                                                                        <img src="@GetProductImage(prescriptionitem.ProductID)" class="PrescriptionProductimage">
-                                                                    </a>
+                                                                    <div class="flex-container d-flex justify-content-center align-items-center">
+                                                                        <a class="prescriptionproductproduct-thumb">
+                                                                            <img src="@GetProductImage(prescriptionitem.ProductID)" class="PrescriptionProductimage">
+                                                                        </a>
+                                                                    </div>
                                                                     <div class="prescriptionproduct-info mt-4">
                                                                         <h4 class="prescriptionitem-title text-center">
-                                                                            <div class="form-group">
-                                                                                <div>
-                                                                                    <InputSelect @bind-Value="prescriptionitem.ProductID" class="form-control border-0 text-center" oninput="@OnProductSelected">
-                                                                                        <option value="">-- Prescription Product --</option>
-                                                                                        @if (Products != null)
-                                                                                        {
-                                                                                            foreach (var product in Products.Where(p => p.PrescriptionStatus))
-                                                                                            {
-                                                                                                <option value="@product.ProductID">@product.ProductName</option>
-                                                                                            }
-                                                                                        }
-                                                                                    </InputSelect>
-                                                                                    <ValidationMessage For="@(() => prescriptionitem.ProductID)" />
-                                                                                </div>
-                                                                            </div>
+                                                                    <div class="form-group">
+                                                                        <div>
+                                                                            <InputSelect @bind-Value="prescriptionitem.ProductID" class="form-control border-0 text-center" oninput="@OnProductSelected">
+                                                                                <option value="">-- Please Select the Prescription Item --</option>
+                                                                                @if (Products != null)
+                                                                                {
+                                                                                    foreach (var product in Products.Where(p => p.PrescriptionStatus))
+                                                                                    {
+                                                                                        <option value="@product.ProductID">@product.ProductName</option>
+                                                                                    }
+                                                                                }
+                                                                            </InputSelect>
+                                                                            <ValidationMessage For="@(() => prescriptionitem.ProductID)" />
+                                                                        </div>
+                                                                    </div>
+
+
                                                                         </h4>
                                                                     </div>
                                                                 </div>
@@ -71,7 +75,7 @@
                                                             <div class="count-input">
                                                                 <div>
                                                                     <h4>
-                                                                    <input type="number" @bind="@prescriptionitem.PrescriptionItemQuantity" class="form-control-sm-5 border-0 text-center" @oninput="@OnQuantityChanged" />
+                                                                    <input type="number" @bind="@prescriptionitem.PrescriptionItemQuantity" class="form-control-sm-5 text-center" @oninput="@OnQuantityChanged" placeholder="Enter Quantity Here" step="1" min="0" />
                                                                     <ValidationMessage For="@(() => prescriptionitem.PrescriptionItemQuantity)" />
                                                                     </h4>
                                                                 </div>

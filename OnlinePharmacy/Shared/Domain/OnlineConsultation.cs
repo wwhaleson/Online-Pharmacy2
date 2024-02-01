@@ -76,9 +76,9 @@ namespace OnlinePharmacy.Shared.Domain
             // Check if ConsultationTimeStart is greater than ConsultationTimeEnd
             if (ConsultationTimeStart != null && ConsultationTimeEnd != null)
             {
-                if (ConsultationTimeStart > ConsultationTimeEnd)
+                if (ConsultationTimeStart >= ConsultationTimeEnd)
                 {
-                    yield return new ValidationResult("Consultation Time Start must be earlier than or equal to Consultation Time End", new[] { "ConsultationTimeStart" });
+                    yield return new ValidationResult("Consultation Time Start must be earlier than Consultation Time End", new[] { "ConsultationTimeStart" });
                 }
 
                 // Check if ConsultationTimeStart and ConsultationTimeEnd are within the allowed time range (9 am to 9 pm)

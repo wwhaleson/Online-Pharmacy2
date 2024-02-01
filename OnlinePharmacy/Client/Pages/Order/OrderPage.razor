@@ -22,7 +22,7 @@
     else
     {
         <div class="table-responsive mt-3">
-            <table class="table ">
+            <table class="table " id="ordersTable">
                 <thead class="table-light">
                     <tr id="ordertablecolumnname">
                         <th scope="col" class="dcol">#Order ID</th>
@@ -41,7 +41,7 @@
                             <td class="dr">@order.OrderID</td>
                             <td class="dr">@order.OrderDate.Value.ToString("dddd, dd MMMM yyyy")</td>
                             <td class="dr">@order.OrderTime.Value.ToString("hh:mm tt")</td>
-                            
+
                             <td class="dr">@order.TotalCost</td>
 
                             <td class="dr">@order.PaymentType</td>
@@ -62,7 +62,7 @@
             </table>
         </div>
     }
-    
+
 
 </div>
 
@@ -81,10 +81,6 @@
         OrderItems = await _client.GetFromJsonAsync<List<OrderItem>>($"{Endpoints.OrderItemsEndpoint}");
 
     }
-    public void Dispose()
-    {
-        _interceptor.DisposeEvent();
-    }
 
     async Task Delete(int orderId)
     {
@@ -98,5 +94,15 @@
                 await OnInitializedAsync();
             }
         }
+    }
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        await js.InvokeVoidAsync("AddDataTable", "#ordersTable");
+    }
+
+    public void Dispose()
+    {
+        _interceptor.DisposeEvent();
+        js.InvokeVoidAsync("DataTablesDispose", "#ordersTable");
     }
 }

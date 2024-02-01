@@ -83,7 +83,7 @@
                                                     <div class="count-input">
                                                         <div>
                                                             <h4>
-                                                                <input type="number" @bind="@orderitem.OrderItemQty" class="form-control-sm-5 border-0 text-center" @oninput="@OnQuantityChanged" />
+                                                                <input type="number" @bind="@orderitem.OrderItemQty" class="form-control-sm-5 border-0 text-center" @oninput="@OnQuantityChanged"  />
                                                                 <ValidationMessage For="@(() => orderitem.OrderItemQty)" />
                                                             </h4>
                                                         </div>

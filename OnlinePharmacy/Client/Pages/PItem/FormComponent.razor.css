@@ -1,9 +1,10 @@
 ﻿.em {
     text-align: center;
 }
-.form-control{
-    text-align:center;
-    border:none;
+.form-control {
+    text-align: center;
+    border: 2px solid #ced4da; 
+    border-color: black;
 }
 .prescriptionproductproduct-thumb{
     justify-items:center;

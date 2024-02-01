@@ -39,16 +39,17 @@
                                                 <td>
                                                     <div class="d-flex justify-content-center align-items-center">
                                                         <div class="flex-row">
-                                                            <a class="orderproductproduct-thumb">
-                                                                <img src="@GetProductImage(orderitem.ProductID)" class="OrderProductimage">
-                                                            </a>
+                                                            <div class="flex-container d-flex justify-content-center align-items-center">
+                                                                <a class="orderproductproduct-thumb">
+                                                                    <img src="@GetProductImage(orderitem.ProductID)" class="OrderProductimage">
+                                                                </a>
+                                                            </div>
                                                             <div class="orderproduct-info mt-4">
                                                                 <h4 class="orderitem-title text-center">
                                                                     <div class="form-group">
-                                                                        <label>Product ID: </label>
                                                                         <div>
-                                                                            <InputSelect @bind-Value="orderitem.ProductID" class="form-control">
-                                                                                <option value="">-- Select Product ID --</option>
+                                                                            <InputSelect @bind-Value="orderitem.ProductID" class="form-control border-0 text-center" oninput="@OnProductSelected" >
+                                                                                <option value="">>-- Please Select the Product Item --</option>
                                                                                 @if (Products != null)
                                                                                 {
                                                                                     foreach (var product in Products)

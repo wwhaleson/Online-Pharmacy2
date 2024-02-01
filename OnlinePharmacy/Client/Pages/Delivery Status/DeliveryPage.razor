@@ -14,21 +14,22 @@
     {
         <div class="alert alert-info">Loading Deliveries</div>
     }
-    else{
-    <div class="table-responsive mt-3">
-        <table class="table ">
-            <thead class="table-light">
-                <tr id="delivertablecolumnname">
-                    <th scope="col" class="dcol">#Deliver ID</th>
-                    <th scope="col" class="dcol">#Order ID</th>
-                    <th scope="col" class="dcol">Est Delivery Date</th>
-                    <th scope="col" class="dcol">Est Delivery Time</th>
-                    <th scope="col" class="dcol">Status</th>
-                    <th scope="col" class="dcol">Actions</th>
-                </tr>
-            </thead>
+    else
+    {
+        <div class="table-responsive mt-3">
+            <table class="table " id="deliveryTable">
+                <thead class="table-light">
+                    <tr id="delivertablecolumnname">
+                        <th scope="col" class="dcol">#Deliver ID</th>
+                        <th scope="col" class="dcol">#Order ID</th>
+                        <th scope="col" class="dcol">Est Delivery Date</th>
+                        <th scope="col" class="dcol">Est Delivery Time</th>
+                        <th scope="col" class="dcol">Status</th>
+                        <th scope="col" class="dcol">Actions</th>
+                    </tr>
+                </thead>
 
-            <tbody>
+                <tbody>
                     @foreach (var delivery in Deliverys)
                     {
                         <tr>
@@ -50,9 +51,9 @@
                             </td>
                         </tr>
                     }
-            </tbody>
-        </table>
-    </div>
+                </tbody>
+            </table>
+        </div>
     }
 </div>
 
@@ -80,9 +81,15 @@
             }
         }
     }
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        await js.InvokeVoidAsync("AddDataTable", "#deliveryTable");
+    }
+
     public void Dispose()
     {
         _interceptor.DisposeEvent();
+        js.InvokeVoidAsync("DataTablesDispose", "#deliveryTable");
     }
 
 }
