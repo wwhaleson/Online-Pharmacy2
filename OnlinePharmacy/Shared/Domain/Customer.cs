@@ -15,16 +15,16 @@ namespace OnlinePharmacy.Shared.Domain
 
         [Required(ErrorMessage = "First Name is required")]
         [StringLength(100, MinimumLength = 2, ErrorMessage = "First Name does not meet length requirements")]
-        public string CustFname { get; set; }
+        public string? CustFname { get; set; }
 
         [Required(ErrorMessage = "Last Name is required")]
         [StringLength(100, MinimumLength = 2, ErrorMessage = "Last Name does not meet length requirements")]
-        public string CustLname { get; set; }
+        public string? CustLname { get; set; }
 
         [Required(ErrorMessage = "Gender is required")]
         [RegularExpression("^[a-zA-Z ]+$", ErrorMessage = "Gender should only contain alphabetic characters")]
         [StringLength(100, MinimumLength = 2, ErrorMessage = "Choose the appropriate Gender")]
-        public string CustGender { get; set; }
+        public string? CustGender { get; set; }
 
         [Required(ErrorMessage = "Postal Code is required")]
         [DataType(DataType.PostalCode)]
@@ -45,23 +45,23 @@ namespace OnlinePharmacy.Shared.Domain
 
         [Required(ErrorMessage = "Address is required")]
         [StringLength(100, MinimumLength = 2, ErrorMessage = "Address does not meet length requirements")]
-        public string CustAddress { get; set; }
+        public string? CustAddress { get; set; }
 
         [Required(ErrorMessage = "Phone Number is required")]
         [DataType(DataType.PhoneNumber)]
         [RegularExpression(@"^(6|8|9)\d{7}$", ErrorMessage = "Contact Number is not a valid phone number")]
         [StringLength(8, MinimumLength = 8, ErrorMessage = "Phone number must be 8 digits")]
-        public int CustPhoneNo { get; set; }
+        public int? CustPhoneNo { get; set; }
 
         [Required(ErrorMessage = "Email Address is required")]
         [DataType(DataType.EmailAddress, ErrorMessage = "Email Address is not a valid email")]
         [EmailAddress]
-        public string CustEmail { get; set; }
+        public string? CustEmail { get; set; }
 
         [Required(ErrorMessage = "Password is required")]
         [DataType(DataType.Password)]
         [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$", ErrorMessage = "Password does not meet the complexity requirements")]
-        public string CustPass { get; set; }
+        public string? CustPass { get; set; }
 
     }
 }

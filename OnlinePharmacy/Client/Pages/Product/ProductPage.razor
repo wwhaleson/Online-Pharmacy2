@@ -16,6 +16,10 @@
     </div>
 </nav>
 
+<div class="col-4 p-0 justify-content-end">
+    <Input @oninput="Search" placeholder="Seach First Name" class="p-3" />
+
+</div>
 
 <div class="container">
 
@@ -103,5 +107,24 @@
     {
         _interceptor.DisposeEvent();
     }
+
+    public async void Search(ChangeEventArgs args)
+    {
+        var searchTerm = (string)args.Value;
+
+        if (string.IsNullOrWhiteSpace(searchTerm))
+        {
+            Products = await _client.GetFromJsonAsync<List<Product>>($"{Endpoints.ProductsEndpoint}");
+        }
+        else
+        {
+            Products = Products
+                .Where(x => x.ProductName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+        }
+
+        StateHasChanged();
+    }
+
 
 }

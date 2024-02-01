@@ -32,7 +32,7 @@
     {
 
         await _client.PostAsJsonAsync(Endpoints.OrderItemsEndpoint, orderitem);
-        await JSRuntime.InvokeVoidAsync("alert", "Order item was created!");
+        await JSRuntime.InvokeVoidAsync("alert", "Order item was Created!");
         orderitem = new OrderItem();
        
     }

@@ -29,6 +29,6 @@
     {
         await _client.PutAsJsonAsync($"{Endpoints.OnlineConsultationsEndpoint}/{id}",
         onlineconsultation);
-        await JSRuntime.InvokeVoidAsync("alert", "Online Consultation was edited!");
+        await JSRuntime.InvokeVoidAsync("alert", "Online Consultation was Edited!");
     }
 }

@@ -2,6 +2,7 @@
 @page "/Customer/create/"
 @inject HttpClient _client
 @inject NavigationManager _navManager
+@inject IJSRuntime JSRuntime
 
 <h3 class="card-title">Create Customer</h3>
 
@@ -16,7 +17,7 @@
     private async Task CreateCustomers()
     {
         await _client.PostAsJsonAsync(Endpoints.CustomersEndpoint, customer);
-        _navManager.NavigateTo("/Customer/");
+        await JSRuntime.InvokeVoidAsync("alert", "Customer was Created!");
     }
 
 }

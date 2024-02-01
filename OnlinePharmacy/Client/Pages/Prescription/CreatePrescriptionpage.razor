@@ -2,7 +2,7 @@
 @page "/Prescription/create/"
 @inject HttpClient _client
 @inject NavigationManager _navManager
-
+@inject IJSRuntime JSRuntime
 <h1 class="mt-3" id="CreatePrescriptionheader"> Create Prescription</h1>
 
 <CreateFormComponent ButtonText="Create Prescription" prescription="prescription" OnValidSubmit="@CreatePrescriptions" />
@@ -21,6 +21,7 @@
     private async Task CreatePrescriptions()
     {
         await _client.PostAsJsonAsync(Endpoints.PrescriptionsEndpoint, prescription);
+        await JSRuntime.InvokeVoidAsync("alert", "Prescription was Created!");
         _navManager.NavigateTo("/PrescriptionItem/create/");
     }
 

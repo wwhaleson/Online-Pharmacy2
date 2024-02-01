@@ -1,7 +1,7 @@
 ﻿@page "/Product/edit/{id:int}"
 @inject HttpClient _client
 @inject NavigationManager _navManager
-
+@inject IJSRuntime JSRuntime
 <h3>Edit Product</h3>
 <FormComponent ButtonText="Update" OnValidSubmit="EditProduct" product="product" />
 @code {
@@ -18,7 +18,7 @@
     {
         await _client.PutAsJsonAsync($"{Endpoints.ProductsEndpoint}/{id}",
         product);
-        _navManager.NavigateTo("/Product/");
+        await JSRuntime.InvokeVoidAsync("alert", "Product was Edited!");
     }
 
 }

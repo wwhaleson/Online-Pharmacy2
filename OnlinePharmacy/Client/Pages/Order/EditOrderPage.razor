@@ -1,7 +1,7 @@
 ﻿@page "/Order/edit/{id:int}"
 @inject HttpClient _client
 @inject NavigationManager _navManager
-
+@inject IJSRuntime JSRuntime
 <h1 class="mt-3" id="EditOrderheader">Edit Order</h1>
 
 <FormComponent ButtonText="Update" OnValidSubmit="EditOrder" order="order" />
@@ -19,6 +19,7 @@
     {
         await _client.PutAsJsonAsync($"{Endpoints.OrdersEndpoint}/{id}",
         order);
+        await JSRuntime.InvokeVoidAsync("alert", "Order was Edited!");
         /*_navManager.NavigateTo("/Order/");*/
     }
 

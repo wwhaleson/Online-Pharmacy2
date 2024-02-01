@@ -2,7 +2,7 @@
 @page "/Product/create/"
 @inject HttpClient _client
 @inject NavigationManager _navManager
-
+@inject IJSRuntime JSRuntime
 <h3 class="card-title">Create Product</h3>
 
 
@@ -23,7 +23,7 @@
     private async Task CreateProducts()
     {
         await _client.PostAsJsonAsync(Endpoints.ProductsEndpoint, product);
-        _navManager.NavigateTo("/Product/");
+        await JSRuntime.InvokeVoidAsync("alert", "Product was Created!");
     }
 }
 

@@ -2,6 +2,7 @@
 @page "/Category/create/"
 @inject HttpClient _client
 @inject NavigationManager _navManager
+@inject IJSRuntime JSRuntime
 
 <h3 class="card-title">Create Category</h3>
 
@@ -16,7 +17,7 @@
     private async Task CreateCategory()
     {
         await _client.PostAsJsonAsync(Endpoints.CategoriesEndpoint, category);
-        _navManager.NavigateTo("/Category/");
+        await JSRuntime.InvokeVoidAsync("alert", "Category was Created!");
     }
 
 }

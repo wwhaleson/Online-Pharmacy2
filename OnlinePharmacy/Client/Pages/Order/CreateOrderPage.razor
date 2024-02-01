@@ -1,7 +1,7 @@
 ﻿@attribute [Authorize]
 @page "/Order/create/"
 @inject HttpClient _client
-
+@inject IJSRuntime JSRuntime
 @inject NavigationManager _navManager
 
 <h1 class="mt-3" id="CreateOrderheader"> Create Order</h1>
@@ -29,6 +29,7 @@
     private async Task CreateOrders()
     {
         await _client.PostAsJsonAsync(Endpoints.OrdersEndpoint, order);
+        await JSRuntime.InvokeVoidAsync("alert", "Order was Created!");
         _navManager.NavigateTo("/OrderItem/create/");
     }
 
