@@ -55,7 +55,7 @@
                                                                     <div class="form-group">
                                                                         <div>
                                                                             <InputSelect @bind-Value="prescriptionitem.ProductID" class="form-control border-0 text-center" oninput="@OnProductSelected">
-                                                                                <option value="">-- Prescription Product --</option>
+                                                                                <option value="">-- Please select the prescription item --</option>
                                                                                 @if (Products != null)
                                                                                 {
                                                                                     foreach (var product in Products.Where(p => p.PrescriptionStatus))
@@ -141,7 +141,7 @@
     private string GetProductImage(int productId)
     {
         var selectedProduct = Products?.FirstOrDefault(p => p.ProductID == productId);
-        return selectedProduct?.ProductImage ?? "default-image-url"; // Replace "default-image-url" with a default image URL.
+        return selectedProduct?.ProductImage ?? "https://store-in.puma.com/VendorpageTheme/Enterprise/EThemeForPuma/images/product-not-found.jpg"; // Replace "default-image-url" with a default image URL.
     }
 
     private void OnProductSelected(ChangeEventArgs args)

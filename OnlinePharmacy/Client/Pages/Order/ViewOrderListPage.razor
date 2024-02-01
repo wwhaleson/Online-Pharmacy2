@@ -21,10 +21,8 @@
             <table class="table ">
                 <thead class="table-light">
                     <tr id="orderviewtablecolumnname">
-                        <th scope="col" class="dcol">#Item ID</th>
-                        <th scope="col" class="dcol">Type of order</th>
-                        <th scope="col" class="dcol">#Product ID</th>
-                        <th scope="col" class="dcol">Order time</th>
+                        <th scope="col" class="dcol">#Order Item ID</th>
+                        <th scope="col" class="dcol">Quantity</th>
                         <th scope="col" class="dcol">Sub-Total</th>
                     </tr>
                 </thead>
@@ -36,7 +34,6 @@
                         {
                             <tr>
                                 <td class="dr">@orderitem.OrderItemID</td>
-                                <td class="dr">@orderitem.ProductID</td>
                                 <td class="dr">@orderitem.OrderItemQty</td>
                                 <td class="dr">@orderitem.OrderItemSubTotal</td>
 

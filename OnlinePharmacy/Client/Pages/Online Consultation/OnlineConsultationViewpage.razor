@@ -6,13 +6,14 @@
 <FormComponent onlineconsultation="onlineconsultation" Disabled="true" />
 
 
-
-<div class="d-flex justify-content-end m-2">
+<div class="d-flex justify-content-between m-2">
+    <BackToList Target="OnlineConsultation" />
     <a href="/Prescription/view/@id" class="btn btn-primary ">
         <span class="oi oi-arrow-right"></span>
         View Prescription
     </a>
 </div>
+
 
 @code {
     [Parameter] public int id { get; set; }

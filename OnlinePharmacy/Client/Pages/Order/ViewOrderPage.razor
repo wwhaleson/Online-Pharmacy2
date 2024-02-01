@@ -7,15 +7,15 @@
 
 <FormComponent order="order" Disabled="true" />
 
-<a href="/Order/" class="btn btn-secondary centered-button">
-    <span class="oi oi-arrow-circle-left"></span>
-    Back to Order
-</a>
 
-<a href="/Order/list/@id" class="btn btn-secondary align-self-center">
-    <span class="oi oi-arrow-right"></span>
-    Go to Order List
-</a>
+<div class="d-flex justify-content-between m-2">
+    <BacktoListcopy Target="Order" />
+    <a href="/Order/list/@id" class="btn btn-primary ">
+        <span class="oi oi-arrow-right"></span>
+        View Order Items
+    </a>
+</div>
+
 
 @code {
     [Parameter] public int id { get; set; }
