@@ -1,4 +1,6 @@
 ﻿@inject HttpClient _client
+@inject IJSRuntime JSRuntime
+
 
 <EditForm Model="@orderitem" OnValidSubmit="@OnValidSubmit">
     <DataAnnotationsValidator />
@@ -17,14 +19,13 @@
                                                 <div>
                                                     <InputSelect @bind-Value="orderitem.OrderID" class="form-control">
                                                         <option value="">-- Select Order --</option>
-                                                        @if (Orders != null)
+                                                        @if (Orders != null && Orders.Any())
                                                         {
-                                                        foreach (var order in Orders)
-                                                            {
-                                                                <option value="@orderitem.OrderID">@orderitem.OrderID</option>
-                                                            }
+                                                            var latestOrder = Orders.OrderByDescending(p => p.OrderID).First();
+                                                            <option value="@latestOrder.OrderID">@latestOrder.OrderID</option>
                                                         }
                                                     </InputSelect>
+
 
                                                     <ValidationMessage For="@(() => orderitem.OrderID)" />
                                                 </div>
@@ -64,7 +65,7 @@
                                                                                     {
                                                                                         if (product.PrescriptionStatus == false)
                                                                                         {
-                                                                                            <option value="@product.ProductID">@product.ProductName</option>
+                                                                                            <option value="@product.ProductID">@product.ProductID</option>
                                                                                         }
                                                                                     }
                                                                                 }
@@ -119,18 +120,16 @@
     <div class="d-flex flex-column-md-6 mt-2 justify-content-center">
         @if (!Disabled)
         {
-            <button type="submit" class="btn btn-success me-2">
+            <button type="submit" class="btn btn-success me-2" @onclick="ShowAlert">
                 @ButtonText
             </button>
 
         }
     </div>
-
-    <a href="/Order/list/@orderitem.OrderID" class="btn btn-secondary centered-button">
+    <a href="/Order/" class="btn btn-secondary backbutton">
         <span class="oi oi-arrow-circle-left"></span>
-        Back to Order List
+        Back to Order
     </a>
-
 </EditForm>
 
 @code {
@@ -185,6 +184,12 @@
             orderitem.OrderItemSubTotal = 0; // or handle the case when the input is not a valid integer
             StateHasChanged();
         }
+    }
+
+    private async Task ShowAlert()
+    {
+        // Call a JavaScript function to show an alert
+        await JSRuntime.InvokeVoidAsync("alert", "Order item was submitted!");
     }
 }
 
