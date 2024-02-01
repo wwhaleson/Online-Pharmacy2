@@ -1,4 +1,4 @@
-﻿@page "/Order/list/{id:int}"
+﻿@page "/Order/editlist/{id:int}"
 @inject HttpClient _client
 @inject NavigationManager _navManager
 @inject IJSRuntime js
@@ -6,8 +6,8 @@
 <PageTitle>Order List</PageTitle>
 
 <div class="container">
-    <div class="d-flex flex-column" id="dflexorderview">
-        <h1 class="mt-5" id="ViewOrderheader">List of Order Items</h1>
+    <div class="d-flex flex-column" id="dflexorderedit">
+        <h1 class="mt-5" id="EditOrderheader">List of Order Items</h1>
 
     </div>
 
@@ -20,7 +20,7 @@
         <div class="table-responsive mt-3">
             <table class="table ">
                 <thead class="table-light">
-                    <tr id="orderviewtablecolumnname">
+                    <tr id="orderedittablecolumnname">
                         <th scope="col" class="dcol">#Order Item ID</th>
                         <th scope="col" class="dcol">Quantity</th>
                         <th scope="col" class="dcol">Sub-Total</th>
@@ -38,8 +38,8 @@
                                 <td class="dr">@orderitem.OrderItemSubTotal</td>
 
                                 <td class="dr">
-                                    <a href="/OrderItem/view/@orderitem.OrderItemID" class="btn btn-primary">
-                                        <i class="bi bi-file-earmark"></i>
+                                    <a href="/OrderItem/edit/@orderitem.OrderItemID" class="btn btn-warning mb-2 me-2">
+                                        <i class="bi bi-pencil-square"></i>
                                     </a>
 
                                 </td>
@@ -51,9 +51,9 @@
             </table>
         </div>
     }
-    <a href="/Order/view/@id" class="btn btn-secondary centered-button">
+    <a href="/Order/edit/@id" class="btn btn-primary">
         <span class="oi oi-arrow-circle-left"></span>
-        Back to view Order
+        Back to edit Order
     </a>
 
 </div>
