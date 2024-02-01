@@ -11,9 +11,9 @@
 
     </div>
 
-    @if (OrderItems == null && PrescriptionItems == null)
+    @if (OrderItems == null)
     {
-        <div class="alert alert-info">Loading Order View</div>
+        <div class="alert alert-info">Loading Order Items</div>
     }
     else
     {
@@ -36,7 +36,6 @@
                         {
                             <tr>
                                 <td class="dr">@orderitem.OrderItemID</td>
-                                <td class="dr">Non-Precripted</td>
                                 <td class="dr">@orderitem.ProductID</td>
                                 <td class="dr">@orderitem.OrderItemQty</td>
                                 <td class="dr">@orderitem.OrderItemSubTotal</td>
@@ -72,15 +71,11 @@
 
 @code {
     [Parameter] public int id { get; set; }
-
-
     private List<OrderItem>? OrderItems;
-    private List<PrescriptionItem>? PrescriptionItems;
     <!--When the page begins to load-->
     protected async override Task OnInitializedAsync()
     {
         OrderItems = await _client.GetFromJsonAsync<List<OrderItem>>($"{Endpoints.OrderItemsEndpoint}");
-        PrescriptionItems = await _client.GetFromJsonAsync<List<PrescriptionItem>>($"{Endpoints.PrescriptionItemsEndpoint}");
     }
 
 
@@ -98,19 +93,5 @@
         }
     }
 
-
-    async Task DeletePI(int prescriptionitemId)
-    {
-        if (PrescriptionItems != null)
-        {
-            var prescriptionitem = PrescriptionItems.First(q => q.PrescriptionItemID == prescriptionitemId);
-            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to Delete {prescriptionitem.PrescriptionItemID}?");
-            if (confirm)
-            {
-                await _client.DeleteAsync($"{Endpoints.PrescriptionItemsEndpoint}/{prescriptionitemId}");
-                await OnInitializedAsync();
-            }
-        }
-    }
 
 }
