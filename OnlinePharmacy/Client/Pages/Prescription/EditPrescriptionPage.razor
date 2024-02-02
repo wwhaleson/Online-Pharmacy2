@@ -6,7 +6,10 @@
 <FormComponent ButtonText="Update" OnValidSubmit="EditPrescription" prescription="prescription" />
 
 <div class="d-flex justify-content-between m-2">
-    <BackToList Target="OnlineConsultation" />
+    <a href="/OnlineConsultation/edit/@id" class="btn btn-primary ">
+        <span class="oi oi-arrow-left"></span>
+        Edit Online Consultation
+    </a>
     <a href="/PrescriptionItem/editlist/@id" class="btn btn-primary ">
         <span class="oi oi-arrow-right"></span>
         Edit Prescription Item

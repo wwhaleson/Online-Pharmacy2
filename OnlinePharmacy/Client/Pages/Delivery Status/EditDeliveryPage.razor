@@ -4,6 +4,19 @@
 @inject IJSRuntime JSRuntime
 <h1 class="mt-3" id="EditDeliveryheader">Edit Delivery</h1>
 <FormComponent ButtonText="Update" OnValidSubmit="EditDelivery" delivery="delivery" />
+<div class="d-flex justify-content-between m-2">
+    <a href="/Order/editlist/@id" class="btn btn-primary">
+        <span class="oi oi-arrow-left"></span>
+        Back to Order Items
+    </a>
+    <a href="/Order" class="btn btn-primary">
+        <span class="oi oi-arrow-right"></span>
+        Back to Order
+    </a>
+
+</div>
+
+
 @code {
 
     [Parameter] public int id { get; set; }

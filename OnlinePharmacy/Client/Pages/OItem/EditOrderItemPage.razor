@@ -3,13 +3,16 @@
 @inject NavigationManager _navManager
 @inject IJSRuntime JSRuntime
 
-<h3>Edit Order Item</h3>
+<div class="d-flex flex-column" >
+    <h1 class="mt-5" id="EditOrderItemheader">Edit Order Item</h1>
+
+</div>
 
 <FormComponent ButtonText="Update" OnValidSubmit="EditOrderItem" orderitem="orderitem" />
 
 <a href="/Order/editlist/@orderitem.OrderID" class="btn btn-primary">
-    <span class="oi oi-arrow-circle-left"></span>
-    Back to Order List
+    <span class="oi oi-arrow-left"></span>
+    Back to Order Items
 </a>
 
 

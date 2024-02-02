@@ -5,6 +5,16 @@
     font-family: "Rubik", serif;
 }
 
-.centered-button {
+
+.text-hr {
+    width: 50%;
+    margin: auto;
+}
+
+.dcol {
+    text-align: center;
+}
+
+.dr {
     text-align: center;
 }

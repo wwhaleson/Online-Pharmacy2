@@ -6,6 +6,10 @@
 <h1 class="mt-3" id="ViewOrderItemsheader">View Order Item</h1>
 
 <FormComponent orderitem="orderitem" Disabled="true" />
+<a href="/Order/list/@id" class="btn btn-primary ">
+    <span class="oi oi-arrow-left"></span>
+    View Order Items
+</a>
 
 @code {
     [Parameter] public int id { get; set; }

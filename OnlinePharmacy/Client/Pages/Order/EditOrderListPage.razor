@@ -24,6 +24,7 @@
                         <th scope="col" class="dcol">#Order Item ID</th>
                         <th scope="col" class="dcol">Quantity</th>
                         <th scope="col" class="dcol">Sub-Total</th>
+                        <th scope="col" class="dcol">Action</th>
                     </tr>
                 </thead>
 
@@ -51,11 +52,16 @@
             </table>
         </div>
     }
-    <a href="/Order/edit/@id" class="btn btn-primary">
-        <span class="oi oi-arrow-circle-left"></span>
-        Back to edit Order
-    </a>
-
+    <div class="d-flex justify-content-between m-2">
+        <a href="/Order/edit/@id" class="btn btn-primary">
+            <span class="oi oi-arrow-left"></span>
+            Back to Order
+        </a>
+        <a href="/Delivery/edit/@id" class="btn btn-primary">
+            <span class="oi oi-arrow-right"></span>
+            Edit Delivery
+        </a>
+    </div>
 </div>
 
 

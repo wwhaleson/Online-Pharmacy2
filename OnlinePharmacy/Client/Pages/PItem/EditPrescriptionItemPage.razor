@@ -5,7 +5,11 @@
 <h1 class="mt-3" id="EditPrescriptionItemheader">Edit Prescription Item</h1>
 <FormComponent ButtonText="Update" OnValidSubmit="EditPrescriptionItem" prescriptionitem="prescriptionitem" />
 <div class="d-flex justify-content-start m-2">
-    <BackToList Target="OnlineConsultation" />
+    <a href="/PrescriptionItem/editlist/@id" class="btn btn-primary ">
+        <span class="oi oi-arrow-left"></span>
+        View Prescription items
+    </a>
+
 </div>
 
 @code {
