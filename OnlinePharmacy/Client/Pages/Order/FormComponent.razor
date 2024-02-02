@@ -72,7 +72,7 @@
                         <div class="form-group">
                             <label>Total Price SGD$: </label>
                             <div>
-                                <input type="number" @bind="@order.TotalCost" class="form-control"/>
+                                <input type="number" @bind="@order.TotalCost" class="form-control" aria-label="Amount (to the nearest dollar) " step="0.01" />
                                 <ValidationMessage For="@(() => order.TotalCost)" />
                             </div>
                         </div>
