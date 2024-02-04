@@ -22,7 +22,7 @@
     }
     else{
     <div class="table-responsive mt-3">
-        <table class="table ">
+        <table class="table " id="onlineconsultationsTable">
             <thead class="table-light">
                 <tr id="delivertablecolumnname">
                     <th scope="col" class="dcol">#OnlineConsultationID</th>
@@ -84,10 +84,16 @@
             }
         }
     }
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        await js.InvokeVoidAsync("AddDataTable", "#onlineconsultationsTable");
+    }
+
     public void Dispose()
     {
         _interceptor.DisposeEvent();
+        js.InvokeVoidAsync("DataTablesDispose", "#onlineconsultationsTable");
     }
-
 
 }

@@ -60,6 +60,7 @@ namespace OnlinePharmacy.Shared.Domain
 
         [Required]
         [Display(Name = "Product Image")]
+        [RegularExpression(@"\b(?:https?|ftp):\/\/\S+\.(png|jpg|jpeg|gif|bmp)\b", ErrorMessage = "Invalid image URL or file path")]
         public string? ProductImage { get; set; }
 
         [Required]
@@ -73,13 +74,13 @@ namespace OnlinePharmacy.Shared.Domain
 
         
         [Required]
-        [Display(Name = "Stock Quantity")]
-        public int? StockQuantity { get; set; }
+        [Display(Name = "Stock Available is required")]
+        public bool? StockAvailable { get; set; }
 
 
         [Required(ErrorMessage = "Product Category ID is required")]
         [Display(Name = "Product Category ID")]
-        public int ProductCategoryID { get; set; }
+        public int? ProductCategoryID { get; set; }
         public virtual Category? Category { get; set; }
 
 
@@ -89,7 +90,7 @@ namespace OnlinePharmacy.Shared.Domain
             //throw new NotImplementedException();
             if (ProductMinimumAge != null)
             {
-                if (ProductMaximumAge <= ProductMinimumAge)
+                if (ProductMaximumAge < ProductMinimumAge)
                 {
                     yield return new ValidationResult("Product Minimum Age must be greater than Product Maximum Age", new[] { "ProductMaximumAge" });
                 }

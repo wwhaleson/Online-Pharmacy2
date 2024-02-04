@@ -2,11 +2,10 @@
 @inject HttpClient _client
 @inject NavigationManager _navManager
 
-
 <h1 class="mt-3" id="ViewOrderItemsheader">View Order Item</h1>
 
 <FormComponent orderitem="orderitem" Disabled="true" />
-<a href="/Order/list/@id" class="btn btn-primary ">
+<a href="/Order/list/@orderitem.OrderID" class="btn btn-primary ">
     <span class="oi oi-arrow-left"></span>
     View Order Items
 </a>
@@ -14,9 +13,9 @@
 @code {
     [Parameter] public int id { get; set; }
     OrderItem? orderitem = new OrderItem();
+
     protected async override Task OnParametersSetAsync()
     {
-        orderitem = await
-        _client.GetFromJsonAsync<OrderItem>($"{Endpoints.OrderItemsEndpoint}/{id}");
+        orderitem = await _client.GetFromJsonAsync<OrderItem>($"{Endpoints.OrderItemsEndpoint}/{id}");
     }
 }

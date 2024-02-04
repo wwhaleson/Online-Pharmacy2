@@ -1,135 +1,135 @@
 ﻿@inject HttpClient _client
 @inject IJSRuntime JSRuntime
 
-
 <EditForm Model="@orderitem" OnValidSubmit="@OnValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <fieldset disabled="@Disabled">
         <div class="d-flex flex-column mt-4" id="flexcolumnorderitem">
-            <div class="d-flex flex-column mt-4" id="flexcolumnorderitem">
-                <div class="card bg-light mb-3 OrderItemCard">
-                    <div class="card-header">Order Item</div>
-                    <div class="card-body">
-                        <div class="container-xl px-4 mt-4" id="orderitemdetails">
-                            <div class="row gx-3 mb-3">                                     
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Order ID: </label>
-                                                <div>
-                                                    <InputSelect @bind-Value="orderitem.OrderID" class="form-control">
-                                                        <option value="">-- Select Order --</option>
-                                                        @if (Orders != null && Orders.Any())
-                                                        {
-                                                            var latestOrder = Orders.OrderByDescending(p => p.OrderID).First();
-                                                            <option value="@latestOrder.OrderID">@latestOrder.OrderID</option>
-                                                        }
-                                                    </InputSelect>
-
-
-                                                    <ValidationMessage For="@(() => orderitem.OrderID)" />
-                                                </div>
-                                            </div>
-                                        </div>
+            <div class="card bg-light mb-3 OrderItemCard">
+                <div class="card-header">Order Item</div>
+                <div class="card-body">
+                    <div class="container-xl px-4 mt-4" id="orderitemdetails">
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Order ID: </label>
+                                    <div>
+                                        <InputSelect @bind-Value="orderitem.OrderID" class="form-control" @onchange="@OnProductSelected">
+                                            <option value="">-- Select Order --</option>
+                                            @if (Orders != null && Orders.Any())
+                                            {
+                                                var latestOrder = Orders.OrderByDescending(p => p.OrderID).First();
+                                                <option value="@latestOrder.OrderID">@latestOrder.OrderID</option>
+                                            }
+                                        </InputSelect>
+                                        <ValidationMessage For="@(() =>  orderitem.OrderID)" />
+                                    </div>
+                                </div>
                             </div>
+                        </div>
 
-                            <div class="row">
-                                <div class="table-responsive ordershopping-cart">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th class="text-center orderitemtableheader">Order Product</th>
-                                                <th class="text-center orderitemtableheader">Quantity</th>
-                                                <th class="text-center orderitemtableheader">Price</th>
-                                                <th class="text-center orderitemtableheader">Subtotal</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex justify-content-center align-items-center">
-                                                        <div class="flex-row">
+                        <div class="row">
+                            <div class="table-responsive ordershopping-cart">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center orderitemtableheader">Order Product</th>
+                                            <th class="text-center orderitemtableheader">Quantity</th>
+                                            <th class="text-center orderitemtableheader">Price</th>
+                                            <th class="text-center orderitemtableheader">Subtotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <div class="flex-row">
+                                                        <div class="flex-container d-flex justify-content-center align-items-center">
                                                             <a class="orderproductproduct-thumb">
                                                                 <img src="@GetProductImage(orderitem.ProductID)" class="OrderProductimage">
                                                             </a>
-                                                            <div class="orderproduct-info mt-4">
-                                                                <h4 class="orderitem-title text-center">
-                                                                    <div class="form-group">
-                                                                        <label>Product ID: </label>
-                                                                        <div>
-                                                                            <InputSelect @bind-Value="orderitem.ProductID" class="form-control">
+                                                        </div>
+
+                                                        <div class="orderproduct-info mt-4">
+                                                            <h4 class="orderitem-title text-center">
+                                                                <div class="form-group">
+                                                                    <label>Product Name: </label>
+                                                                    <div class="bordercolor">
+                                                                        <InputSelect @bind-Value="orderitem.ProductID" class="form-control" @onchange="@OnProductSelected">
+                                                                            @if (Products != null)
+                                                                            {
                                                                                 <option value="">-- Select Product ID --</option>
-                                                                                @if (Products != null)
+                                                                                foreach (var product in Products)
                                                                                 {
-                                                                                    foreach (var product in Products)
+                                                                                    if (product.PrescriptionStatus == false && product.StockAvailable == true)
                                                                                     {
-                                                                                        if (product.PrescriptionStatus == false)
-                                                                                        {
-                                                                                            <option value="@product.ProductID">@product.ProductID</option>
-                                                                                        }
+                                                                                        <option value="@product.ProductID">@product.ProductName</option>
                                                                                     }
                                                                                 }
-                                                                            </InputSelect>
-                                                                            <ValidationMessage For="@(() => orderitem.ProductID)" />
-                                                                        </div>
+                                                                            }
+                                                                        </InputSelect>
+                                                                        <ValidationMessage For="@(() => orderitem.ProductID)" />
                                                                     </div>
-                                                                </h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </td>
-                                                <td class="text-center">
-                                                    <div class="count-input">
-                                                        <div>
-                                                            <h4>
-                                                                <input type="number" @bind="@orderitem.OrderItemQty" class="form-control-sm-5 border-0 text-center" @oninput="@OnQuantityChanged"  />
-                                                                <ValidationMessage For="@(() => orderitem.OrderItemQty)" />
+                                                                </div>
                                                             </h4>
                                                         </div>
                                                     </div>
-                                                </td>
-                                                <td class="text-center text-lg text-medium">
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="count-input">
                                                     <div>
                                                         <h4>
-                                                            @GetProductPrice(orderitem.ProductID)
+                                                            <input type="number" @bind="orderitem.OrderItemQty" class="form-control-sm-5 text-center" step="1" min="1" />
+                                                            <ValidationMessage For="@(() => orderitem.OrderItemQty)" />
                                                         </h4>
                                                     </div>
-                                                </td>
-                                                <td class="text-center text-lg text-medium">
-                                                    <div>
-                                                        <h4>
-                                                            <!-- Bind the result of the multiplication to OrderItemSubTotal -->
-                                                            @orderitem.OrderItemSubTotal
-                                                        </h4>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-center text-lg text-medium">
+                                                <div>
+                                                    <h4>
+                                                        @GetProductPrice(orderitem.ProductID)
+                                                    </h4>
+                                                </div>
+                                            </td>
+                                            <td class="text-center text-lg text-medium">
+                                                <div>
+                                                    <!-- Bind the result of the multiplication to OrderItemSubTotal -->
+                                                    @{
+                                                        orderitem.OrderItemSubTotal = orderitem.OrderItemQty * GetProductPrice(orderitem.ProductID);
+                                                    }
+
+                                                    <!-- Display the OrderItemSubTotal -->
+                                                    <h4>
+                                                        @orderitem.OrderItemSubTotal
+                                                    </h4>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </fieldset>
 
     <div class="d-flex flex-column-md-6 mt-2 justify-content-center">
         @if (!Disabled)
         {
-            <button type="submit" class="btn btn-success me-2" @onclick="ShowAlert">
+            <button type="submit" class="btn btn-success me-2">
                 @ButtonText
             </button>
-
+            <a href="/Delivery/create/" class="btn btn-primary">
+                <span class="oi oi-arrow-right"></span>
+                Confirm Order Items and Create Delivery
+            </a>
         }
     </div>
-    <a href="/Order/" class="btn btn-secondary backbutton">
-        <span class="oi oi-arrow-circle-left"></span>
-        Back to Order
-    </a>
 </EditForm>
 
 @code {
@@ -138,59 +138,32 @@
     [Parameter] public string ButtonText { get; set; } = "Save";
     [Parameter] public EventCallback OnValidSubmit { get; set; }
 
-
     private IList<Product>? Products;
     private IList<Order>? Orders;
 
-
     protected async override Task OnInitializedAsync()
     {
-
         Products = await _client.GetFromJsonAsync<List<Product>>($"{Endpoints.ProductsEndpoint}");
         Orders = await _client.GetFromJsonAsync<List<Order>>($"{Endpoints.OrdersEndpoint}");
-
     }
 
     private string GetProductImage(int productId)
     {
         var selectedProduct = Products?.FirstOrDefault(p => p.ProductID == productId);
-        return selectedProduct?.ProductImage ?? "default-image-url"; // Replace "default-image-url" with a default image URL.
+        return selectedProduct?.ProductImage ?? "https://store-in.puma.com/VendorpageTheme/Enterprise/EThemeForPuma/images/product-not-found.jpg";
     }
 
     private void OnProductSelected(ChangeEventArgs args)
     {
-        // This method is triggered when the product ID selection changes.
-        // You can update the product image or perform any other necessary actions here.
-        // If you want to update the image dynamically, you may use JavaScript interop.
-        StateHasChanged(); // Ensure the component re-renders to reflect the updated image.
+        // Reset quantity and subtotal when the product changes
+        orderitem.OrderItemQty = 0;
+        orderitem.OrderItemSubTotal = 0;
+        StateHasChanged();
     }
 
     private decimal GetProductPrice(int productId)
     {
         var selectedProduct = Products?.FirstOrDefault(p => p.ProductID == productId);
-        return selectedProduct?.ProductPrice ?? 0.0m; // Assuming ProductPrice is of type decimal
-    }
-
-    // Update this method to calculate the subtotal and update the OrderItemSubTotal
-    private void OnQuantityChanged(ChangeEventArgs e)
-    {
-        if (int.TryParse(e.Value.ToString(), out int quantity))
-        {
-            orderitem.OrderItemSubTotal = quantity * GetProductPrice(orderitem.ProductID);
-            StateHasChanged(); // Ensure the component re-renders to reflect the updated subtotal.
-        }
-        else
-        {
-            orderitem.OrderItemSubTotal = 0; // or handle the case when the input is not a valid integer
-            StateHasChanged();
-        }
-    }
-
-    private async Task ShowAlert()
-    {
-        // Call a JavaScript function to show an alert
-        await JSRuntime.InvokeVoidAsync("alert", "Order items was submitted!");
+        return selectedProduct?.ProductPrice ?? 0.0m;
     }
 }
-
-

@@ -1,0 +1,94 @@
+﻿@inject HttpClient _client
+@inject IJSRuntime js
+@inject HttpInterceptorService _interceptor
+@page "/Search/{productsearchTerm}"
+<h3>Search Results for: @productsearchTerm</h3>
+
+
+
+<div class="container">
+    <div class="d-flex flex-column" id="dflexspecificProduct">
+        <h1 class="mt-2" id="SpecificProductheader">Product</h1>
+    </div>
+    @if (Products == null)
+    {
+        <div class="alert alert-info">Loading Products</div>
+    }
+    else if (Products.Count == 0)
+    {
+        <div class="alert alert-warning">No results found for @productsearchTerm</div>
+    }
+    else
+    {
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+            @foreach (var product in Products)
+            {
+                <div class="col aproduct">
+                    <div class="card h-100 productcard" style="text-decoration: none;">
+                        @if (!string.IsNullOrEmpty(product.ProductImage) && Uri.IsWellFormedUriString(product.ProductImage, UriKind.RelativeOrAbsolute))
+                        {
+                            <img src="@product.ProductImage" class="catproductimage img-fluid">
+                        }
+                        else
+                        {
+                            <img src="https://static-00.iconduck.com/assets.00/no-image-icon-512x512-lfoanl0w.png" class="catproductimage img-fluid">
+                        }
+
+                        <div class="card-body productcardbody">
+                            <h3 class="productname">@product.ProductName</h3>
+                            <h5 class="productprice">@product.ProductPrice</h5>
+                            <div class="d-flex justify-content-center">
+                                <a href="/Product/view/@product.ProductID" class="btn btn-primary actionbutton">
+                                    <i class="bi bi-file-earmark"></i>
+                                </a>
+                                <a href="/Product/edit/@product.ProductID" class="btn btn-warning actionbutton">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <button class="btn btn-danger actionbutton" @onclick="@(()=>Delete(@product.ProductID))">
+                                    <i class="bi bi-x-lg"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public string productsearchTerm { get; set; }
+
+    private List<Product>? Products;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadProducts();
+    }
+
+    private async Task LoadProducts()
+    {
+        if (!string.IsNullOrWhiteSpace(productsearchTerm))
+        {
+            // Update the Products list with the search results
+            Products = await _client.GetFromJsonAsync<List<Product>>($"{Endpoints.ProductsEndpoint}/Search?productsname={Uri.EscapeDataString(productsearchTerm)}");
+        }
+        else
+        {
+            // If no search term, load all products
+            Products = await _client.GetFromJsonAsync<List<Product>>(Endpoints.ProductsEndpoint);
+        }
+    }
+
+    private async Task Delete(int productId)
+    {
+        // Implement the delete logic similar to your original code
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        // Handle changes to the productsearchTerm parameter
+        await LoadProducts();
+    }
+}

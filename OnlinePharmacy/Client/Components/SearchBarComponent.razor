@@ -1,0 +1,18 @@
+﻿<!-- SearchBar.razor -->
+<div class="option_center">
+    <input class="searchbar mr-sm-2" placeholder="Search" aria-label="Search" @bind="searchstringTerm">
+    <button class="btn btn-outline-success my-2 my-sm-0 SearchButton" @onclick="SearchProduct">Search</button>
+</div>
+
+@code {
+    [Parameter]
+    public EventCallback<string> OnSearch { get; set; }
+
+    private string searchstringTerm;
+
+    private async Task SearchProduct()
+    {
+        await OnSearch.InvokeAsync(searchstringTerm);
+        searchstringTerm = string.Empty;
+    }
+}

@@ -4,29 +4,36 @@
     <DataAnnotationsValidator />
     <ValidationSummary />
     <fieldset disabled="@Disabled">
-
-        <div class="form-group">
-            <label>Name: </label>
-            <div>
-                <InputText @bind-Value="@category.CategoryName" class="form-control" />
-                <ValidationMessage For="@(() => category.CategoryName)" />
+        <div class="d-flex flex-column mt-4" id="flexcolumncategory">
+            <div class="card bg-light mb-3 CategoryCard">
+                <div class="card-header">Category</div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="form-group">
+                            <label>Name: </label>
+                            <div>
+                                <InputText @bind-Value="@category.CategoryName" class="form-control" />
+                                <ValidationMessage For="@(() => category.CategoryName)" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="form-group custom-textarea">
+                            <label>Description: </label>
+                            <div>
+                                <InputTextArea @bind-Value="@category.CategoryDescription" class="form-control" style="width:500px;height:500px" />
+                                <ValidationMessage For="@(() => category.CategoryDescription)" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="form-group">
-            <label>Description: </label>
-            <div>
-                <InputText @bind-Value="@category.CategoryDescription" class="form-control" />
-                <ValidationMessage For="@(() => category.CategoryDescription)" />
-            </div>
-        </div>
-
-        
     </fieldset>
     <div class="d-flex flex-column-md-6 mt-2 justify-content-center">
     @if (!Disabled)
     {
-        <button type="submit" class="btn btn-success btn-block">
+        <button type="submit" class="btn btn-success me-2">
             @ButtonText
         </button>
     }

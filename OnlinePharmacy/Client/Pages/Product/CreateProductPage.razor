@@ -3,8 +3,8 @@
 @inject HttpClient _client
 @inject NavigationManager _navManager
 @inject IJSRuntime JSRuntime
-<h3 class="card-title">Create Product</h3>
 
+<h1 class="mt-3" id="CreateProductheader">Create Product</h1>
 
 <FormComponent ButtonText="Create Product" product="product" OnValidSubmit="@CreateProducts" />
 
@@ -24,6 +24,7 @@
     {
         await _client.PostAsJsonAsync(Endpoints.ProductsEndpoint, product);
         await JSRuntime.InvokeVoidAsync("alert", "Product was Created!");
+        product = new Product();
     }
 }
 

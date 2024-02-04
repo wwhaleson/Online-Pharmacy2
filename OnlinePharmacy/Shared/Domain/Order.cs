@@ -33,12 +33,12 @@ namespace OnlinePharmacy.Shared.Domain
 
         [Required(ErrorMessage = "Customer ID is required")]
         [Display(Name = "Customer ID")]
-        public int CustomerID { get; set; }
+        public int? CustomerID { get; set; }
         public virtual Customer? Customer { get; set; }
 
         [Required(ErrorMessage = "Staff ID is required")]
         [Display(Name = "Staff ID")]
-        public int StaffID { get; set; }
+        public int? StaffID { get; set; }
         public virtual Staff? Staff { get; set; }
 
         

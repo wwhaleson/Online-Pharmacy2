@@ -1,7 +1,7 @@
 ﻿@page "/Category/view/{id:int}"
 @inject HttpClient _client
 @inject NavigationManager _navManager
-<h3>View Category</h3>
+<h1 class="mt-3" id="ViewCategoryheader">View Category</h1>
 <FormComponent category="category" Disabled="true" />
 @code {
     [Parameter] public int id { get; set; }

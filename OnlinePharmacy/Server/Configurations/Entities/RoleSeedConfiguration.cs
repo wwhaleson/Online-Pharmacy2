@@ -24,7 +24,7 @@ namespace OnlinePharmacy.Server.Configurations.Entities
             },
             new IdentityRole
             {
-                Id = "bd2bcf0c-20db-474f-8407-5a6b159518bb",
+                Id = "3ed2ec18-6112-4de0-8449-be133a072f28",
                 Name = "User",
                 NormalizedName = "USER"
             }

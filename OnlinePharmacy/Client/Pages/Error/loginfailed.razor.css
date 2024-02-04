@@ -1,0 +1,22 @@
+﻿#dflexloginfailed {
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+#loginfailederror {
+    font-weight: 900;
+    font-family: "Rubik", serif;
+    font-size: 100px;
+    text-align: center;
+}
+
+#explainloginfailed {
+    font-weight: 500;
+    font-family: "Rubik", serif;
+    font-size: 20px;
+    text-align: center;
+}
+
+.dflexbacktostore {
+    justify-content: center;
+}

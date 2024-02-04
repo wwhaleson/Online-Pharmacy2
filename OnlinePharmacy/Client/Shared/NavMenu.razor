@@ -1,4 +1,5 @@
-﻿
+﻿@inject NavigationManager Navigation
+
 <nav class="navbar navbar-expand-lg bg-light " id="navigaionbaritems">
     <div class="container-fluid">
         <a class="navbar-brand" href="#" id="navigationbarlogo">Farmacy</a>
@@ -7,25 +8,21 @@
                 <h5 class="offcanvas-title">Farmacy</h5>
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link align-self-center" href="/Product" role="button" id="productslink">
-                            Products
-                        </a>
-                    </li>
-                </ul>
-                <!--
-                    <div class="input-group" id="Searchscope">
-                        <div class="form-inline">
-                            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                        </div>
-                        <button class="btn btn-outline-success" type="submit">
-                            <span class="bi bi-search" ></span>
-                        </button>
+            <AuthorizeView>
+                <Authorized>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link align-self-center" href="/Product" role="button" id="productslink">
+                                    Products
+                                </a>
+                            </li>
+                        </ul>
+                        <SearchBarComponent OnSearch="HandleSearch" />
                     </div>
-                -->
-            </div>
+                    
+                </Authorized>
+            </AuthorizeView>
         </div>
             <div class="d-flex justify-content-end" id="navigationicon">
             <a class="nav-link" id="Profileicon" onclick="toggleMenu() ">
@@ -50,8 +47,16 @@
 </nav>
 
 @code {
-    
+    private string searchTerm; 
+    private void HandleSearch(string term)
+    {
+        searchTerm = string.IsNullOrEmpty(term) ? string.Empty : term;
 
-
+        // Navigate to the search page only if the search term is not empty
+        if (!string.IsNullOrEmpty(searchTerm))
+        {
+            Navigation.NavigateTo($"/Search/{Uri.EscapeDataString(searchTerm)}");
+        }
+    }
 }
 

@@ -16,6 +16,7 @@
     {
         await _client.PostAsJsonAsync(Endpoints.StaffsEndpoint, staff);
         await JSRuntime.InvokeVoidAsync("alert", "Staff was Created!");
+        staff = new Staff();
     }
 
 }

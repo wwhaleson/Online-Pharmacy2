@@ -23,7 +23,7 @@ namespace OnlinePharmacy.Server.Configurations.Entities
                     ProductDescription = "Scott's is the Number 1 Kids' Multivitamin Brand in Singapore*. Worry about your little ones being picky with food and not getting the necessary nutrients for proper growth/development? Do not worry, Scott’s Multivitamin Gummies is coming to your rescue! Available in three delicious fruity flavors Apple, Tropical Fruits, and the NEWEST addition - Mango; it contains Zinc and five essential vitamins - A, B6, C, D, E - to support your kid immunity, bone growth and healthy vision every day. Moreover, Scott's micro encapsulation technology locks in the goodness of Zinc and 5 Vitamins (Vitamin A, B6, C, D & E) whilst giving kids the taste they love.",
                     PrescriptionStatus = false,
                     ProductPrice = 22,
-                    StockQuantity = 100,
+                    StockAvailable = true,
                     ProductMinimumAge = 2,
                     ProductMaximumAge = 12,
                     ProductCategoryID = 2
@@ -42,7 +42,7 @@ namespace OnlinePharmacy.Server.Configurations.Entities
                     ProductDescription = "Panadol Children’s Suspension 1-6 Years (120mg/5ml) provides relief from fever and pain in children aged 1 to 6 years. Like all Children’s Panadol products, Panadol Children’s Suspension 1-6 Years is gentle on little stomachs. A strawberry-flavoured suspension, Panadol Children’s Suspension 1-6 Years contains no alcohol and is aspirin-free.",
                     PrescriptionStatus = false,
                     ProductPrice = 9,
-                    StockQuantity = 90,
+                    StockAvailable = true,
                     ProductMinimumAge = 1,
                     ProductMaximumAge = 6,
                     ProductCategoryID = 3
@@ -61,7 +61,7 @@ namespace OnlinePharmacy.Server.Configurations.Entities
                     ProductDescription = "Amoxicillin is a penicillin antibiotic. It is used to treat bacterial infections, such as chest infections (including pneumonia) and dental abscesses. It can also be used together with other antibiotics and medicines to treat stomach ulcers.",
                     PrescriptionStatus = true,
                     ProductPrice = 10,
-                    StockQuantity = 50,
+                    StockAvailable = true,
                     ProductMinimumAge = 5,
                     ProductMaximumAge = 12,
                     ProductCategoryID = 1
@@ -80,7 +80,7 @@ namespace OnlinePharmacy.Server.Configurations.Entities
                     ProductDescription = "Ibuprofen is a nonsteroidal anti-inflammatory drug.",
                     PrescriptionStatus = true,
                     ProductPrice = 10,
-                    StockQuantity = 50,
+                    StockAvailable = true,
                     ProductMinimumAge = 5,
                     ProductMaximumAge = 12,
                     ProductCategoryID = 1
@@ -99,7 +99,7 @@ namespace OnlinePharmacy.Server.Configurations.Entities
                     ProductDescription = "Zyrtec pcs 10's is now Zyrtec-R pcs 10's.\r\nNew Name, New Pack, Same Formula.\r\nZyrtec-R is an antihistamine.",
                     PrescriptionStatus = false,
                     ProductPrice = 12,
-                    StockQuantity = 30,
+                    StockAvailable = true,
                     ProductMinimumAge = 2,
                     ProductMaximumAge = 12,
                     ProductCategoryID = 3

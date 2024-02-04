@@ -15,6 +15,7 @@ namespace OnlinePharmacy.Shared.Domain
         public int StaffID { get; set; }
 
         [Display(Name = "Staff Image")]
+        [RegularExpression(@"\b(?:https?|ftp):\/\/\S+\.(png|jpg|jpeg|gif|bmp)\b", ErrorMessage = "Invalid image URL or file path")]
         public string? StaffImage { get; set; }
 
 

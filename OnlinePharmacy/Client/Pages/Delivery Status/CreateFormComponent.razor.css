@@ -1,0 +1,25 @@
+﻿.em {
+    text-align: center;
+}
+
+.DeliveryCard {
+    max-width: 1000px;
+    width: 100%;
+}
+
+.card-header {
+    font-weight: 800;
+    font-family: "Rubik", serif;
+    font-size: 20px;
+    text-align: center;
+}
+
+#flexcolumndelivery {
+    align-items: center;
+}
+
+.bordercolor {
+    border: 1px solid #000000;
+    border-radius: 0.25rem;
+    padding: 0.375rem 0.75rem;
+}

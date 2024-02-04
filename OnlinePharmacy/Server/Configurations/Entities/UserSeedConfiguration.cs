@@ -21,6 +21,17 @@ namespace OnlinePharmacy.Server.Configurations.Entities
                 UserName = "admin@localhost.com",
                 NormalizedUserName = "ADMIN@LOCALHOST.COM",
                 PasswordHash = hasher.HashPassword(null, "P@ssword1")
+            },
+            new ApplicationUser
+            {
+                Id = "fedeeeb4-ae9f-4617-b6dc-6bbbe227b05e",
+                Email = "user@localhost.com",
+                NormalizedEmail = "USER@LOCALHOST.COM",
+                FirstName = "User",
+                LastName = "User",
+                UserName = "user@localhost.com",
+                NormalizedUserName = "USER@LOCALHOST.COM",
+                PasswordHash = hasher.HashPassword(null, "P@ssword1")
             }
             );
         }

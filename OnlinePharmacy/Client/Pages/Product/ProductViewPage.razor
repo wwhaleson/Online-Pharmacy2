@@ -1,7 +1,7 @@
 ﻿@page "/Product/view/{id:int}"
 @inject HttpClient _client
 @inject NavigationManager _navManager
-<h3>View Product</h3>
+<h1 class="mt-3" id="ViewProductheader">View Product</h1>
 <FormComponent product="product" Disabled="true" />
 @code {
     [Parameter] public int id { get; set; }

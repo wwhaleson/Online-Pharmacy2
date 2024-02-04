@@ -16,17 +16,24 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
-    .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
-
-builder.Services.AddAuthentication()
-    .AddIdentityServerJwt();
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false).AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+// Configure identity server to put the role claim into the id token 
+// and the access token and prevent the default mapping for roles 
+// in the JwtSecurityTokenHandler.
+builder.Services.AddIdentityServer()
+    .AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options =>
+    {
+        options.IdentityResources["openid"].UserClaims.Add("role");
+        options.ApiResources.Single().UserClaims.Add("role");
+    });
+// Need to do this as it maps "role" to ClaimTypes.Role and causes issues
+System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler
+    .DefaultInboundClaimTypeMap.Remove("role");
 
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
-builder.Services.AddControllersWithViews().AddNewtonsoftJson(op =>
-op.SerializerSettings.ReferenceLoopHandling =
-Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+builder.Services.AddAuthentication().AddIdentityServerJwt();
+
+builder.Services.AddControllersWithViews().AddNewtonsoftJson(op => op.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 builder.Services.AddRazorPages();
 
 var app = builder.Build();

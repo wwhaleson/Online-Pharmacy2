@@ -99,7 +99,7 @@
     public async void Search(ChangeEventArgs args)
     {
         var searchTerm = (string)args.Value;
-
+        Staffs = await _client.GetFromJsonAsync<List<Staff>>($"{Endpoints.StaffsEndpoint}");
         if (string.IsNullOrWhiteSpace(searchTerm))
         {
             Staffs = await _client.GetFromJsonAsync<List<Staff>>($"{Endpoints.StaffsEndpoint}");

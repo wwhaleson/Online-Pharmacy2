@@ -15,17 +15,9 @@
                             <div class="form-group">
                                 <label>Order ID: </label>
                                 <div>
-                                    <InputSelect @bind-Value="delivery.OrderID" class="form-control">
-                                        <option value="">-- Order ID --</option>
-                                        @if (Orders != null)
-                                        {
-                                            foreach (var order in Orders)
-                                            {
-                                                <option value="@order.CustomerID">@order.OrderID</option>
-                                            }
-                                        }
-                                    </InputSelect>
-                                    <ValidationMessage For="@(() => delivery.OrderID)" />
+                                    <h5>
+                                        @delivery.OrderID
+                                    </h5>
                                 </div>
                             </div>
                         </div>

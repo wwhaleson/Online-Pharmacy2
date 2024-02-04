@@ -1,7 +1,9 @@
 ﻿@page "/Customer/view/{id:int}"
 @inject HttpClient _client
 @inject NavigationManager _navManager
-<h3>View Customer</h3>
+
+<h1 class="mt-3" id="ViewCustomerheader">View Customer</h1>
+
 <FormComponent customer="customer" Disabled="true" />
 
 @code {

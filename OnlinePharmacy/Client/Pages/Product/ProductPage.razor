@@ -1,4 +1,4 @@
-﻿@attribute [Authorize]
+﻿@attribute [Authorize(Roles = "User, Administrator")]
 @inject HttpClient _client
 @inject IJSRuntime js
 @inject HttpInterceptorService _interceptor
@@ -16,13 +16,7 @@
     </div>
 </nav>
 
-<div class="col-4 p-0 justify-content-end">
-    <Input @oninput="Search" placeholder="Seach First Name" class="p-3" />
-
-</div>
-
 <div class="container">
-
     <div class="d-flex flex-column" id="dflexProduct">
         <h1 class="mt-2" id="Productheader">Product</h1>
         <a href="/Product/create" class="btn btn-secondary createproductbutton">
@@ -33,7 +27,6 @@
 
 
     <div class="row">
- 
             <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
             @if (Products == null)
             {
@@ -107,24 +100,5 @@
     {
         _interceptor.DisposeEvent();
     }
-
-    public async void Search(ChangeEventArgs args)
-    {
-        var searchTerm = (string)args.Value;
-
-        if (string.IsNullOrWhiteSpace(searchTerm))
-        {
-            Products = await _client.GetFromJsonAsync<List<Product>>($"{Endpoints.ProductsEndpoint}");
-        }
-        else
-        {
-            Products = Products
-                .Where(x => x.ProductName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
-                .ToList();
-        }
-
-        StateHasChanged();
-    }
-
 
 }

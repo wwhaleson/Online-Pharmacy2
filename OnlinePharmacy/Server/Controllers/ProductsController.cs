@@ -108,5 +108,26 @@ namespace OnlinePharmacy.Server.Controllers
             var product = await _unitOfWork.Products.Get(q => q.ProductID == id);
             return product != null;
         }
+
+
+        // GET: api/Products/Search?productsname=yourSearchTerm
+        [HttpGet("Search")]
+        public async Task<IActionResult> SearchProducts([FromQuery] string productsname)
+        {
+            if (_unitOfWork.Products == null)
+            {
+                return Problem("Entity set 'Products' is null.");
+            }
+
+            var products = await _unitOfWork.Products.GetAll();
+
+            if (!String.IsNullOrEmpty(productsname))
+            {
+                products = products.Where(p => p.ProductName.Contains(productsname, StringComparison.OrdinalIgnoreCase)).ToList();
+            }
+
+            return Ok(products);
+        }
+
     }
 }

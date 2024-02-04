@@ -35,7 +35,10 @@
             <p>Consulatation</p>
             <span>></span>
         </a>
-
+        </Authorized>
+</AuthorizeView>
+<AuthorizeView Roles ="Administrator">
+    <Authorized>
         <!-- User able to view their Category -->
         <a href="/Category" class="sub-menu-link">
             <i class="bi bi-diagram-2"></i>
@@ -56,15 +59,18 @@
             <p>Customer</p>
             <span>></span>
         </a>
-        
+    </Authorized>
+    
+</AuthorizeView>
+ <AuthorizeView>    
+     <Authorized>
         <!-- User able to select to log out of the account-->
         <a href="#" @onclick="BeginLogOut" class="sub-menu-link">
             <i class="bi bi-box-arrow-right"></i>
             <p>Log Out</p>
             <span>></span>
         </a>
-
-    </Authorized>
+     </Authorized>
     <!--User not logged in and able to see the different dropdown item for under My account-->
     <NotAuthorized>
         <!--User able to select the register option and register for a new account-->
@@ -85,6 +91,6 @@
 @code{
     private void BeginLogOut()
     {
-        Navigation.NavigateToLogout("authentication/logout");
+        Navigation.NavigateToLogout("authentication/logout", "/");
     }
 }
