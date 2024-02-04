@@ -73,8 +73,8 @@ namespace OnlinePharmacy.Shared.Domain
         public decimal? ProductPrice { get; set; }
 
         
-        [Required]
-        [Display(Name = "Stock Available is required")]
+        [Required(ErrorMessage = "Stock Available field is required")]
+        [Display(Name = "Stock Availability")]
         public bool? StockAvailable { get; set; }
 
 

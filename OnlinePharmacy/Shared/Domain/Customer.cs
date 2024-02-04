@@ -54,7 +54,7 @@ namespace OnlinePharmacy.Shared.Domain
 
         [Required(ErrorMessage = "Email is required")]
         [DataType(DataType.EmailAddress)]
-        [EmailAddress(ErrorMessage = "The Staff Email field is not a valid email address")]
+        [EmailAddress(ErrorMessage = "The Customer Email field is not a valid email address")]
         public string CustEmail { get; set; }
 
         [Required(ErrorMessage = "Password is required")]

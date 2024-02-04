@@ -65,20 +65,6 @@ namespace OnlinePharmacy.Shared.Domain
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            // Check if ConsultationDateStart is greater than ConsultationDateEnd
-            if (ConsultationDateStart != null && ConsultationDateEnd != null)
-            {
-                if (ConsultationDateStart > ConsultationDateEnd)
-                {
-                    yield return new ValidationResult("Consultation Date Start must be earlier than or equal to Consultation Date End", new[] { "ConsultationDateStart" });
-                }
-
-                if (ConsultationDateEnd < ConsultationDateStart.AddMinutes(10))
-                {
-                    yield return new ValidationResult("Consultation Date End must be at least 10 minutes after Consultation Date Start", new[] { "ConsultationDateEnd" });
-                }
-            }
-
             // Check if ConsultationTimeStart is greater than ConsultationTimeEnd
             if (ConsultationTimeStart != null && ConsultationTimeEnd != null)
             {
@@ -86,6 +72,8 @@ namespace OnlinePharmacy.Shared.Domain
                 {
                     yield return new ValidationResult("Consultation Time Start must be earlier than Consultation Time End", new[] { "ConsultationTimeStart" });
                 }
+
+
 
                 // Check if ConsultationTimeStart and ConsultationTimeEnd are within the allowed time range (9 am to 9 pm)
                 TimeSpan startTime = ConsultationTimeStart.Value.TimeOfDay;
@@ -99,6 +87,7 @@ namespace OnlinePharmacy.Shared.Domain
                     yield return new ValidationResult("Consultation times must be between 9 am and 9 pm", new[] { "ConsultationTimeStart", "ConsultationTimeEnd" });
                 }
             }
+
 
 
         }
