@@ -37,7 +37,6 @@ namespace OnlinePharmacy.Server.Configurations.Entities
 
             );
 
-            //throw new NotImplementedException();
         }
     }
 }

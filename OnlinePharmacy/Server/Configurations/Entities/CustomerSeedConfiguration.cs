@@ -13,8 +13,8 @@ namespace OnlinePharmacy.Server.Configurations.Entities
                 new Customer
                 {
                     CustomerID = 1,
-                    CustFname = "Chae",
-                    CustLname = "Won",
+                    CustFname = "Mary",
+                    CustLname = "Lim",
                     CustGender = "Female",
                     CustPostalCode = 123983,
                     CustBlockNo = "123",
@@ -22,7 +22,7 @@ namespace OnlinePharmacy.Server.Configurations.Entities
                     CustUnitNo = 210,
                     CustAddress = "Ubi Avenue 1",
                     CustPhoneNo = 83719378,
-                    CustEmail = "chaewon55@gmail.com",
+                    CustEmail = "marylim55@gmail.com",
                     CustPass = "HelloWorld#1",
 
                 },
@@ -30,7 +30,7 @@ namespace OnlinePharmacy.Server.Configurations.Entities
                 {
                     CustomerID = 2,
                     CustFname = "John",
-                    CustLname = "Wick",
+                    CustLname = "Tan",
                     CustGender = "Male",
                     CustPostalCode = 103933,
                     CustBlockNo = "123A",
@@ -38,7 +38,7 @@ namespace OnlinePharmacy.Server.Configurations.Entities
                     CustUnitNo = 208,
                     CustAddress = "Tampines Street 61",
                     CustPhoneNo = 93682946,
-                    CustEmail = "johnwick66@gmail.com",
+                    CustEmail = "johntan66@gmail.com",
                     CustPass = "HelloWorld#2",
 
                 }

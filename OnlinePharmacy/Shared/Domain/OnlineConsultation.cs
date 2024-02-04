@@ -72,7 +72,13 @@ namespace OnlinePharmacy.Shared.Domain
                 {
                     yield return new ValidationResult("Consultation Date Start must be earlier than or equal to Consultation Date End", new[] { "ConsultationDateStart" });
                 }
+
+                if (ConsultationDateEnd < ConsultationDateStart.AddMinutes(10))
+                {
+                    yield return new ValidationResult("Consultation Date End must be at least 10 minutes after Consultation Date Start", new[] { "ConsultationDateEnd" });
+                }
             }
+
             // Check if ConsultationTimeStart is greater than ConsultationTimeEnd
             if (ConsultationTimeStart != null && ConsultationTimeEnd != null)
             {

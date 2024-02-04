@@ -32,7 +32,6 @@
         await _client.PutAsJsonAsync($"{Endpoints.OrdersEndpoint}/{id}",
         order);
         await JSRuntime.InvokeVoidAsync("alert", "Order was Edited!");
-        /*_navManager.NavigateTo("/Order/");*/
     }
 
 }

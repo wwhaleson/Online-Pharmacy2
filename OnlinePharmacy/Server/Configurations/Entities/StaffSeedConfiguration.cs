@@ -40,11 +40,8 @@ namespace OnlinePharmacy.Server.Configurations.Entities
                     Position = "Order Clerk"
                 }
 
-
-
                 );
 
-            //throw new NotImplementedException();
         }
     }
 }

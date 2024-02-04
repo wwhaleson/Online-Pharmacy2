@@ -24,8 +24,8 @@ namespace OnlinePharmacy.Server.Configurations.Entities
                 DeliveryCost = 5,
                 DeliveryMethod = "Standard",
                 DeliveryStatus = "Packing",
-                EstimatedDeliveryDate = DateTime.Now,
-                EstimatedDeliveryTime  = DateTime.Now,
+                EstimatedDeliveryDate = DateTime.Now.AddDays(5),
+                EstimatedDeliveryTime  = DateTime.Now.AddHours(5),
                 OrderID = 1,
                 StaffID = 1,
 
@@ -36,8 +36,8 @@ namespace OnlinePharmacy.Server.Configurations.Entities
                  DeliveryCost = 5,
                  DeliveryMethod = "Standard",
                  DeliveryStatus = "Packing",
-                 EstimatedDeliveryDate = DateTime.Now,
-                 EstimatedDeliveryTime = DateTime.Now,
+                 EstimatedDeliveryDate = DateTime.Now.AddDays(5),
+                 EstimatedDeliveryTime = DateTime.Now.AddHours(6),
                  OrderID = 2,
                  StaffID = 1,
              }

@@ -20,7 +20,6 @@ namespace OnlinePharmacy.Server.Configurations.Entities
                     ConsultationPrice = 40, // Use decimal value
                     ConsultationSymptom = "Fever, Headache",
                     ConsultationDiagnosis = "Common cold",
-                    /*ConsultationDuration = 1,*/
                     ConsultationStatus = "Completed",
                     ConsultationPlatform = "Online Call",
                     CustomerID = 1,
@@ -36,7 +35,6 @@ namespace OnlinePharmacy.Server.Configurations.Entities
                     ConsultationPrice = 45.75m,
                     ConsultationSymptom = "Headache",
                     ConsultationDiagnosis = "Common cold",
-                    /*ConsultationDuration = 2,*/
                     ConsultationStatus = "Completed",
                     ConsultationPlatform = "Online Call",
                     CustomerID = 2,

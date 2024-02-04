@@ -37,6 +37,16 @@ namespace OnlinePharmacy.Shared.Domain
                 yield return new ValidationResult("Expiry Date must be later than Issue Date", new[] { "ExpiryDate" });
             }
 
+            if (IssueDate != null && ExpiryDate != null)
+            {
+                var minimumExpiryDate = IssueDate.Value.AddMonths(3);
+
+                if (ExpiryDate < minimumExpiryDate)
+                {
+                    yield return new ValidationResult("Expiry Date must be at least 3 months after Issue Date", new[] { "ExpiryDate" });
+                }
+            }
+
 
         }
 

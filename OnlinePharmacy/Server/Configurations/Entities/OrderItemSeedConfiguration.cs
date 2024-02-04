@@ -32,7 +32,7 @@ namespace OnlinePharmacy.Server.Configurations.Entities
             {
                 OrderItemID = 2,
                 OrderItemQty = 3,
-                OrderItemSubTotal = 21,
+                OrderItemSubTotal = 20,
                 OrderID = 2,
                 ProductID = 2,
             

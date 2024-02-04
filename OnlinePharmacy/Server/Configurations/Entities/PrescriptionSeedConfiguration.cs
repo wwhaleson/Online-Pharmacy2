@@ -19,7 +19,7 @@ namespace OnlinePharmacy.Server.Configurations.Entities
             new Prescription
             {
                 PrescriptionID = 1,
-                IssueDate = DateTime.Today.AddMonths(5),
+                IssueDate = DateTime.Today,
                 ExpiryDate = DateTime.Today.AddMonths(5),
                 OnlineConsultationID = 1
 
@@ -28,7 +28,7 @@ namespace OnlinePharmacy.Server.Configurations.Entities
              new Prescription
              {
                  PrescriptionID = 2,
-                 IssueDate = DateTime.Today.AddMonths(5),
+                 IssueDate = DateTime.Today,
                  ExpiryDate = DateTime.Today.AddMonths(6),
                  OnlineConsultationID = 2
 
@@ -37,7 +37,7 @@ namespace OnlinePharmacy.Server.Configurations.Entities
 
 
              );
-            //throw new NotImplementedException();
+
         }
     }
 }
