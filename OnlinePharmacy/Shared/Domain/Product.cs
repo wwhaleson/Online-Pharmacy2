@@ -96,6 +96,13 @@ namespace OnlinePharmacy.Shared.Domain
                 }
             }
 
+            // Check if ProductExpiryDate is at least 2 years later
+            if (ProductExpiryDate != null && ProductExpiryDate <= DateTime.Now.AddYears(2))
+            {
+                yield return new ValidationResult("Product Expiry Date must be at least 2 years later from the current date", new[] { "ProductExpiryDate" });
+            }
+
+
         }
     }
 }
